@@ -1,0 +1,212 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Default is dark (like gambling-solutions) */
+  --bg-body: #000000;
+  --bg-card: #050D19;
+  --bg-card-border: #1E2632;
+  --bg-header: rgba(255, 255, 255, 0.02);
+  --bg-section-alt: #050D19;
+
+  --text-white: #ffffff;
+  --text-gray: #BFC1C4;
+  --text-gray-2: #AEB0B3;
+  --text-muted: #64748B;
+
+  --accent-1: #0F3D73;
+  --accent-2: #1F6FEB;
+  --accent-3: #3B82F6;
+  --accent-4: #60A5FA;
+
+  --gradient-primary: linear-gradient(90deg, #0F3D73, #1F6FEB, #7C3AED, #06B6D4, #1F6FEB);
+  --gradient-text: linear-gradient(90deg, #1F6FEB 0%, #60A5FA 50%, #7C3AED 100%);
+
+  --separator: #0F1723;
+}
+
+
+@theme inline {
+  --color-bg-body: var(--bg-body);
+  --color-bg-card: var(--bg-card);
+  --color-bg-card-border: var(--bg-card-border);
+  --color-bg-header: var(--bg-header);
+  --color-bg-section-alt: var(--bg-section-alt);
+  --color-text-primary: var(--text-white);
+  --color-text-gray: var(--text-gray);
+  --color-text-gray-2: var(--text-gray-2);
+  --color-text-muted: var(--text-muted);
+  --color-accent-1: var(--accent-1);
+  --color-accent-2: var(--accent-2);
+  --color-accent-3: var(--accent-3);
+  --color-accent-4: var(--accent-4);
+  --color-separator: var(--separator);
+  --font-sans: var(--font-outfit);
+  --font-heading: var(--font-outfit);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-body);
+  color: var(--text-white);
+  font-family: var(--font-outfit), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-outfit), system-ui, sans-serif;
+}
+
+/* Animated gradient glow for cards */
+@keyframes glow {
+  0% { background-position: 30% 50%; }
+  50% { background-position: 100% 0; }
+  100% { background-position: 30% 50%; }
+}
+
+/* 3D text rotation */
+@keyframes rotateText {
+  0% { transform: rotateX(0deg); }
+  10% { transform: rotateX(90deg); }
+  25% { transform: rotateX(90deg); }
+  35% { transform: rotateX(180deg); }
+  50% { transform: rotateX(180deg); }
+  60% { transform: rotateX(270deg); }
+  75% { transform: rotateX(270deg); }
+  85% { transform: rotateX(360deg); }
+  100% { transform: rotateX(360deg); }
+}
+
+@keyframes text3dFront {
+  0% { opacity: 1; }
+  10% { opacity: 0; }
+  75% { opacity: 0; }
+  90% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes text3dBottom {
+  0% { opacity: 0; }
+  15% { opacity: 1; }
+  25% { opacity: 1; }
+  35% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes text3dBack {
+  0% { opacity: 0; }
+  25% { opacity: 0; }
+  35% { opacity: 1; }
+  50% { opacity: 1; }
+  60% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes text3dTop {
+  0% { opacity: 0; }
+  50% { opacity: 0; }
+  60% { opacity: 1; }
+  75% { opacity: 1; }
+  85% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-body);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-card-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-2);
+}
+
+::selection {
+  background: rgba(124, 58, 237, 0.2);
+  color: var(--text-white);
+}
+
+/* Blog article content */
+.prose-blog {
+  color: #d1d5db;
+  font-size: 16px;
+  line-height: 1.8;
+}
+.prose-blog h2 {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 2.5em;
+  margin-bottom: 0.8em;
+  line-height: 1.3;
+}
+.prose-blog h3 {
+  color: #ffffff;
+  font-size: 19px;
+  font-weight: 600;
+  margin-top: 2em;
+  margin-bottom: 0.6em;
+  line-height: 1.35;
+}
+.prose-blog p {
+  margin-bottom: 1.25em;
+}
+.prose-blog ul, .prose-blog ol {
+  margin-bottom: 1.25em;
+  padding-left: 1.5em;
+}
+.prose-blog ul {
+  list-style-type: disc;
+}
+.prose-blog ol {
+  list-style-type: decimal;
+}
+.prose-blog li {
+  margin-bottom: 0.4em;
+}
+.prose-blog strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+.prose-blog a {
+  color: #1F6FEB;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.prose-blog a:hover {
+  color: #60A5FA;
+}
+.prose-blog blockquote {
+  border-left: 3px solid #1F6FEB;
+  padding-left: 1em;
+  margin: 1.5em 0;
+  color: #9ca3af;
+  font-style: italic;
+}
+.prose-blog code {
+  background: rgba(255,255,255,0.06);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+.prose-blog pre {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  padding: 1em;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+.prose-blog img {
+  border-radius: 12px;
+  margin: 1.5em 0;
+}
