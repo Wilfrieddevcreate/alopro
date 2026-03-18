@@ -229,7 +229,8 @@ export function ServicesSection() {
                     type: "spring",
                     stiffness: 200,
                   }}
-                  className="text-[48px] font-bold leading-none text-gray-200 dark:text-white/[0.06]"
+                  className="text-[56px] font-extrabold leading-none"
+                  style={{ color: dept.color }}
                 >
                   {dept.number}
                 </motion.span>
@@ -344,23 +345,23 @@ export function ServicesSection() {
               {/* Link */}
               <motion.a
                 href={`/departments/${dept.id}`}
-                initial={{ opacity: 0, x: -8 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                initial={{ opacity: 0, y: 8 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.35, delay: 1.3 + i * 0.15 }}
-                className="mt-8 inline-flex items-center gap-1.5 text-[13px] font-semibold transition-all duration-150"
-                style={{ color: dept.color }}
+                className="mt-8 inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-[14px] font-semibold text-white transition-all duration-200 hover:opacity-90 hover:shadow-lg"
+                style={{ backgroundColor: dept.color }}
               >
                 {locale === "fr" ? "En savoir plus" : "Learn more"}
                 <svg
-                  width="14"
-                  height="14"
+                  width="15"
+                  height="15"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="transition-transform duration-150 group-hover:translate-x-0.5"
+                  className="transition-transform duration-200 group-hover:translate-x-0.5"
                 >
                   <line x1="5" y1="12" x2="19" y2="12" />
                   <polyline points="12 5 19 12 12 19" />

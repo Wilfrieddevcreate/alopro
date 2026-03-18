@@ -50,7 +50,7 @@ export function Header() {
               className="rounded-lg object-cover"
             />
             <span className="text-[18px] font-bold tracking-tight text-gray-900 dark:text-white">
-              {SITE_NAME}
+              ALO<span className="text-[#1F6FEB]">PRO</span>
             </span>
           </Link>
 

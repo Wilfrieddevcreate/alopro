@@ -78,7 +78,7 @@ export const DEPARTMENTS: Department[] = [
       { key: "p2", color: "#059669" },
       { key: "p3", color: "#1F6FEB" },
     ],
-    team: [{ key: "m1" }, { key: "m2" }, { key: "m3" }, { key: "m4" }],
+    team: [{ key: "m1" }, { key: "m2" }],
   },
 ];
 

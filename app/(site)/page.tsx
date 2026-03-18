@@ -2,6 +2,7 @@ import { HeroSection } from "@/src/components/sections/HeroSection";
 import { ServicesSection } from "@/src/components/sections/ServicesSection";
 import { WhyChooseUsSection } from "@/src/components/sections/WhyChooseUsSection";
 import { PortfolioSection } from "@/src/components/sections/PortfolioSection";
+import { TrainingsSection } from "@/src/components/sections/TrainingsSection";
 import { ProcessSection } from "@/src/components/sections/ProcessSection";
 import { LatestArticlesSection } from "@/src/components/sections/LatestArticlesSection";
 import { StatsSection } from "@/src/components/sections/StatsSection";
@@ -15,6 +16,7 @@ export default function HomePage() {
       <ServicesSection />
       <WhyChooseUsSection />
       <PortfolioSection />
+      <TrainingsSection />
       <ProcessSection />
       <LatestArticlesSection />
       <StatsSection />

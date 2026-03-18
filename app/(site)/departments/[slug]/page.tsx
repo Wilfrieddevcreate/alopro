@@ -5,6 +5,7 @@ import { DeptHeroSection } from "@/src/components/departments/DeptHeroSection";
 import { DeptOverviewSection } from "@/src/components/departments/DeptOverviewSection";
 import { DeptServicesSection } from "@/src/components/departments/DeptServicesSection";
 import { DeptProjectsSection } from "@/src/components/departments/DeptProjectsSection";
+import { DeptTrainingsSection } from "@/src/components/departments/DeptTrainingsSection";
 import { DeptTeamSection } from "@/src/components/departments/DeptTeamSection";
 import { DeptCTASection } from "@/src/components/departments/DeptCTASection";
 
@@ -58,7 +59,11 @@ export default async function DepartmentPage({ params }: { params: Promise<{ slu
       <DeptHeroSection dept={dept} />
       <DeptOverviewSection dept={dept} />
       <DeptServicesSection dept={dept} />
-      <DeptProjectsSection dept={dept} />
+      {dept.slug === "training" ? (
+        <DeptTrainingsSection dept={dept} />
+      ) : (
+        <DeptProjectsSection dept={dept} />
+      )}
       <DeptTeamSection dept={dept} />
       <DeptCTASection dept={dept} />
     </>
