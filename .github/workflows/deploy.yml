@@ -17,8 +17,12 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
             cd ~/htdocs/alopro.net
+            git stash
             git pull origin main
+            git stash pop || true
             npm install
             npm run build
             pm2 restart alopro || pm2 start npm --name "alopro" -- run start
