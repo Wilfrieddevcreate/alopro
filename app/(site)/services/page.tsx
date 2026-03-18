@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { useLanguage } from "@/src/contexts/LanguageContext";
 import { ProcessSection } from "@/src/components/sections/ProcessSection";
 import { CTASection } from "@/src/components/sections/CTASection";
@@ -76,8 +77,14 @@ export default function ServicesPage() {
       {/* Hero */}
       <section className="relative overflow-hidden bg-[#000814] pt-32 pb-20 sm:pt-40 sm:pb-28">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 h-[500px] w-[500px] rounded-full bg-[#1F6FEB]/[0.03] blur-[120px]" />
-          <div className="absolute bottom-0 right-1/4 h-[400px] w-[400px] rounded-full bg-[#059669]/[0.03] blur-[120px]" />
+          <Image
+            src="/images/herosection.jpg"
+            alt=""
+            fill
+            className="object-cover opacity-60"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#000814]/40 via-[#000814]/60 to-[#12121C]" />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">

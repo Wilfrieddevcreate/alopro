@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { useLanguage } from "@/src/contexts/LanguageContext";
 import { StatsSection } from "@/src/components/sections/StatsSection";
 import { CTASection } from "@/src/components/sections/CTASection";
@@ -101,7 +102,14 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="relative overflow-hidden bg-[#000814] pt-32 pb-20 sm:pt-40 sm:pb-28">
         <div className="absolute inset-0">
-          <div className="absolute top-1/3 right-1/4 h-[500px] w-[500px] rounded-full bg-[#1F6FEB]/[0.04] blur-[120px]" />
+          <Image
+            src="/images/herosection.jpg"
+            alt=""
+            fill
+            className="object-cover opacity-60"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#000814]/40 via-[#000814]/60 to-[#12121C]" />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
@@ -243,7 +251,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team */}
-      <section className="bg-gray-50 py-16 dark:bg-[#000814] sm:py-24">
+      <section className="py-16 bg-[#000814] sm:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -276,25 +284,37 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08, ease }}
-                className="group overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 transition-all duration-300 hover:border-gray-300 hover:shadow-lg dark:border-white/[0.06] dark:bg-white/[0.02] dark:hover:border-white/[0.12]"
+                className="group relative overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.04]"
               >
-                {/* Avatar placeholder */}
+                {/* Dept tag */}
+                <div className="mb-4 flex justify-center">
+                  <span
+                    className="rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-white"
+                    style={{ backgroundColor: member.color + "20", color: member.color }}
+                  >
+                    {member.dept === "dev" ? (locale === "fr" ? "Développement" : "Development") : member.dept === "research" ? (locale === "fr" ? "Recherche" : "Research") : "Formation"}
+                  </span>
+                </div>
+
+                {/* Avatar */}
                 <div
-                  className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-full text-[24px] font-bold text-white"
-                  style={{ backgroundColor: member.color }}
+                  className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-2xl text-[22px] font-bold text-white shadow-lg"
+                  style={{ background: `linear-gradient(135deg, ${member.color}, ${member.color}99)` }}
                 >
                   {member.name.split(" ").map(n => n[0]).join("")}
                 </div>
 
                 <div className="text-center">
-                  <h3 className="text-[16px] font-bold text-gray-900 dark:text-white">
+                  <h3 className="text-[16px] font-bold text-white">
                     {member.name}
                   </h3>
-                  <p className="mt-1 text-[13px] text-gray-500 dark:text-gray-400">
+                  <p className="mt-1 text-[13px] text-gray-400">
                     {t(member.roleKey)}
                   </p>
-                  <div className="mx-auto mt-3 h-[2px] w-8 rounded-full" style={{ backgroundColor: member.color }} />
                 </div>
+
+                {/* Bottom accent */}
+                <div className="absolute bottom-0 left-0 h-[2px] w-full" style={{ backgroundColor: member.color + "40" }} />
               </motion.div>
             ))}
           </div>
