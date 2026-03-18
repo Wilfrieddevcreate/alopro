@@ -56,7 +56,7 @@ export default function AdminProjectsPage() {
 
   return (
     <div>
-      <div className="mb-8 flex items-center justify-between">
+      <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
         <div>
           <h1 className="text-[28px] font-bold text-white">Projets</h1>
           <p className="mt-1 text-[14px] text-gray-500">

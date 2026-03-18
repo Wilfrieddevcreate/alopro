@@ -124,7 +124,7 @@ export default function EditBlogPage() {
     return (
       <div className="mx-auto max-w-4xl space-y-6">
         <Skeleton className="h-10 w-64" />
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Skeleton className="h-12" /><Skeleton className="h-12" />
         </div>
         <Skeleton className="h-[400px] rounded-xl" />
@@ -179,7 +179,7 @@ export default function EditBlogPage() {
 
       <div className="space-y-6">
         {/* Category + Author */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="mb-2 block text-[12px] font-bold uppercase tracking-wider text-gray-500">Catégorie</label>
             <select

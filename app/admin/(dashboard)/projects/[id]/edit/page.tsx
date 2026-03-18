@@ -101,7 +101,7 @@ export default function EditProjectPage() {
     return (
       <div className="mx-auto max-w-3xl space-y-6">
         <Skeleton className="h-10 w-64" />
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Skeleton className="h-12" /><Skeleton className="h-12" />
         </div>
         <Skeleton className="h-48 rounded-xl" />
@@ -155,7 +155,7 @@ export default function EditProjectPage() {
       </div>
 
       <div className="space-y-6">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="mb-2 block text-[12px] font-bold uppercase tracking-wider text-gray-500">Catégorie</label>
             <select

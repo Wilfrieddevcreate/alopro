@@ -44,7 +44,7 @@ export default function AdminSubscribersPage() {
 
   return (
     <div>
-      <div className="mb-8 flex items-center justify-between">
+      <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
         <div>
           <h1 className="text-[28px] font-bold text-white">Newsletter</h1>
           <p className="mt-1 text-[14px] text-gray-500">
@@ -64,7 +64,7 @@ export default function AdminSubscribersPage() {
         )}
       </div>
 
-      <div className="overflow-hidden rounded-xl border border-white/6 bg-white/2">
+      <div className="overflow-x-auto overflow-hidden rounded-xl border border-white/6 bg-white/2">
         <table className="w-full">
           <thead>
             <tr className="border-b border-white/6">

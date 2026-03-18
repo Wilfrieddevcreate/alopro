@@ -350,8 +350,6 @@ export function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Separator */}
-      <div className="h-px bg-white/[0.04]" />
     </section>
   );
 }
