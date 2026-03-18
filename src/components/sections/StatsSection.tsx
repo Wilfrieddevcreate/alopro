@@ -4,7 +4,15 @@ import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { useLanguage } from "@/src/contexts/LanguageContext";
 
-function AnimatedNumber({ value, suffix = "", inView }: { value: number; suffix?: string; inView: boolean }) {
+function AnimatedNumber({
+  value,
+  suffix = "",
+  inView,
+}: {
+  value: number;
+  suffix?: string;
+  inView: boolean;
+}) {
   const [count, setCount] = useState(0);
   const hasAnimated = useRef(false);
 
@@ -27,7 +35,12 @@ function AnimatedNumber({ value, suffix = "", inView }: { value: number; suffix?
     requestAnimationFrame(animate);
   }, [inView, value]);
 
-  return <>{count}{suffix}</>;
+  return (
+    <>
+      {count}
+      {suffix}
+    </>
+  );
 }
 
 const stats = [
@@ -43,7 +56,7 @@ export function StatsSection() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="bg-gray-50 py-16 dark:bg-[#12121C] sm:py-24">
+    <section className="bg-gray-50 py-16 dark:bg-[#0a0a0a] sm:py-24">
       <div ref={ref} className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 gap-y-10 lg:grid-cols-4">
           {stats.map((stat, i) => (
@@ -62,17 +75,30 @@ export function StatsSection() {
                 <motion.div
                   initial={{ scaleY: 0 }}
                   animate={isInView ? { scaleY: 1 } : {}}
-                  transition={{ duration: 0.4, delay: 0.3 + i * 0.1, ease: "easeOut" }}
+                  transition={{
+                    duration: 0.4,
+                    delay: 0.3 + i * 0.1,
+                    ease: "easeOut",
+                  }}
                   className="absolute left-0 top-1/2 hidden h-12 w-px origin-center -translate-y-1/2 bg-gray-200 dark:bg-white/[0.06] lg:block"
                 />
               )}
               <p className="text-[48px] font-bold leading-none tracking-tight text-gray-900 dark:text-white">
-                <AnimatedNumber value={stat.value} suffix={stat.suffix} inView={isInView} />
+                <AnimatedNumber
+                  value={stat.value}
+                  suffix={stat.suffix}
+                  inView={isInView}
+                />
               </p>
               <motion.span
                 initial={{ scale: 0 }}
                 animate={isInView ? { scale: 1 } : {}}
-                transition={{ duration: 0.3, delay: 0.4 + i * 0.1, type: "spring", stiffness: 300 }}
+                transition={{
+                  duration: 0.3,
+                  delay: 0.4 + i * 0.1,
+                  type: "spring",
+                  stiffness: 300,
+                }}
                 className="mx-auto mt-3 mb-2 block h-1 w-1 rounded-full"
                 style={{ backgroundColor: stat.color }}
               />

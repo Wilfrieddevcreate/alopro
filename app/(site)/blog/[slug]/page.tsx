@@ -18,16 +18,19 @@ const categoryColors: Record<string, string> = {
 };
 
 function formatDate(dateStr: string, locale: string) {
-  return new Date(dateStr).toLocaleDateString(locale === "fr" ? "fr-FR" : "en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  return new Date(dateStr).toLocaleDateString(
+    locale === "fr" ? "fr-FR" : "en-US",
+    {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    },
+  );
 }
 
 function SkeletonPage() {
   return (
-    <div className="min-h-screen bg-[#12121C] pt-16">
+    <div className="min-h-screen bg-[#0a0a0a] pt-16">
       <div className="mx-auto max-w-3xl px-5 py-16 sm:px-6 sm:py-24">
         <div className="mb-6 h-4 w-24 animate-pulse rounded bg-white/[0.06]" />
         <div className="mb-4 h-10 w-4/5 animate-pulse rounded bg-white/[0.06]" />
@@ -38,7 +41,11 @@ function SkeletonPage() {
         </div>
         <div className="space-y-4">
           {Array.from({ length: 12 }).map((_, i) => (
-            <div key={i} className="h-4 animate-pulse rounded bg-white/[0.04]" style={{ width: `${70 + Math.random() * 30}%` }} />
+            <div
+              key={i}
+              className="h-4 animate-pulse rounded bg-white/[0.04]"
+              style={{ width: `${70 + Math.random() * 30}%` }}
+            />
           ))}
         </div>
       </div>
@@ -56,21 +63,28 @@ export default function BlogDetailPage() {
   useEffect(() => {
     fetch(`/api/blogs/${slug}`)
       .then((r) => {
-        if (!r.ok) { setNotFound(true); setLoading(false); return null; }
+        if (!r.ok) {
+          setNotFound(true);
+          setLoading(false);
+          return null;
+        }
         return r.json();
       })
       .then((data) => {
         if (data) setBlog(data);
         setLoading(false);
       })
-      .catch(() => { setNotFound(true); setLoading(false); });
+      .catch(() => {
+        setNotFound(true);
+        setLoading(false);
+      });
   }, [slug]);
 
   if (loading) return <SkeletonPage />;
 
   if (notFound || !blog) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#12121C] pt-16">
+      <div className="flex min-h-screen items-center justify-center bg-[#0a0a0a] pt-16">
         <div className="text-center">
           <h1 className="text-[48px] font-bold text-white">404</h1>
           <p className="mt-2 text-[16px] text-gray-400">
@@ -91,7 +105,8 @@ export default function BlogDetailPage() {
   const content = locale === "fr" ? blog.contentFr : blog.contentEn;
   const excerpt = locale === "fr" ? blog.excerptFr : blog.excerptEn;
   const keywords = locale === "fr" ? blog.keywordsFr : blog.keywordsEn;
-  const categoryLabel = BLOG_CATEGORIES[blog.category]?.[locale as "fr" | "en"] ?? blog.category;
+  const categoryLabel =
+    BLOG_CATEGORIES[blog.category]?.[locale as "fr" | "en"] ?? blog.category;
   const color = categoryColors[blog.category] ?? "#1F6FEB";
 
   const jsonLd = {
@@ -108,7 +123,7 @@ export default function BlogDetailPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#12121C] pt-16">
+    <div className="min-h-screen bg-[#0a0a0a] pt-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -124,7 +139,16 @@ export default function BlogDetailPage() {
             href="/blog"
             className="mb-8 inline-flex items-center gap-1.5 text-[13px] font-medium text-gray-500 transition-colors hover:text-white"
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
               <polyline points="15 18 9 12 15 6" />
             </svg>
             {locale === "fr" ? "Retour au blog" : "Back to blog"}
@@ -157,9 +181,13 @@ export default function BlogDetailPage() {
 
           {/* Meta */}
           <div className="mt-6 flex flex-wrap items-center gap-4 border-b border-white/[0.06] pb-8">
-            <span className="text-[13px] font-medium text-gray-500">{blog.author}</span>
+            <span className="text-[13px] font-medium text-gray-500">
+              {blog.author}
+            </span>
             <span className="h-1 w-1 rounded-full bg-gray-600" />
-            <span className="text-[13px] text-gray-500">{formatDate(blog.createdAt, locale)}</span>
+            <span className="text-[13px] text-gray-500">
+              {formatDate(blog.createdAt, locale)}
+            </span>
             <span className="h-1 w-1 rounded-full bg-gray-600" />
             <span className="text-[13px] text-gray-500">
               {blog.readTime} min {locale === "fr" ? "de lecture" : "read"}
@@ -203,7 +231,9 @@ export default function BlogDetailPage() {
           className="mt-12 rounded-2xl border border-white/[0.06] bg-white/[0.02] px-8 py-10 text-center"
         >
           <h3 className="text-[20px] font-bold text-white">
-            {locale === "fr" ? "Un projet en tête ?" : "Have a project in mind?"}
+            {locale === "fr"
+              ? "Un projet en tête ?"
+              : "Have a project in mind?"}
           </h3>
           <p className="mx-auto mt-2 max-w-md text-[14px] leading-[1.7] text-gray-400">
             {locale === "fr"

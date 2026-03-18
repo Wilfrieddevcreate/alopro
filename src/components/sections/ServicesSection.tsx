@@ -102,7 +102,7 @@ export function ServicesSection() {
   return (
     <section
       id="services"
-      className="bg-gray-50 py-16 dark:bg-[#12121C] sm:py-24"
+      className="bg-gray-50 py-16 dark:bg-[#0a0a0a] sm:py-24"
     >
       <div ref={ref} className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         {/* Header */}

@@ -44,7 +44,9 @@ const socialLinks = [
 
 function NewsletterForm({ locale }: { locale: string }) {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "already" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "already" | "error"
+  >("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -90,19 +92,39 @@ function NewsletterForm({ locale }: { locale: string }) {
           className="shrink-0 rounded-lg bg-[#1F6FEB] px-4 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#1a5fd4] disabled:opacity-50"
         >
           {status === "loading" ? (
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="animate-spin">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              className="animate-spin"
+            >
               <path d="M21 12a9 9 0 1 1-6.219-8.56" />
             </svg>
           ) : (
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" />
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="22" y1="2" x2="11" y2="13" />
+              <polygon points="22 2 15 22 11 13 2 9 22 2" />
             </svg>
           )}
         </button>
       </form>
       {status === "success" && (
         <p className="mt-2 text-[12px] font-medium text-emerald-400">
-          {locale === "fr" ? "Inscription réussie !" : "Successfully subscribed!"}
+          {locale === "fr"
+            ? "Inscription réussie !"
+            : "Successfully subscribed!"}
         </p>
       )}
       {status === "already" && (
@@ -124,7 +146,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-gray-200 bg-gray-50 dark:border-white/[0.04] dark:bg-[#12121C]">
+    <footer className="relative border-t border-gray-200 bg-gray-50 dark:border-white/[0.04] dark:bg-[#0a0a0a]">
       {/* Dot grid background */}
       <div className="pointer-events-none absolute inset-0">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">

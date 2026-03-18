@@ -16,7 +16,7 @@ export function DeptTeamSection({ dept }: Props) {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} className="bg-gray-50 py-16 dark:bg-[#12121C] sm:py-24">
+    <section ref={ref} className="bg-gray-50 py-16 dark:bg-[#0a0a0a] sm:py-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <SectionHeader
           badge={t(`${dept.translationPrefix}.team.badge`)}
@@ -29,7 +29,9 @@ export function DeptTeamSection({ dept }: Props) {
         {/* Team grid */}
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {dept.team.map((member, i) => {
-            const initials = t(`${dept.translationPrefix}.team.${member.key}.name`)
+            const initials = t(
+              `${dept.translationPrefix}.team.${member.key}.name`,
+            )
               .split(" ")
               .map((w) => w[0])
               .join("")
@@ -40,7 +42,9 @@ export function DeptTeamSection({ dept }: Props) {
               <motion.div
                 key={member.key}
                 initial={{ opacity: 0, y: 30, filter: "blur(4px)" }}
-                animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+                animate={
+                  isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}
+                }
                 transition={{
                   duration: 0.6,
                   delay: 0.3 + i * 0.12,

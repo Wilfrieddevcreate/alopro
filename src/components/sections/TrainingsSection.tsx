@@ -10,31 +10,76 @@ import { getTrainingStatus, type TrainingStatus } from "@/src/types/training";
 
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
-const statusConfig: Record<TrainingStatus, { labelFr: string; labelEn: string; color: string; icon: string }> = {
-  upcoming: { labelFr: "À venir", labelEn: "Upcoming", color: "#3B82F6", icon: "calendar" },
-  ongoing: { labelFr: "En cours", labelEn: "Ongoing", color: "#059669", icon: "play" },
-  past: { labelFr: "Terminée", labelEn: "Completed", color: "#6B7280", icon: "check" },
+const statusConfig: Record<
+  TrainingStatus,
+  { labelFr: string; labelEn: string; color: string; icon: string }
+> = {
+  upcoming: {
+    labelFr: "À venir",
+    labelEn: "Upcoming",
+    color: "#3B82F6",
+    icon: "calendar",
+  },
+  ongoing: {
+    labelFr: "En cours",
+    labelEn: "Ongoing",
+    color: "#059669",
+    icon: "play",
+  },
+  past: {
+    labelFr: "Terminée",
+    labelEn: "Completed",
+    color: "#6B7280",
+    icon: "check",
+  },
 };
 
 function StatusIcon({ status }: { status: TrainingStatus }) {
   const sc = statusConfig[status];
   if (status === "upcoming") {
     return (
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={sc.color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" />
+      <svg
+        width="12"
+        height="12"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke={sc.color}
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+        <line x1="16" y1="2" x2="16" y2="6" />
+        <line x1="8" y1="2" x2="8" y2="6" />
+        <line x1="3" y1="10" x2="21" y2="10" />
       </svg>
     );
   }
   if (status === "ongoing") {
     return (
       <span className="relative flex h-2 w-2">
-        <span className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" style={{ backgroundColor: sc.color }} />
-        <span className="relative inline-flex h-2 w-2 rounded-full" style={{ backgroundColor: sc.color }} />
+        <span
+          className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"
+          style={{ backgroundColor: sc.color }}
+        />
+        <span
+          className="relative inline-flex h-2 w-2 rounded-full"
+          style={{ backgroundColor: sc.color }}
+        />
       </span>
     );
   }
   return (
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={sc.color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={sc.color}
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <polyline points="20 6 9 17 4 12" />
     </svg>
   );
@@ -65,7 +110,9 @@ export function TrainingsSection() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const [trainings, setTrainings] = useState<Training[]>([]);
   const [loading, setLoading] = useState(true);
-  const [registerTraining, setRegisterTraining] = useState<Training | null>(null);
+  const [registerTraining, setRegisterTraining] = useState<Training | null>(
+    null,
+  );
 
   useEffect(() => {
     fetch("/api/trainings")
@@ -81,7 +128,7 @@ export function TrainingsSection() {
     <section
       id="trainings"
       ref={ref}
-      className="bg-gray-50 py-16 dark:bg-[#12121C] sm:py-24"
+      className="bg-gray-50 py-16 dark:bg-[#0a0a0a] sm:py-24"
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         {/* Header */}
@@ -98,7 +145,11 @@ export function TrainingsSection() {
             <motion.div
               variants={{
                 hidden: { opacity: 0, x: -20 },
-                visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease } },
+                visible: {
+                  opacity: 1,
+                  x: 0,
+                  transition: { duration: 0.5, ease },
+                },
               }}
               className="flex items-center gap-3"
             >
@@ -115,7 +166,12 @@ export function TrainingsSection() {
             <motion.h2
               variants={{
                 hidden: { opacity: 0, y: 30, filter: "blur(6px)" },
-                visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease } },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  filter: "blur(0px)",
+                  transition: { duration: 0.6, ease },
+                },
               }}
               className="mt-4 text-[clamp(28px,3.5vw,44px)] font-bold leading-[1.15] tracking-tight text-gray-900 dark:text-white"
             >
@@ -129,7 +185,11 @@ export function TrainingsSection() {
             <motion.p
               variants={{
                 hidden: { opacity: 0, y: 16 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease } },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.5, ease },
+                },
               }}
               className="max-w-sm text-[16px] leading-[1.7] text-gray-500 dark:text-gray-400 lg:text-right"
             >
@@ -140,7 +200,11 @@ export function TrainingsSection() {
             <motion.div
               variants={{
                 hidden: { opacity: 0, y: 16 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.1, ease } },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.5, delay: 0.1, ease },
+                },
               }}
               className="mt-4 lg:text-right"
             >
@@ -148,9 +212,21 @@ export function TrainingsSection() {
                 href="/trainings"
                 className="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-5 py-2.5 text-[13px] font-semibold text-gray-600 transition-colors hover:border-gray-300 hover:text-gray-900 dark:border-white/[0.08] dark:text-gray-300 dark:hover:border-white/[0.15] dark:hover:text-white"
               >
-                {locale === "fr" ? "Voir toutes les formations" : "View all trainings"}
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+                {locale === "fr"
+                  ? "Voir toutes les formations"
+                  : "View all trainings"}
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
                 </svg>
               </Link>
             </motion.div>
@@ -180,23 +256,34 @@ export function TrainingsSection() {
             {trainings.map((training, i) => {
               const status = getTrainingStatus(training.startDate);
               const sc = statusConfig[status];
-              const title = locale === "fr" ? training.titleFr : training.titleEn;
-              const desc = locale === "fr" ? training.descriptionFr : training.descriptionEn;
+              const title =
+                locale === "fr" ? training.titleFr : training.titleEn;
+              const desc =
+                locale === "fr"
+                  ? training.descriptionFr
+                  : training.descriptionEn;
               const dateStr = new Date(training.startDate).toLocaleDateString(
                 locale === "fr" ? "fr-FR" : "en-US",
-                { day: "numeric", month: "long", year: "numeric" }
+                { day: "numeric", month: "long", year: "numeric" },
               );
 
               return (
                 <motion.div
                   key={training.id}
                   initial={{ opacity: 0, y: 30, filter: "blur(4px)" }}
-                  animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+                  animate={
+                    isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}
+                  }
                   transition={{ duration: 0.6, delay: 0.5 + i * 0.12, ease }}
                   className="group overflow-hidden rounded-2xl border border-gray-200 bg-white transition-all duration-200 hover:border-gray-300 hover:shadow-lg dark:border-white/[0.06] dark:bg-white/[0.02] dark:hover:border-white/[0.12] dark:hover:shadow-none"
                 >
                   {/* Header gradient bar */}
-                  <div className="relative h-2" style={{ background: `linear-gradient(90deg, ${sc.color}, ${sc.color}88)` }} />
+                  <div
+                    className="relative h-2"
+                    style={{
+                      background: `linear-gradient(90deg, ${sc.color}, ${sc.color}88)`,
+                    }}
+                  />
 
                   {/* Image */}
                   {training.image ? (
@@ -212,10 +299,23 @@ export function TrainingsSection() {
                     <div className="flex h-44 items-center justify-center bg-gray-50 dark:bg-white/[0.03]">
                       <div
                         className="flex h-14 w-14 items-center justify-center rounded-2xl"
-                        style={{ backgroundColor: sc.color + "12", color: sc.color }}
+                        style={{
+                          backgroundColor: sc.color + "12",
+                          color: sc.color,
+                        }}
                       >
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
                         </svg>
                       </div>
                     </div>
@@ -226,12 +326,17 @@ export function TrainingsSection() {
                     <div className="mb-4 flex items-center gap-3">
                       <span
                         className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.08em]"
-                        style={{ backgroundColor: sc.color + "12", color: sc.color }}
+                        style={{
+                          backgroundColor: sc.color + "12",
+                          color: sc.color,
+                        }}
                       >
                         <StatusIcon status={status} />
                         {locale === "fr" ? sc.labelFr : sc.labelEn}
                       </span>
-                      <span className="text-[12px] text-gray-400 dark:text-gray-500">{dateStr}</span>
+                      <span className="text-[12px] text-gray-400 dark:text-gray-500">
+                        {dateStr}
+                      </span>
                     </div>
 
                     {/* Title */}
@@ -246,20 +351,32 @@ export function TrainingsSection() {
 
                     {/* Actions */}
                     <div className="mt-5 flex items-center gap-3">
-                      {training.formFields && training.formFields.length > 0 && status === "upcoming" && (
-                        <button
-                          onClick={() => setRegisterTraining(training)}
-                          className="inline-flex items-center gap-2 rounded-lg bg-[#1F6FEB] px-4 py-2 text-[13px] font-semibold text-white transition-colors hover:bg-[#1a5fd4]"
-                        >
-                          {locale === "fr" ? "S'inscrire" : "Register"}
-                        </button>
-                      )}
+                      {training.formFields &&
+                        training.formFields.length > 0 &&
+                        status === "upcoming" && (
+                          <button
+                            onClick={() => setRegisterTraining(training)}
+                            className="inline-flex items-center gap-2 rounded-lg bg-[#1F6FEB] px-4 py-2 text-[13px] font-semibold text-white transition-colors hover:bg-[#1a5fd4]"
+                          >
+                            {locale === "fr" ? "S'inscrire" : "Register"}
+                          </button>
+                        )}
                       <Link
                         href="/departments/training"
                         className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#1F6FEB] transition-colors duration-150 hover:text-[#1a5fd4]"
                       >
                         {locale === "fr" ? "En savoir plus" : "Learn more"}
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-150 group-hover:translate-x-0.5">
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="transition-transform duration-150 group-hover:translate-x-0.5"
+                        >
                           <line x1="5" y1="12" x2="19" y2="12" />
                           <polyline points="12 5 19 12 12 19" />
                         </svg>
@@ -274,12 +391,24 @@ export function TrainingsSection() {
             {trainings.length === 0 && (
               <div className="col-span-full rounded-2xl border border-gray-200 bg-white py-16 text-center dark:border-white/[0.06] dark:bg-white/[0.02]">
                 <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-[#1F6FEB]/10">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1F6FEB" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#1F6FEB"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
                   </svg>
                 </div>
                 <p className="text-[15px] font-medium text-gray-500 dark:text-gray-400">
-                  {locale === "fr" ? "Nos formations arrivent bientôt !" : "Our trainings are coming soon!"}
+                  {locale === "fr"
+                    ? "Nos formations arrivent bientôt !"
+                    : "Our trainings are coming soon!"}
                 </p>
               </div>
             )}

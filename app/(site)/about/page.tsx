@@ -16,7 +16,16 @@ const values = [
     number: "01",
     color: "#1F6FEB",
     icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" />
         <path d="M9 18h6" />
         <path d="M10 22h4" />
@@ -29,7 +38,16 @@ const values = [
     number: "02",
     color: "#1F6FEB",
     icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <polyline points="16 18 22 12 16 6" />
         <polyline points="8 6 2 12 8 18" />
       </svg>
@@ -41,7 +59,16 @@ const values = [
     number: "03",
     color: "#059669",
     icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
         <path d="m9 12 2 2 4-4" />
       </svg>
@@ -109,7 +136,7 @@ export default function AboutPage() {
             className="object-cover opacity-60"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#000814]/40 via-[#000814]/60 to-[#12121C]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#000814]/40 via-[#000814]/60 to-[#0a0a0a]" />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
@@ -128,7 +155,9 @@ export default function AboutPage() {
 
             <h1 className="text-[clamp(32px,5vw,56px)] font-bold leading-[1.1] tracking-tight text-white">
               {t("about.hero.title")}{" "}
-              <span className="text-[#1F6FEB]">{t("about.hero.titleHighlight")}</span>
+              <span className="text-[#1F6FEB]">
+                {t("about.hero.titleHighlight")}
+              </span>
             </h1>
 
             <p className="mx-auto mt-6 max-w-2xl text-[17px] leading-[1.7] text-gray-400">
@@ -139,7 +168,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission */}
-      <section className="bg-[#12121C] py-16 sm:py-24">
+      <section className="bg-[#0a0a0a] py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <motion.div
@@ -156,7 +185,9 @@ export default function AboutPage() {
               </div>
               <h2 className="text-[clamp(26px,3vw,40px)] font-bold leading-[1.15] tracking-tight text-white">
                 {t("about.mission.title")}{" "}
-                <span className="text-[#1F6FEB]">{t("about.mission.titleHighlight")}</span>
+                <span className="text-[#1F6FEB]">
+                  {t("about.mission.titleHighlight")}
+                </span>
               </h2>
               <p className="mt-6 text-[16px] leading-[1.8] text-gray-400">
                 {t("about.mission.desc1")}
@@ -174,18 +205,39 @@ export default function AboutPage() {
               className="grid grid-cols-2 gap-4"
             >
               {[
-                { value: "3", label: locale === "fr" ? "Départements" : "Departments", color: "#1F6FEB" },
-                { value: "7+", label: locale === "fr" ? "Experts" : "Experts", color: "#1F6FEB" },
-                { value: "50+", label: locale === "fr" ? "Projets" : "Projects", color: "#059669" },
-                { value: "100%", label: locale === "fr" ? "Engagement" : "Commitment", color: "#EA580C" },
+                {
+                  value: "3",
+                  label: locale === "fr" ? "Départements" : "Departments",
+                  color: "#1F6FEB",
+                },
+                {
+                  value: "7+",
+                  label: locale === "fr" ? "Experts" : "Experts",
+                  color: "#1F6FEB",
+                },
+                {
+                  value: "50+",
+                  label: locale === "fr" ? "Projets" : "Projects",
+                  color: "#059669",
+                },
+                {
+                  value: "100%",
+                  label: locale === "fr" ? "Engagement" : "Commitment",
+                  color: "#EA580C",
+                },
               ].map((stat, i) => (
                 <div
                   key={i}
                   className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 text-center"
                 >
-                  <p className="text-[36px] font-bold text-white">{stat.value}</p>
+                  <p className="text-[36px] font-bold text-white">
+                    {stat.value}
+                  </p>
                   <p className="mt-1 text-[13px] text-gray-400">{stat.label}</p>
-                  <div className="mx-auto mt-3 h-[2px] w-8 rounded-full" style={{ backgroundColor: stat.color }} />
+                  <div
+                    className="mx-auto mt-3 h-[2px] w-8 rounded-full"
+                    style={{ backgroundColor: stat.color }}
+                  />
                 </div>
               ))}
             </motion.div>
@@ -194,7 +246,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="bg-[#12121C] py-16 sm:py-24">
+      <section className="bg-[#0a0a0a] py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -269,7 +321,9 @@ export default function AboutPage() {
             </div>
             <h2 className="text-[clamp(28px,3.5vw,44px)] font-bold leading-[1.15] tracking-tight text-gray-900 dark:text-white">
               {t("about.team.title")}{" "}
-              <span className="text-[#1F6FEB]">{t("about.team.titleHighlight")}</span>
+              <span className="text-[#1F6FEB]">
+                {t("about.team.titleHighlight")}
+              </span>
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-[16px] leading-[1.7] text-gray-500 dark:text-gray-400">
               {t("about.team.subtitle")}
@@ -290,18 +344,34 @@ export default function AboutPage() {
                 <div className="mb-4 flex justify-center">
                   <span
                     className="rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-white"
-                    style={{ backgroundColor: member.color + "20", color: member.color }}
+                    style={{
+                      backgroundColor: member.color + "20",
+                      color: member.color,
+                    }}
                   >
-                    {member.dept === "dev" ? (locale === "fr" ? "Développement" : "Development") : member.dept === "research" ? (locale === "fr" ? "Recherche" : "Research") : "Formation"}
+                    {member.dept === "dev"
+                      ? locale === "fr"
+                        ? "Développement"
+                        : "Development"
+                      : member.dept === "research"
+                        ? locale === "fr"
+                          ? "Recherche"
+                          : "Research"
+                        : "Formation"}
                   </span>
                 </div>
 
                 {/* Avatar */}
                 <div
                   className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-2xl text-[22px] font-bold text-white shadow-lg"
-                  style={{ background: `linear-gradient(135deg, ${member.color}, ${member.color}99)` }}
+                  style={{
+                    background: `linear-gradient(135deg, ${member.color}, ${member.color}99)`,
+                  }}
                 >
-                  {member.name.split(" ").map(n => n[0]).join("")}
+                  {member.name
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")}
                 </div>
 
                 <div className="text-center">
@@ -314,7 +384,10 @@ export default function AboutPage() {
                 </div>
 
                 {/* Bottom accent */}
-                <div className="absolute bottom-0 left-0 h-[2px] w-full" style={{ backgroundColor: member.color + "40" }} />
+                <div
+                  className="absolute bottom-0 left-0 h-[2px] w-full"
+                  style={{ backgroundColor: member.color + "40" }}
+                />
               </motion.div>
             ))}
           </div>

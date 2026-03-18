@@ -48,11 +48,20 @@ function SkeletonCard() {
   );
 }
 
-function ProjectCard({ project, locale, index }: { project: Project; locale: string; index: number }) {
+function ProjectCard({
+  project,
+  locale,
+  index,
+}: {
+  project: Project;
+  locale: string;
+  index: number;
+}) {
   const color = categoryColors[project.category] ?? "#1F6FEB";
   const title = locale === "fr" ? project.titleFr : project.titleEn;
   const desc = locale === "fr" ? project.descriptionFr : project.descriptionEn;
-  const catLabel = categoryLabels[project.category]?.[locale] ?? project.category;
+  const catLabel =
+    categoryLabels[project.category]?.[locale] ?? project.category;
 
   return (
     <motion.div
@@ -79,8 +88,19 @@ function ProjectCard({ project, locale, index }: { project: Project; locale: str
               className="flex h-14 w-14 items-center justify-center rounded-2xl"
               style={{ backgroundColor: color + "18", color }}
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="3" width="20" height="14" rx="2" /><line x1="8" y1="21" x2="16" y2="21" /><line x1="12" y1="17" x2="12" y2="21" />
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect x="2" y="3" width="20" height="14" rx="2" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+                <line x1="12" y1="17" x2="12" y2="21" />
               </svg>
             </div>
           </div>
@@ -102,7 +122,9 @@ function ProjectCard({ project, locale, index }: { project: Project; locale: str
         <h3 className="mb-2 text-[18px] font-bold text-white transition-colors group-hover:text-[#1F6FEB]">
           {title}
         </h3>
-        <p className="mb-5 text-[14px] leading-[1.7] text-gray-400 line-clamp-3">{desc}</p>
+        <p className="mb-5 text-[14px] leading-[1.7] text-gray-400 line-clamp-3">
+          {desc}
+        </p>
         {project.link && (
           <a
             href={project.link}
@@ -112,7 +134,17 @@ function ProjectCard({ project, locale, index }: { project: Project; locale: str
             style={{ color }}
           >
             {locale === "fr" ? "Voir le projet" : "View project"}
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-150 group-hover:translate-x-0.5">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="transition-transform duration-150 group-hover:translate-x-0.5"
+            >
               <line x1="5" y1="12" x2="19" y2="12" />
               <polyline points="12 5 19 12 12 19" />
             </svg>
@@ -144,9 +176,10 @@ export default function ProjectsPage() {
       .catch(() => setLoading(false));
   }, []);
 
-  const filtered = activeCategory === "all"
-    ? allProjects
-    : allProjects.filter((p) => p.category === activeCategory);
+  const filtered =
+    activeCategory === "all"
+      ? allProjects
+      : allProjects.filter((p) => p.category === activeCategory);
 
   const visible = filtered.slice(0, visibleCount);
   const hasMore = visibleCount < filtered.length;
@@ -174,7 +207,7 @@ export default function ProjectsPage() {
           loadMore();
         }
       },
-      { rootMargin: "200px" }
+      { rootMargin: "200px" },
     );
 
     observer.observe(sentinel);
@@ -182,13 +215,15 @@ export default function ProjectsPage() {
   }, [loadMore]);
 
   return (
-    <div className="min-h-screen bg-[#12121C] pt-16">
+    <div className="min-h-screen bg-[#0a0a0a] pt-16">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-6 sm:py-24 lg:px-8">
         {/* Header */}
         <div ref={headerRef}>
           <motion.div
             initial={{ opacity: 0, y: 30, filter: "blur(4px)" }}
-            animate={headerInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+            animate={
+              headerInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}
+            }
             transition={{ duration: 0.6, ease }}
             className="mb-12"
           >
@@ -220,7 +255,10 @@ export default function ProjectsPage() {
           >
             {allCategories.map((cat) => {
               const active = activeCategory === cat.key;
-              const color = cat.key === "all" ? "#1F6FEB" : (categoryColors[cat.key] ?? "#1F6FEB");
+              const color =
+                cat.key === "all"
+                  ? "#1F6FEB"
+                  : (categoryColors[cat.key] ?? "#1F6FEB");
               return (
                 <button
                   key={cat.key}
@@ -266,8 +304,19 @@ export default function ProjectsPage() {
             {filtered.length === 0 && (
               <div className="py-20 text-center">
                 <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#1F6FEB]/10">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1F6FEB" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="3" width="20" height="14" rx="2" /><line x1="8" y1="21" x2="16" y2="21" /><line x1="12" y1="17" x2="12" y2="21" />
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#1F6FEB"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <rect x="2" y="3" width="20" height="14" rx="2" />
+                    <line x1="8" y1="21" x2="16" y2="21" />
+                    <line x1="12" y1="17" x2="12" y2="21" />
                   </svg>
                 </div>
                 <p className="text-[16px] text-gray-500">
@@ -282,7 +331,15 @@ export default function ProjectsPage() {
             {hasMore && (
               <div ref={sentinelRef} className="mt-8 flex justify-center py-8">
                 <div className="flex items-center gap-2 text-[13px] text-gray-500">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="animate-spin">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    className="animate-spin"
+                  >
                     <path d="M21 12a9 9 0 1 1-6.219-8.56" />
                   </svg>
                   {locale === "fr" ? "Chargement..." : "Loading..."}
@@ -301,7 +358,9 @@ export default function ProjectsPage() {
             className="mt-20 rounded-2xl border border-white/[0.06] bg-white/[0.02] px-8 py-14 text-center sm:px-16"
           >
             <h2 className="text-[24px] font-bold text-white sm:text-[28px]">
-              {locale === "fr" ? "Un projet en tête ?" : "Have a project in mind?"}
+              {locale === "fr"
+                ? "Un projet en tête ?"
+                : "Have a project in mind?"}
             </h2>
             <p className="mx-auto mt-3 max-w-md text-[16px] leading-[1.7] text-gray-400">
               {locale === "fr"
@@ -313,8 +372,18 @@ export default function ProjectsPage() {
               className="mt-8 inline-flex items-center gap-2 rounded-lg bg-[#1F6FEB] px-6 py-3 text-[14px] font-semibold text-white transition-colors duration-150 hover:bg-[#1a5fd4]"
             >
               {locale === "fr" ? "Nous contacter" : "Contact us"}
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
               </svg>
             </Link>
           </motion.div>

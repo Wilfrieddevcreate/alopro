@@ -42,7 +42,7 @@ export function ContactSection() {
       setError(
         locale === "fr"
           ? "Une erreur est survenue. Veuillez réessayer."
-          : "An error occurred. Please try again."
+          : "An error occurred. Please try again.",
       );
     } finally {
       setSending(false);
@@ -65,7 +65,7 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="bg-gray-50 py-16 dark:bg-[#12121C] sm:py-24"
+      className="bg-gray-50 py-16 dark:bg-[#0a0a0a] sm:py-24"
     >
       <div ref={ref} className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
@@ -341,7 +341,9 @@ export function ContactSection() {
 
                   {/* Error */}
                   {error && (
-                    <p className="text-[14px] font-medium text-red-400">{error}</p>
+                    <p className="text-[14px] font-medium text-red-400">
+                      {error}
+                    </p>
                   )}
 
                   {/* Submit */}
@@ -351,7 +353,9 @@ export function ContactSection() {
                     className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#1F6FEB] px-6 py-3 text-[14px] font-semibold text-white transition-colors duration-150 hover:bg-[#1a5fd4] disabled:opacity-60 sm:w-auto"
                   >
                     {sending
-                      ? (locale === "fr" ? "Envoi en cours..." : "Sending...")
+                      ? locale === "fr"
+                        ? "Envoi en cours..."
+                        : "Sending..."
                       : t("contact.form.submit")}
                     {!sending && (
                       <svg

@@ -11,12 +11,15 @@ export function CTASection() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="contact" className="bg-[#12121c] py-16 sm:py-24">
+    <section id="contact" className="bg-[#0a0a0a] py-16 sm:py-24">
       <div ref={ref} className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30, filter: "blur(4px)" }}
           animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+          transition={{
+            duration: 0.6,
+            ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+          }}
           className="rounded-2xl border border-gray-200 bg-gray-50 px-8 py-16 text-center dark:border-white/[0.06] dark:bg-white/[0.02] sm:px-16 sm:py-20"
         >
           {/* Overline */}
@@ -66,8 +69,18 @@ export function CTASection() {
               className="inline-flex items-center gap-2 rounded-lg bg-[#1F6FEB] px-6 py-3 text-[14px] font-semibold text-white transition-colors duration-150 hover:bg-[#1a5fd4]"
             >
               {t("cta.button")}
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
               </svg>
             </Link>
             <Link

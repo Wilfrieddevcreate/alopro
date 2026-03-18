@@ -52,7 +52,9 @@ function AnimatedNumber({
 
   return (
     <>
-      {prefix}{count}{suffix}
+      {prefix}
+      {count}
+      {suffix}
     </>
   );
 }
@@ -71,7 +73,9 @@ export function DeptOverviewSection({ dept }: DeptOverviewSectionProps) {
   const prefix = dept.translationPrefix;
   const isTrainingDept = dept.slug === "training";
 
-  const [dynamicStats, setDynamicStats] = useState<{ value: number; suffix: string; label: string }[] | null>(null);
+  const [dynamicStats, setDynamicStats] = useState<
+    { value: number; suffix: string; label: string }[] | null
+  >(null);
 
   useEffect(() => {
     if (!isTrainingDept) return;
@@ -83,21 +87,39 @@ export function DeptOverviewSection({ dept }: DeptOverviewSectionProps) {
           fetch("/api/admin/registrations"),
         ]);
 
-        const trainings: Training[] = trainingsRes.ok ? await trainingsRes.json() : [];
+        const trainings: Training[] = trainingsRes.ok
+          ? await trainingsRes.json()
+          : [];
         let registrations: Registration[] = [];
         if (registrationsRes.ok) {
           const data = await registrationsRes.json();
           registrations = Array.isArray(data) ? data : [];
         }
 
-        const past = trainings.filter((tr) => getTrainingStatus(tr.startDate) === "past").length;
-        const upcoming = trainings.filter((tr) => getTrainingStatus(tr.startDate) === "upcoming").length;
+        const past = trainings.filter(
+          (tr) => getTrainingStatus(tr.startDate) === "past",
+        ).length;
+        const upcoming = trainings.filter(
+          (tr) => getTrainingStatus(tr.startDate) === "upcoming",
+        ).length;
         const totalRegs = registrations.length;
 
         setDynamicStats([
-          { value: past, suffix: "", label: t(`${prefix}.overview.stat1.label`) },
-          { value: upcoming, suffix: "", label: t(`${prefix}.overview.stat2.label`) },
-          { value: totalRegs, suffix: "", label: t(`${prefix}.overview.stat3.label`) },
+          {
+            value: past,
+            suffix: "",
+            label: t(`${prefix}.overview.stat1.label`),
+          },
+          {
+            value: upcoming,
+            suffix: "",
+            label: t(`${prefix}.overview.stat2.label`),
+          },
+          {
+            value: totalRegs,
+            suffix: "",
+            label: t(`${prefix}.overview.stat3.label`),
+          },
         ]);
       } catch {
         setDynamicStats([
@@ -118,7 +140,11 @@ export function DeptOverviewSection({ dept }: DeptOverviewSectionProps) {
         { value: 0, suffix: "", label: t(`${prefix}.overview.stat3.label`) },
       ]
     : (() => {
-        function parseStat(raw: string): { value: number; prefix: string; suffix: string } {
+        function parseStat(raw: string): {
+          value: number;
+          prefix: string;
+          suffix: string;
+        } {
           const match = raw.match(/(\d+)/);
           const num = match ? parseInt(match[1]) : 0;
           const idx = match ? match.index! : 0;
@@ -155,7 +181,7 @@ export function DeptOverviewSection({ dept }: DeptOverviewSectionProps) {
   const stats = dynamicStats || defaultStats;
 
   return (
-    <section className="bg-[#12121C] py-16 sm:py-24">
+    <section className="bg-[#0a0a0a] py-16 sm:py-24">
       <div ref={ref} className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         {/* Header */}
         <SectionHeader
@@ -193,7 +219,9 @@ export function DeptOverviewSection({ dept }: DeptOverviewSectionProps) {
 
         {/* Stat cards — hidden for training dept */}
         {!isTrainingDept && (
-          <div className={`mt-14 grid gap-5 sm:grid-cols-2 ${stats.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
+          <div
+            className={`mt-14 grid gap-5 sm:grid-cols-2 ${stats.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}
+          >
             {stats.map((stat, i) => (
               <motion.div
                 key={stat.label}
@@ -214,7 +242,11 @@ export function DeptOverviewSection({ dept }: DeptOverviewSectionProps) {
                 >
                   <AnimatedNumber
                     value={stat.value}
-                    prefix={"prefix" in stat ? (stat as { prefix: string }).prefix : ""}
+                    prefix={
+                      "prefix" in stat
+                        ? (stat as { prefix: string }).prefix
+                        : ""
+                    }
                     suffix={stat.suffix}
                     inView={isInView}
                   />

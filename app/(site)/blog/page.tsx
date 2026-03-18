@@ -18,11 +18,14 @@ const categoryColors: Record<string, string> = {
 };
 
 function formatDate(dateStr: string, locale: string) {
-  return new Date(dateStr).toLocaleDateString(locale === "fr" ? "fr-FR" : "en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  return new Date(dateStr).toLocaleDateString(
+    locale === "fr" ? "fr-FR" : "en-US",
+    {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    },
+  );
 }
 
 /* ---- Skeleton Card ---- */
@@ -53,89 +56,157 @@ function SkeletonCard() {
 
 /* ---- Blog Card ---- */
 
-function BlogCard({ post, locale, index }: { post: Blog; locale: string; index: number }) {
+function BlogCard({
+  post,
+  locale,
+  index,
+}: {
+  post: Blog;
+  locale: string;
+  index: number;
+}) {
   const title = locale === "fr" ? post.titleFr : post.titleEn;
   const excerpt = locale === "fr" ? post.excerptFr : post.excerptEn;
-  const categoryLabel = BLOG_CATEGORIES[post.category]?.[locale as "fr" | "en"] ?? post.category;
+  const categoryLabel =
+    BLOG_CATEGORIES[post.category]?.[locale as "fr" | "en"] ?? post.category;
   const color = categoryColors[post.category] ?? "#1F6FEB";
 
   return (
     <Link href={`/blog/${post.slug}`}>
-    <motion.article
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.5, delay: index * 0.08, ease }}
-      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.04]"
-    >
-      {/* Image */}
-      <div className="relative h-48 overflow-hidden bg-white/[0.03] sm:h-52">
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{ background: `linear-gradient(135deg, ${color}30, transparent 60%)` }}
-        />
-        <div className="absolute inset-0 flex items-center justify-center">
+      <motion.article
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.5, delay: index * 0.08, ease }}
+        className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.04]"
+      >
+        {/* Image */}
+        <div className="relative h-48 overflow-hidden bg-white/[0.03] sm:h-52">
           <div
-            className="flex h-16 w-16 items-center justify-center rounded-2xl"
-            style={{ backgroundColor: color + "18", color }}
-          >
-            {post.category === "dev" && (
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" />
-              </svg>
-            )}
-            {post.category === "research" && (
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
-            )}
-            {post.category === "training" && (
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-              </svg>
-            )}
-            {post.category === "news" && (
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" />
-                <path d="M18 14h-8" /><path d="M15 18h-5" /><path d="M10 6h8v4h-8V6Z" />
-              </svg>
-            )}
+            className="absolute inset-0 opacity-20"
+            style={{
+              background: `linear-gradient(135deg, ${color}30, transparent 60%)`,
+            }}
+          />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div
+              className="flex h-16 w-16 items-center justify-center rounded-2xl"
+              style={{ backgroundColor: color + "18", color }}
+            >
+              {post.category === "dev" && (
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <polyline points="16 18 22 12 16 6" />
+                  <polyline points="8 6 2 12 8 18" />
+                </svg>
+              )}
+              {post.category === "research" && (
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+              )}
+              {post.category === "training" && (
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                </svg>
+              )}
+              {post.category === "news" && (
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" />
+                  <path d="M18 14h-8" />
+                  <path d="M15 18h-5" />
+                  <path d="M10 6h8v4h-8V6Z" />
+                </svg>
+              )}
+            </div>
+          </div>
+          <div className="absolute left-4 top-4">
+            <span
+              className="rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.1em] text-white"
+              style={{ backgroundColor: color }}
+            >
+              {categoryLabel}
+            </span>
           </div>
         </div>
-        <div className="absolute left-4 top-4">
-          <span
-            className="rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.1em] text-white"
-            style={{ backgroundColor: color }}
-          >
-            {categoryLabel}
-          </span>
-        </div>
-      </div>
 
-      <div className="flex flex-1 flex-col p-6">
-        <div className="mb-3 flex items-center gap-3 text-[12px] text-gray-500">
-          <span>{formatDate(post.createdAt, locale)}</span>
-          <span className="h-1 w-1 rounded-full bg-gray-600" />
-          <span>{post.readTime} min {locale === "fr" ? "de lecture" : "read"}</span>
+        <div className="flex flex-1 flex-col p-6">
+          <div className="mb-3 flex items-center gap-3 text-[12px] text-gray-500">
+            <span>{formatDate(post.createdAt, locale)}</span>
+            <span className="h-1 w-1 rounded-full bg-gray-600" />
+            <span>
+              {post.readTime} min {locale === "fr" ? "de lecture" : "read"}
+            </span>
+          </div>
+          <h3 className="mb-3 text-[18px] font-bold leading-[1.3] text-white transition-colors duration-200 group-hover:text-[#1F6FEB]">
+            {title}
+          </h3>
+          <p className="mb-5 flex-1 text-[14px] leading-[1.7] text-gray-400">
+            {excerpt}
+          </p>
+          <div className="flex items-center justify-between border-t border-white/[0.06] pt-4">
+            <span className="text-[13px] font-medium text-gray-500">
+              {post.author}
+            </span>
+            <span
+              className="inline-flex items-center gap-1.5 text-[13px] font-semibold transition-colors duration-200"
+              style={{ color }}
+            >
+              {locale === "fr" ? "Lire" : "Read"}
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </span>
+          </div>
         </div>
-        <h3 className="mb-3 text-[18px] font-bold leading-[1.3] text-white transition-colors duration-200 group-hover:text-[#1F6FEB]">
-          {title}
-        </h3>
-        <p className="mb-5 flex-1 text-[14px] leading-[1.7] text-gray-400">{excerpt}</p>
-        <div className="flex items-center justify-between border-t border-white/[0.06] pt-4">
-          <span className="text-[13px] font-medium text-gray-500">{post.author}</span>
-          <span
-            className="inline-flex items-center gap-1.5 text-[13px] font-semibold transition-colors duration-200"
-            style={{ color }}
-          >
-            {locale === "fr" ? "Lire" : "Read"}
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
-            </svg>
-          </span>
-        </div>
-      </div>
-    </motion.article>
+      </motion.article>
     </Link>
   );
 }
@@ -160,7 +231,16 @@ function Pagination({
         disabled={currentPage === 1}
         className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/[0.06] text-gray-400 transition-all duration-200 hover:border-white/[0.12] hover:text-white disabled:opacity-30"
       >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
           <polyline points="15 18 9 12 15 6" />
         </svg>
       </button>
@@ -182,7 +262,16 @@ function Pagination({
         disabled={currentPage === totalPages}
         className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/[0.06] text-gray-400 transition-all duration-200 hover:border-white/[0.12] hover:text-white disabled:opacity-30"
       >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
           <polyline points="9 18 15 12 9 6" />
         </svg>
       </button>
@@ -219,7 +308,7 @@ export default function BlogPage() {
   const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
   const paginatedPosts = filteredPosts.slice(
     (currentPage - 1) * POSTS_PER_PAGE,
-    currentPage * POSTS_PER_PAGE
+    currentPage * POSTS_PER_PAGE,
   );
 
   const handleCategoryChange = (cat: string) => {
@@ -233,8 +322,11 @@ export default function BlogPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#12121C] pt-16">
-      <div ref={ref} className="mx-auto max-w-7xl px-5 py-16 sm:px-6 sm:py-24 lg:px-8">
+    <div className="min-h-screen bg-[#0a0a0a] pt-16">
+      <div
+        ref={ref}
+        className="mx-auto max-w-7xl px-5 py-16 sm:px-6 sm:py-24 lg:px-8"
+      >
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30, filter: "blur(4px)" }}
@@ -244,7 +336,9 @@ export default function BlogPage() {
         >
           <div className="mb-4 flex items-center gap-3">
             <span className="hidden h-px w-8 origin-left bg-[#1F6FEB] sm:block" />
-            <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-[#1F6FEB]">Blog</p>
+            <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-[#1F6FEB]">
+              Blog
+            </p>
           </div>
           <h1 className="text-[clamp(32px,4.5vw,52px)] font-bold leading-[1.12] tracking-tight text-white">
             {locale === "fr" ? "Nos " : "Our "}
@@ -339,7 +433,9 @@ export default function BlogPage() {
           className="mt-20 rounded-2xl border border-white/[0.06] bg-white/[0.02] px-8 py-14 text-center sm:px-16"
         >
           <h2 className="text-[24px] font-bold text-white sm:text-[28px]">
-            {locale === "fr" ? "Un projet en tête ?" : "Have a project in mind?"}
+            {locale === "fr"
+              ? "Un projet en tête ?"
+              : "Have a project in mind?"}
           </h2>
           <p className="mx-auto mt-3 max-w-md text-[16px] leading-[1.7] text-gray-400">
             {locale === "fr"
@@ -351,8 +447,18 @@ export default function BlogPage() {
             className="mt-8 inline-flex items-center gap-2 rounded-lg bg-[#1F6FEB] px-6 py-3 text-[14px] font-semibold text-white transition-colors duration-150 hover:bg-[#1a5fd4]"
           >
             {locale === "fr" ? "Nous contacter" : "Contact us"}
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
             </svg>
           </Link>
         </motion.div>

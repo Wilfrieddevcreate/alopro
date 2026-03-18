@@ -16,10 +16,28 @@ interface Props {
   dept: Department;
 }
 
-const statusConfig: Record<TrainingStatus, { labelFr: string; labelEn: string; color: string; dot: boolean }> = {
-  upcoming: { labelFr: "À venir", labelEn: "Upcoming", color: "#3B82F6", dot: true },
-  ongoing: { labelFr: "En cours", labelEn: "Ongoing", color: "#059669", dot: true },
-  past: { labelFr: "Terminée", labelEn: "Completed", color: "#6B7280", dot: false },
+const statusConfig: Record<
+  TrainingStatus,
+  { labelFr: string; labelEn: string; color: string; dot: boolean }
+> = {
+  upcoming: {
+    labelFr: "À venir",
+    labelEn: "Upcoming",
+    color: "#3B82F6",
+    dot: true,
+  },
+  ongoing: {
+    labelFr: "En cours",
+    labelEn: "Ongoing",
+    color: "#059669",
+    dot: true,
+  },
+  past: {
+    labelFr: "Terminée",
+    labelEn: "Completed",
+    color: "#6B7280",
+    dot: false,
+  },
 };
 
 function SkeletonCard() {
@@ -46,7 +64,9 @@ export function DeptTrainingsSection({ dept }: Props) {
   const [trainings, setTrainings] = useState<Training[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<"all" | TrainingStatus>("all");
-  const [registerTraining, setRegisterTraining] = useState<Training | null>(null);
+  const [registerTraining, setRegisterTraining] = useState<Training | null>(
+    null,
+  );
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const loaderRef = useRef<HTMLDivElement>(null);
 
@@ -81,13 +101,15 @@ export function DeptTrainingsSection({ dept }: Props) {
         setVisibleCount((prev) => prev + PAGE_SIZE);
       }
     },
-    [hasMore]
+    [hasMore],
   );
 
   useEffect(() => {
     const el = loaderRef.current;
     if (!el) return;
-    const observer = new IntersectionObserver(handleObserver, { threshold: 0.1 });
+    const observer = new IntersectionObserver(handleObserver, {
+      threshold: 0.1,
+    });
     observer.observe(el);
     return () => observer.disconnect();
   }, [handleObserver]);
@@ -100,7 +122,7 @@ export function DeptTrainingsSection({ dept }: Props) {
   ];
 
   return (
-    <section ref={ref} className="bg-[#12121C] py-16 sm:py-24">
+    <section ref={ref} className="bg-[#0a0a0a] py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <SectionHeader
           badge={locale === "fr" ? "Nos formations" : "Our trainings"}
@@ -130,7 +152,11 @@ export function DeptTrainingsSection({ dept }: Props) {
             >
               {locale === "fr" ? f.labelFr : f.labelEn}
               <span className="ml-1.5 text-[11px] opacity-60">
-                {f.key === "all" ? trainings.length : trainings.filter((t) => getTrainingStatus(t.startDate) === f.key).length}
+                {f.key === "all"
+                  ? trainings.length
+                  : trainings.filter(
+                      (t) => getTrainingStatus(t.startDate) === f.key,
+                    ).length}
               </span>
             </button>
           ))}
@@ -154,7 +180,9 @@ export function DeptTrainingsSection({ dept }: Props) {
             className="mt-10 rounded-2xl border border-gray-200 bg-white py-16 text-center dark:border-white/[0.06] dark:bg-white/[0.02]"
           >
             <p className="text-[15px] text-gray-500 dark:text-gray-400">
-              {locale === "fr" ? "Aucune formation dans cette catégorie." : "No training in this category."}
+              {locale === "fr"
+                ? "Aucune formation dans cette catégorie."
+                : "No training in this category."}
             </p>
           </motion.div>
         )}
@@ -165,11 +193,15 @@ export function DeptTrainingsSection({ dept }: Props) {
             {visible.map((training, i) => {
               const status = getTrainingStatus(training.startDate);
               const sc = statusConfig[status];
-              const title = locale === "fr" ? training.titleFr : training.titleEn;
-              const desc = locale === "fr" ? training.descriptionFr : training.descriptionEn;
+              const title =
+                locale === "fr" ? training.titleFr : training.titleEn;
+              const desc =
+                locale === "fr"
+                  ? training.descriptionFr
+                  : training.descriptionEn;
               const dateStr = new Date(training.startDate).toLocaleDateString(
                 locale === "fr" ? "fr-FR" : "en-US",
-                { day: "numeric", month: "long", year: "numeric" }
+                { day: "numeric", month: "long", year: "numeric" },
               );
 
               return (
@@ -177,21 +209,50 @@ export function DeptTrainingsSection({ dept }: Props) {
                   key={training.id}
                   initial={{ opacity: 0, y: 30, filter: "blur(4px)" }}
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  transition={{ duration: 0.5, delay: (i % PAGE_SIZE) * 0.08, ease }}
+                  transition={{
+                    duration: 0.5,
+                    delay: (i % PAGE_SIZE) * 0.08,
+                    ease,
+                  }}
                   className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white transition-colors duration-200 hover:border-gray-300 dark:border-white/[0.06] dark:bg-white/[0.02] dark:hover:border-white/[0.12]"
                 >
-                  <div className="relative h-2" style={{ background: `linear-gradient(90deg, ${sc.color}, ${sc.color}88)` }} />
+                  <div
+                    className="relative h-2"
+                    style={{
+                      background: `linear-gradient(90deg, ${sc.color}, ${sc.color}88)`,
+                    }}
+                  />
 
                   {training.image ? (
                     <div className="relative h-44 overflow-hidden">
-                      <img src={training.image} alt={title} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                      <img
+                        src={training.image}
+                        alt={title}
+                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                     </div>
                   ) : (
                     <div className="flex h-44 items-center justify-center bg-gray-50 dark:bg-white/[0.03]">
-                      <div className="flex h-14 w-14 items-center justify-center rounded-2xl" style={{ backgroundColor: sc.color + "12", color: sc.color }}>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" /><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                      <div
+                        className="flex h-14 w-14 items-center justify-center rounded-2xl"
+                        style={{
+                          backgroundColor: sc.color + "12",
+                          color: sc.color,
+                        }}
+                      >
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
                         </svg>
                       </div>
                     </div>
@@ -201,29 +262,55 @@ export function DeptTrainingsSection({ dept }: Props) {
                     <div className="mb-4 flex items-center justify-between">
                       <span
                         className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.1em]"
-                        style={{ backgroundColor: sc.color + "15", color: sc.color }}
+                        style={{
+                          backgroundColor: sc.color + "15",
+                          color: sc.color,
+                        }}
                       >
-                        {sc.dot && <span className="h-1.5 w-1.5 animate-pulse rounded-full" style={{ backgroundColor: sc.color }} />}
+                        {sc.dot && (
+                          <span
+                            className="h-1.5 w-1.5 animate-pulse rounded-full"
+                            style={{ backgroundColor: sc.color }}
+                          />
+                        )}
                         {locale === "fr" ? sc.labelFr : sc.labelEn}
                       </span>
-                      <span className="text-[12px] text-gray-400">{dateStr}</span>
+                      <span className="text-[12px] text-gray-400">
+                        {dateStr}
+                      </span>
                     </div>
 
-                    <h4 className="mb-2 text-[18px] font-bold text-gray-900 dark:text-white">{title}</h4>
-                    <p className="text-[14px] leading-[1.7] text-gray-500 dark:text-gray-400">{desc}</p>
+                    <h4 className="mb-2 text-[18px] font-bold text-gray-900 dark:text-white">
+                      {title}
+                    </h4>
+                    <p className="text-[14px] leading-[1.7] text-gray-500 dark:text-gray-400">
+                      {desc}
+                    </p>
 
-                    {training.formFields && training.formFields.length > 0 && status === "upcoming" && (
-                      <button
-                        onClick={() => setRegisterTraining(training)}
-                        className="mt-5 inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-[14px] font-semibold text-white transition-all duration-200 hover:opacity-90 hover:shadow-lg"
-                        style={{ backgroundColor: dept.color }}
-                      >
-                        {locale === "fr" ? "S'inscrire" : "Register"}
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
-                        </svg>
-                      </button>
-                    )}
+                    {training.formFields &&
+                      training.formFields.length > 0 &&
+                      status === "upcoming" && (
+                        <button
+                          onClick={() => setRegisterTraining(training)}
+                          className="mt-5 inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-[14px] font-semibold text-white transition-all duration-200 hover:opacity-90 hover:shadow-lg"
+                          style={{ backgroundColor: dept.color }}
+                        >
+                          {locale === "fr" ? "S'inscrire" : "Register"}
+                          <svg
+                            width="15"
+                            height="15"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
+                          </svg>
+                        </button>
+                      )}
                   </div>
                 </motion.div>
               );
@@ -235,7 +322,15 @@ export function DeptTrainingsSection({ dept }: Props) {
         {hasMore && (
           <div ref={loaderRef} className="mt-8 flex justify-center">
             <div className="flex items-center gap-2 text-[13px] text-gray-500">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="animate-spin">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="animate-spin"
+              >
                 <path d="M21 12a9 9 0 1 1-6.219-8.56" />
               </svg>
               {locale === "fr" ? "Chargement..." : "Loading..."}
@@ -245,7 +340,10 @@ export function DeptTrainingsSection({ dept }: Props) {
       </div>
 
       {registerTraining && (
-        <RegistrationForm training={registerTraining} onClose={() => setRegisterTraining(null)} />
+        <RegistrationForm
+          training={registerTraining}
+          onClose={() => setRegisterTraining(null)}
+        />
       )}
     </section>
   );

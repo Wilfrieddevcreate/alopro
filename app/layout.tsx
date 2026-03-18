@@ -15,13 +15,14 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://alopro.net";
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#12121C",
+  themeColor: "#0a0a0a",
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Alopro — Agence Digitale | Développement Web, Recherche & Formation",
+    default:
+      "Alopro — Agence Digitale | Développement Web, Recherche & Formation",
     template: "%s | Alopro",
   },
   description:
@@ -57,7 +58,8 @@ export const metadata: Metadata = {
     alternateLocale: "en_US",
     url: SITE_URL,
     siteName: "Alopro",
-    title: "Alopro — Agence Digitale | Développement Web, Recherche & Formation",
+    title:
+      "Alopro — Agence Digitale | Développement Web, Recherche & Formation",
     description:
       "Agence digitale spécialisée dans le développement web, la recherche innovante et la formation. Nous donnons vie à vos projets digitaux.",
     images: [
@@ -84,9 +86,7 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: [
-      { url: "/favicon.jpeg", type: "image/jpeg" },
-    ],
+    icon: [{ url: "/favicon.jpeg", type: "image/jpeg" }],
     apple: "/favicon.jpeg",
   },
   manifest: "/manifest.json",

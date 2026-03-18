@@ -152,54 +152,71 @@ export function DeptHeroSection({ dept }: DeptHeroSectionProps) {
   const prefix = dept.translationPrefix;
   const isTrainingDept = dept.slug === "training";
 
-  const [dynamicStats, setDynamicStats] = useState<{ value: number; suffix: string; label: string }[] | null>(null);
+  const [dynamicStats, setDynamicStats] = useState<
+    { value: number; suffix: string; label: string }[] | null
+  >(null);
 
   useEffect(() => {
     if (!isTrainingDept) return;
     Promise.all([
       fetch("/api/trainings").then((r) => r.json()),
-      fetch("/api/admin/registrations").then((r) => r.json()).catch(() => []),
+      fetch("/api/admin/registrations")
+        .then((r) => r.json())
+        .catch(() => []),
     ]).then(([trainings, registrations]) => {
-      const past = trainings.filter((tr: { startDate: string }) => getTrainingStatus(tr.startDate) === "past").length;
-      const upcoming = trainings.filter((tr: { startDate: string }) => getTrainingStatus(tr.startDate) === "upcoming").length;
+      const past = trainings.filter(
+        (tr: { startDate: string }) =>
+          getTrainingStatus(tr.startDate) === "past",
+      ).length;
+      const upcoming = trainings.filter(
+        (tr: { startDate: string }) =>
+          getTrainingStatus(tr.startDate) === "upcoming",
+      ).length;
       const totalRegs = registrations.length;
       setDynamicStats([
         { value: past, suffix: "", label: t(`${prefix}.overview.stat1.label`) },
-        { value: upcoming, suffix: "", label: t(`${prefix}.overview.stat2.label`) },
-        { value: totalRegs, suffix: "", label: t(`${prefix}.overview.stat3.label`) },
+        {
+          value: upcoming,
+          suffix: "",
+          label: t(`${prefix}.overview.stat2.label`),
+        },
+        {
+          value: totalRegs,
+          suffix: "",
+          label: t(`${prefix}.overview.stat3.label`),
+        },
       ]);
     });
   }, [isTrainingDept, t, prefix]);
 
-  const stats = dynamicStats || (isTrainingDept
-    ? [
-        { value: 0, suffix: "", label: t(`${prefix}.overview.stat1.label`) },
-        { value: 0, suffix: "", label: t(`${prefix}.overview.stat2.label`) },
-        { value: 0, suffix: "", label: t(`${prefix}.overview.stat3.label`) },
-      ]
-    : [
-        {
-          value: parseInt(t(`${prefix}.overview.stat1.value`)) || 50,
-          suffix: t(`${prefix}.overview.stat1.value`).replace(/[0-9]/g, ""),
-          label: t(`${prefix}.overview.stat1.label`),
-        },
-        {
-          value: parseInt(t(`${prefix}.overview.stat2.value`)) || 98,
-          suffix: t(`${prefix}.overview.stat2.value`).replace(/[0-9]/g, ""),
-          label: t(`${prefix}.overview.stat2.label`),
-        },
-        {
-          value: parseInt(t(`${prefix}.overview.stat3.value`)) || 5,
-          suffix: t(`${prefix}.overview.stat3.value`).replace(/[0-9]/g, ""),
-          label: t(`${prefix}.overview.stat3.label`),
-        },
-      ]);
+  const stats =
+    dynamicStats ||
+    (isTrainingDept
+      ? [
+          { value: 0, suffix: "", label: t(`${prefix}.overview.stat1.label`) },
+          { value: 0, suffix: "", label: t(`${prefix}.overview.stat2.label`) },
+          { value: 0, suffix: "", label: t(`${prefix}.overview.stat3.label`) },
+        ]
+      : [
+          {
+            value: parseInt(t(`${prefix}.overview.stat1.value`)) || 50,
+            suffix: t(`${prefix}.overview.stat1.value`).replace(/[0-9]/g, ""),
+            label: t(`${prefix}.overview.stat1.label`),
+          },
+          {
+            value: parseInt(t(`${prefix}.overview.stat2.value`)) || 98,
+            suffix: t(`${prefix}.overview.stat2.value`).replace(/[0-9]/g, ""),
+            label: t(`${prefix}.overview.stat2.label`),
+          },
+          {
+            value: parseInt(t(`${prefix}.overview.stat3.value`)) || 5,
+            suffix: t(`${prefix}.overview.stat3.value`).replace(/[0-9]/g, ""),
+            label: t(`${prefix}.overview.stat3.label`),
+          },
+        ]);
 
   return (
-    <section
-      ref={ref}
-      className="relative overflow-hidden bg-[#12121C]"
-    >
+    <section ref={ref} className="relative overflow-hidden bg-[#0a0a0a]">
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
@@ -219,7 +236,10 @@ export function DeptHeroSection({ dept }: DeptHeroSectionProps) {
           animate={inView ? "visible" : "hidden"}
         >
           {/* Overline badge */}
-          <motion.div variants={slideUp} className="mb-4 flex items-center gap-3">
+          <motion.div
+            variants={slideUp}
+            className="mb-4 flex items-center gap-3"
+          >
             <motion.span
               initial={{ scaleX: 0 }}
               animate={inView ? { scaleX: 1 } : {}}

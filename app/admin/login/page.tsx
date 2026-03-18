@@ -29,14 +29,16 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#12121C] px-4">
+    <div className="flex min-h-screen items-center justify-center bg-[#0a0a0a] px-4">
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="mb-8 text-center">
           <h1 className="text-[32px] font-bold text-white">
             ALO<span className="text-[#1F6FEB]">PRO</span>
           </h1>
-          <p className="mt-2 text-[14px] text-gray-500">Espace administration</p>
+          <p className="mt-2 text-[14px] text-gray-500">
+            Espace administration
+          </p>
         </div>
 
         {/* Card */}

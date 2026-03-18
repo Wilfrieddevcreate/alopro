@@ -23,7 +23,16 @@ const departments = [
     ],
     color: "#1F6FEB",
     icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <polyline points="16 18 22 12 16 6" />
         <polyline points="8 6 2 12 8 18" />
       </svg>
@@ -42,7 +51,16 @@ const departments = [
     ],
     color: "#1F6FEB",
     icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <circle cx="11" cy="11" r="8" />
         <line x1="21" y1="21" x2="16.65" y2="16.65" />
       </svg>
@@ -61,7 +79,16 @@ const departments = [
     ],
     color: "#059669",
     icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
         <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
       </svg>
@@ -84,7 +111,7 @@ export default function ServicesPage() {
             className="object-cover opacity-60"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#000814]/40 via-[#000814]/60 to-[#12121C]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#000814]/40 via-[#000814]/60 to-[#0a0a0a]" />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
@@ -103,7 +130,9 @@ export default function ServicesPage() {
 
             <h1 className="text-[clamp(32px,5vw,56px)] font-bold leading-[1.1] tracking-tight text-white">
               {t("servicesPage.hero.title")}{" "}
-              <span className="text-[#1F6FEB]">{t("servicesPage.hero.titleHighlight")}</span>
+              <span className="text-[#1F6FEB]">
+                {t("servicesPage.hero.titleHighlight")}
+              </span>
             </h1>
 
             <p className="mx-auto mt-6 max-w-2xl text-[17px] leading-[1.7] text-gray-400">
@@ -114,7 +143,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Departments */}
-      <section className="bg-[#12121C] py-16 sm:py-24">
+      <section className="bg-[#0a0a0a] py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="space-y-12">
             {departments.map((dept, i) => (
@@ -133,7 +162,10 @@ export default function ServicesPage() {
                       <div className="mb-6 flex items-center gap-4">
                         <div
                           className="flex h-16 w-16 items-center justify-center rounded-2xl"
-                          style={{ backgroundColor: dept.color + "12", color: dept.color }}
+                          style={{
+                            backgroundColor: dept.color + "12",
+                            color: dept.color,
+                          }}
                         >
                           {dept.icon}
                         </div>
@@ -159,8 +191,19 @@ export default function ServicesPage() {
                         className="inline-flex items-center gap-2 rounded-lg px-6 py-3 text-[14px] font-semibold text-white transition-all duration-200 hover:opacity-90 hover:shadow-lg"
                         style={{ backgroundColor: dept.color }}
                       >
-                        {locale === "fr" ? "Découvrir ce département" : "Discover this department"}
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        {locale === "fr"
+                          ? "Découvrir ce département"
+                          : "Discover this department"}
+                        <svg
+                          width="15"
+                          height="15"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
                           <line x1="5" y1="12" x2="19" y2="12" />
                           <polyline points="12 5 19 12 12 19" />
                         </svg>
@@ -170,16 +213,30 @@ export default function ServicesPage() {
                     {/* Right: Items */}
                     <div className="lg:w-80">
                       <p className="mb-4 text-[12px] font-semibold uppercase tracking-[0.15em] text-gray-500">
-                        {locale === "fr" ? "Ce que nous proposons" : "What we offer"}
+                        {locale === "fr"
+                          ? "Ce que nous proposons"
+                          : "What we offer"}
                       </p>
                       <ul className="space-y-3">
                         {dept.items.map((key) => (
                           <li key={key} className="flex items-start gap-3">
                             <span
                               className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-md"
-                              style={{ backgroundColor: dept.color + "12", color: dept.color }}
+                              style={{
+                                backgroundColor: dept.color + "12",
+                                color: dept.color,
+                              }}
                             >
-                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                              <svg
+                                width="12"
+                                height="12"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="3"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
                                 <polyline points="20 6 9 17 4 12" />
                               </svg>
                             </span>
@@ -194,7 +251,10 @@ export default function ServicesPage() {
                 </div>
 
                 {/* Bottom accent */}
-                <div className="h-[2px] w-full" style={{ backgroundColor: dept.color + "30" }} />
+                <div
+                  className="h-[2px] w-full"
+                  style={{ backgroundColor: dept.color + "30" }}
+                />
               </motion.div>
             ))}
           </div>

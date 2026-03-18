@@ -4,7 +4,7 @@
 
 :root {
   /* Default is dark (like gambling-solutions) */
-  --bg-body: #12121C;
+  --bg-body: #0a0a0a;
   --bg-card: #050D19;
   --bg-card-border: #1E2632;
   --bg-header: rgba(255, 255, 255, 0.02);

@@ -60,7 +60,7 @@ export function PortfolioSection() {
     <section
       id="portfolio"
       ref={ref}
-      className="bg-gray-50 py-16 dark:bg-[#12121C] sm:py-24"
+      className="bg-gray-50 py-16 dark:bg-[#0a0a0a] sm:py-24"
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         {/* Header */}
@@ -77,7 +77,11 @@ export function PortfolioSection() {
             <motion.div
               variants={{
                 hidden: { opacity: 0, x: -20 },
-                visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease } },
+                visible: {
+                  opacity: 1,
+                  x: 0,
+                  transition: { duration: 0.5, ease },
+                },
               }}
               className="flex items-center gap-3"
             >
@@ -94,19 +98,30 @@ export function PortfolioSection() {
             <motion.h2
               variants={{
                 hidden: { opacity: 0, y: 30, filter: "blur(6px)" },
-                visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease } },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  filter: "blur(0px)",
+                  transition: { duration: 0.6, ease },
+                },
               }}
               className="mt-4 text-[clamp(28px,3.5vw,44px)] font-bold leading-[1.15] tracking-tight text-gray-900 dark:text-white"
             >
               {t("portfolio.title")}{" "}
-              <span className="text-[#1F6FEB]">{t("portfolio.titleHighlight")}</span>
+              <span className="text-[#1F6FEB]">
+                {t("portfolio.titleHighlight")}
+              </span>
             </motion.h2>
           </div>
           <div>
             <motion.p
               variants={{
                 hidden: { opacity: 0, y: 16 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease } },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.5, ease },
+                },
               }}
               className="max-w-sm text-[16px] leading-[1.7] text-gray-500 dark:text-gray-400 lg:text-right"
             >
@@ -115,7 +130,11 @@ export function PortfolioSection() {
             <motion.div
               variants={{
                 hidden: { opacity: 0, y: 16 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.1, ease } },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.5, delay: 0.1, ease },
+                },
               }}
               className="mt-4 lg:text-right"
             >
@@ -123,9 +142,21 @@ export function PortfolioSection() {
                 href="/projects"
                 className="inline-flex items-center gap-2 rounded-lg border border-white/[0.08] px-5 py-2.5 text-[13px] font-semibold text-gray-300 transition-colors hover:border-white/[0.15] hover:text-white"
               >
-                {locale === "fr" ? "Voir tous les projets" : "View all projects"}
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+                {locale === "fr"
+                  ? "Voir tous les projets"
+                  : "View all projects"}
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
                 </svg>
               </Link>
             </motion.div>
@@ -155,14 +186,18 @@ export function PortfolioSection() {
             {projects.map((project, i) => {
               const color = categoryColors[project.category] ?? "#1F6FEB";
               const title = locale === "fr" ? project.titleFr : project.titleEn;
-              const desc = locale === "fr" ? project.descriptionFr : project.descriptionEn;
-              const catLabel = categoryLabels[project.category]?.[locale] ?? project.category;
+              const desc =
+                locale === "fr" ? project.descriptionFr : project.descriptionEn;
+              const catLabel =
+                categoryLabels[project.category]?.[locale] ?? project.category;
 
               return (
                 <motion.div
                   key={project.id}
                   initial={{ opacity: 0, y: 30, filter: "blur(4px)" }}
-                  animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+                  animate={
+                    isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}
+                  }
                   transition={{ duration: 0.6, delay: 0.5 + i * 0.12, ease }}
                   className="group overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] transition-colors duration-200 hover:border-white/[0.12]"
                 >
@@ -183,8 +218,24 @@ export function PortfolioSection() {
                           className="flex h-10 w-10 items-center justify-center rounded-lg"
                           style={{ backgroundColor: color + "12", color }}
                         >
-                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                          <svg
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <rect
+                              x="3"
+                              y="3"
+                              width="18"
+                              height="18"
+                              rx="2"
+                              ry="2"
+                            />
                             <circle cx="8.5" cy="8.5" r="1.5" />
                             <polyline points="21 15 16 10 5 21" />
                           </svg>
@@ -200,8 +251,12 @@ export function PortfolioSection() {
                     >
                       {catLabel}
                     </p>
-                    <h3 className="mb-2 text-[18px] font-bold text-white">{title}</h3>
-                    <p className="mb-5 text-[14px] leading-[1.7] text-gray-400">{desc}</p>
+                    <h3 className="mb-2 text-[18px] font-bold text-white">
+                      {title}
+                    </h3>
+                    <p className="mb-5 text-[14px] leading-[1.7] text-gray-400">
+                      {desc}
+                    </p>
                     {project.link && (
                       <a
                         href={project.link}
@@ -211,7 +266,17 @@ export function PortfolioSection() {
                         style={{ color }}
                       >
                         {t("portfolio.viewProject")}
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-150 group-hover:translate-x-0.5">
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="transition-transform duration-150 group-hover:translate-x-0.5"
+                        >
                           <line x1="5" y1="12" x2="19" y2="12" />
                           <polyline points="12 5 19 12 12 19" />
                         </svg>
@@ -226,12 +291,25 @@ export function PortfolioSection() {
             {projects.length === 0 && (
               <div className="col-span-2 rounded-2xl border border-white/[0.06] bg-white/[0.02] py-16 text-center">
                 <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-[#1F6FEB]/10">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1F6FEB" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="3" width="20" height="14" rx="2" /><line x1="8" y1="21" x2="16" y2="21" /><line x1="12" y1="17" x2="12" y2="21" />
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#1F6FEB"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <rect x="2" y="3" width="20" height="14" rx="2" />
+                    <line x1="8" y1="21" x2="16" y2="21" />
+                    <line x1="12" y1="17" x2="12" y2="21" />
                   </svg>
                 </div>
                 <p className="text-[15px] font-medium text-gray-400">
-                  {locale === "fr" ? "Nos projets arrivent bientôt !" : "Our projects are coming soon!"}
+                  {locale === "fr"
+                    ? "Nos projets arrivent bientôt !"
+                    : "Our projects are coming soon!"}
                 </p>
               </div>
             )}

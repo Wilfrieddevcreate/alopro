@@ -16,12 +16,15 @@ export function DeptCTASection({ dept }: Props) {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="bg-[#12121C] py-16 sm:py-24">
+    <section className="bg-[#0a0a0a] py-16 sm:py-24">
       <div ref={ref} className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30, filter: "blur(4px)" }}
           animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+          transition={{
+            duration: 0.6,
+            ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+          }}
           className="rounded-2xl border border-gray-200 bg-gray-50 px-8 py-16 text-center dark:border-white/[0.06] dark:bg-white/[0.02] sm:px-16 sm:py-20"
         >
           {/* Overline */}
@@ -31,14 +34,20 @@ export function DeptCTASection({ dept }: Props) {
             transition={{ duration: 0.4, delay: 0.2 }}
             className="mb-6 flex items-center justify-center gap-3"
           >
-            <span className="h-px w-6" style={{ backgroundColor: dept.color }} />
+            <span
+              className="h-px w-6"
+              style={{ backgroundColor: dept.color }}
+            />
             <p
               className="text-[12px] font-semibold uppercase tracking-[0.2em]"
               style={{ color: dept.color }}
             >
               {t(`${dept.translationPrefix}.cta.badge`)}
             </p>
-            <span className="h-px w-6" style={{ backgroundColor: dept.color }} />
+            <span
+              className="h-px w-6"
+              style={{ backgroundColor: dept.color }}
+            />
           </motion.div>
 
           {/* Title */}
