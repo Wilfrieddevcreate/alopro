@@ -274,6 +274,34 @@ const translations: Record<Locale, Record<string, string>> = {
     "dept.training.team.m1.name": "Serge Nougboloni",
     "dept.training.team.m2.name": "Merveille Hounsou",
 
+    // Services Page
+    "servicesPage.badge": "Nos services",
+    "servicesPage.hero.title": "Des solutions complètes",
+    "servicesPage.hero.titleHighlight": "pour votre transformation digitale",
+    "servicesPage.hero.subtitle": "Trois départements complémentaires — développement, recherche & innovation, et formation — pour accompagner votre entreprise à chaque étape de sa croissance numérique.",
+
+    // About Page
+    "about.badge": "À propos",
+    "about.hero.title": "Nous sommes",
+    "about.hero.titleHighlight": "AloPro Lab",
+    "about.hero.subtitle": "Une entreprise technologique structurée autour de trois pôles d'expertise pour transformer vos idées en solutions concrètes et performantes.",
+    "about.mission.badge": "Notre mission",
+    "about.mission.title": "Innover pour",
+    "about.mission.titleHighlight": "créer de la valeur",
+    "about.mission.desc1": "AloPro Lab est née de la conviction que la technologie doit être accessible et transformatrice. Nous combinons développement logiciel, recherche appliquée et formation pour offrir des solutions complètes à nos clients et partenaires.",
+    "about.mission.desc2": "Notre approche repose sur trois piliers : l'excellence technique, l'innovation continue et l'accompagnement personnalisé. Chaque projet est une opportunité de repousser les limites et de créer un impact durable.",
+    "about.team.badge": "Notre équipe",
+    "about.team.title": "Les talents derrière",
+    "about.team.titleHighlight": "AloPro Lab",
+    "about.team.subtitle": "Une équipe pluridisciplinaire de passionnés qui mettent leur expertise au service de vos projets.",
+    "about.team.valentin.role": "Chef du département Développement",
+    "about.team.josiane.role": "Développeuse FullStack & Coordinatrice",
+    "about.team.epaphrodite.role": "Développeur FullStack",
+    "about.team.wilfried.role": "Développeur FullStack",
+    "about.team.geoffroy.role": "Chef du département Recherche & Innovation",
+    "about.team.serge.role": "Directeur du département Formation",
+    "about.team.merveille.role": "Chargée de communication",
+
     // Why Choose Us
     "why.badge": "Pourquoi nous choisir",
     "why.title": "L'expertise qui fait",
@@ -671,6 +699,34 @@ const translations: Record<Locale, Record<string, string>> = {
     "dept.training.services.subtitle": "",
     "dept.training.team.m1.name": "Serge Nougboloni",
     "dept.training.team.m2.name": "Merveille Hounsou",
+
+    // Services Page
+    "servicesPage.badge": "Our services",
+    "servicesPage.hero.title": "Complete solutions",
+    "servicesPage.hero.titleHighlight": "for your digital transformation",
+    "servicesPage.hero.subtitle": "Three complementary departments — development, research & innovation, and training — to support your business at every stage of its digital growth.",
+
+    // About Page
+    "about.badge": "About us",
+    "about.hero.title": "We are",
+    "about.hero.titleHighlight": "AloPro Lab",
+    "about.hero.subtitle": "A technology company structured around three centers of expertise to transform your ideas into concrete, high-performing solutions.",
+    "about.mission.badge": "Our mission",
+    "about.mission.title": "Innovate to",
+    "about.mission.titleHighlight": "create value",
+    "about.mission.desc1": "AloPro Lab was born from the belief that technology should be accessible and transformative. We combine software development, applied research, and training to deliver comprehensive solutions to our clients and partners.",
+    "about.mission.desc2": "Our approach rests on three pillars: technical excellence, continuous innovation, and personalized support. Every project is an opportunity to push boundaries and create lasting impact.",
+    "about.team.badge": "Our team",
+    "about.team.title": "The talents behind",
+    "about.team.titleHighlight": "AloPro Lab",
+    "about.team.subtitle": "A multidisciplinary team of passionate professionals putting their expertise at the service of your projects.",
+    "about.team.valentin.role": "Head of Development Department",
+    "about.team.josiane.role": "FullStack Developer & Coordinator",
+    "about.team.epaphrodite.role": "FullStack Developer",
+    "about.team.wilfried.role": "FullStack Developer",
+    "about.team.geoffroy.role": "Head of Research & Innovation Department",
+    "about.team.serge.role": "Director of Training Department",
+    "about.team.merveille.role": "Communications Manager",
 
     // Why Choose Us
     "why.badge": "Why choose us",
