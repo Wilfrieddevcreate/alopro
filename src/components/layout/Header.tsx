@@ -25,7 +25,9 @@ export function Header() {
     } else {
       document.body.style.overflow = "";
     }
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileMenuOpen]);
 
   const toggleLocale = () => setLocale(locale === "fr" ? "en" : "fr");
@@ -35,7 +37,7 @@ export function Header() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "border-b border-white/[0.06] bg-[#000814]/80 backdrop-blur-xl"
+            ? "border-b border-white/[0.06] bg-[#12121c]/80 backdrop-blur-xl"
             : "border-b border-transparent bg-transparent"
         }`}
       >
@@ -103,7 +105,11 @@ export function Header() {
               <div className="flex h-3.5 w-[18px] flex-col justify-between">
                 <span
                   className="block h-[1.5px] w-full origin-center bg-current transition-transform duration-200"
-                  style={{ transform: mobileMenuOpen ? "translateY(5px) rotate(45deg)" : "none" }}
+                  style={{
+                    transform: mobileMenuOpen
+                      ? "translateY(5px) rotate(45deg)"
+                      : "none",
+                  }}
                 />
                 <span
                   className="block h-[1.5px] w-full bg-current transition-opacity duration-200"
@@ -111,7 +117,11 @@ export function Header() {
                 />
                 <span
                   className="block h-[1.5px] w-full origin-center bg-current transition-transform duration-200"
-                  style={{ transform: mobileMenuOpen ? "translateY(-5px) rotate(-45deg)" : "none" }}
+                  style={{
+                    transform: mobileMenuOpen
+                      ? "translateY(-5px) rotate(-45deg)"
+                      : "none",
+                  }}
                 />
               </div>
             </button>
@@ -143,7 +153,10 @@ export function Header() {
                     >
                       <Link
                         href={item.href}
-                        onClick={() => { setMobileMenuOpen(false); setActiveSection(item.href); }}
+                        onClick={() => {
+                          setMobileMenuOpen(false);
+                          setActiveSection(item.href);
+                        }}
                         className={`block rounded-xl px-4 py-3.5 text-[15px] font-medium transition-colors duration-150 ${
                           active
                             ? "bg-gray-50 text-gray-900 dark:bg-white/[0.04] dark:text-white"
