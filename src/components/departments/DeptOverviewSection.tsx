@@ -191,39 +191,41 @@ export function DeptOverviewSection({ dept }: DeptOverviewSectionProps) {
           </p>
         </motion.div>
 
-        {/* Stat cards */}
-        <div className={`mt-14 grid gap-5 sm:grid-cols-2 ${stats.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
-          {stats.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 40, filter: "blur(4px)" }}
-              animate={
-                isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}
-              }
-              transition={{
-                duration: 0.6,
-                delay: 0.7 + i * 0.15,
-                ease,
-              }}
-              className="rounded-2xl border border-gray-200 bg-gray-50 px-6 py-8 text-center dark:border-white/[0.06] dark:bg-white/[0.02]"
-            >
-              <p
-                className="text-[36px] font-bold tracking-tight"
-                style={{ color: dept.color }}
+        {/* Stat cards — hidden for training dept */}
+        {!isTrainingDept && (
+          <div className={`mt-14 grid gap-5 sm:grid-cols-2 ${stats.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
+            {stats.map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 40, filter: "blur(4px)" }}
+                animate={
+                  isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}
+                }
+                transition={{
+                  duration: 0.6,
+                  delay: 0.7 + i * 0.15,
+                  ease,
+                }}
+                className="rounded-2xl border border-gray-200 bg-gray-50 px-6 py-8 text-center dark:border-white/[0.06] dark:bg-white/[0.02]"
               >
-                <AnimatedNumber
-                  value={stat.value}
-                  prefix={"prefix" in stat ? (stat as { prefix: string }).prefix : ""}
-                  suffix={stat.suffix}
-                  inView={isInView}
-                />
-              </p>
-              <p className="mt-2 text-[14px] text-gray-500 dark:text-gray-400">
-                {stat.label}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+                <p
+                  className="text-[36px] font-bold tracking-tight"
+                  style={{ color: dept.color }}
+                >
+                  <AnimatedNumber
+                    value={stat.value}
+                    prefix={"prefix" in stat ? (stat as { prefix: string }).prefix : ""}
+                    suffix={stat.suffix}
+                    inView={isInView}
+                  />
+                </p>
+                <p className="mt-2 text-[14px] text-gray-500 dark:text-gray-400">
+                  {stat.label}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
