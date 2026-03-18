@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 const SESSION_COOKIE = "alopro_admin_session";
 const SESSION_TOKEN = process.env.SESSION_SECRET || "authenticated_alopro_admin_2026";
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Only protect admin routes (except login)

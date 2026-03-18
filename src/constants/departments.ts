@@ -19,6 +19,7 @@ export interface Department {
   services: DepartmentService[];
   currentProjects: DepartmentProject[];
   completedProjects: DepartmentProject[];
+  upcomingProjects?: DepartmentProject[];
   team: DepartmentTeamMember[];
 }
 
@@ -52,14 +53,15 @@ export const DEPARTMENTS: Department[] = [
     ],
     currentProjects: [
       { key: "p1", color: "#1F6FEB" },
-      { key: "p2", color: "#1F6FEB" },
     ],
-    completedProjects: [
-      { key: "p1", color: "#059669" },
-      { key: "p2", color: "#1F6FEB" },
-      { key: "p3", color: "#EA580C" },
+    completedProjects: [],
+    upcomingProjects: [
+      { key: "u1", color: "#059669" },
+      { key: "u2", color: "#16A34A" },
+      { key: "u3", color: "#EA580C" },
+      { key: "u4", color: "#7C3AED" },
     ],
-    team: [{ key: "m1" }, { key: "m2" }, { key: "m3" }, { key: "m4" }],
+    team: [{ key: "m1" }, { key: "m2" }, { key: "m3" }],
   },
   {
     slug: "training",
@@ -67,7 +69,7 @@ export const DEPARTMENTS: Department[] = [
     lightBg: "bg-blue-50",
     translationPrefix: "dept.training",
     services: [
-      { key: "s1" }, { key: "s2" }, { key: "s3" }, { key: "s4" }, { key: "s5" }, { key: "s6" },
+      { key: "s1" }, { key: "s2" }, { key: "s3" },
     ],
     currentProjects: [
       { key: "p1", color: "#059669" },

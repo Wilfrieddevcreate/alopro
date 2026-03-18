@@ -5,6 +5,9 @@ import { motion, useInView } from "framer-motion";
 import { useLanguage } from "@/src/contexts/LanguageContext";
 import { SectionHeader } from "./SectionHeader";
 import type { Department } from "@/src/constants/departments";
+import type { Training } from "@/src/types/training";
+import { getTrainingStatus } from "@/src/types/training";
+import type { Registration } from "@/src/types/registration";
 
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
@@ -54,24 +57,64 @@ export function DeptOverviewSection({ dept }: DeptOverviewSectionProps) {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   const prefix = dept.translationPrefix;
+  const isTrainingDept = dept.slug === "training";
 
-  const stats = [
-    {
-      value: parseInt(t(`${prefix}.overview.stat1.value`)) || 50,
-      suffix: t(`${prefix}.overview.stat1.value`).replace(/[0-9]/g, ""),
-      label: t(`${prefix}.overview.stat1.label`),
-    },
-    {
-      value: parseInt(t(`${prefix}.overview.stat2.value`)) || 98,
-      suffix: t(`${prefix}.overview.stat2.value`).replace(/[0-9]/g, ""),
-      label: t(`${prefix}.overview.stat2.label`),
-    },
-    {
-      value: parseInt(t(`${prefix}.overview.stat3.value`)) || 15,
-      suffix: t(`${prefix}.overview.stat3.value`).replace(/[0-9]/g, ""),
-      label: t(`${prefix}.overview.stat3.label`),
-    },
-  ];
+  const [dynamicStats, setDynamicStats] = useState<{ value: number; suffix: string; label: string }[] | null>(null);
+
+  useEffect(() => {
+    if (!isTrainingDept) return;
+    Promise.all([
+      fetch("/api/trainings").then((r) => r.json()),
+      fetch("/api/admin/registrations").then((r) => r.json()).catch(() => []),
+    ]).then(([trainings, registrations]: [Training[], Registration[]]) => {
+      const past = trainings.filter((tr) => getTrainingStatus(tr.startDate) === "past").length;
+      const upcoming = trainings.filter((tr) => getTrainingStatus(tr.startDate) === "upcoming").length;
+      const totalRegs = registrations.length;
+      setDynamicStats([
+        { value: past, suffix: "", label: t(`${prefix}.overview.stat1.label`) },
+        { value: upcoming, suffix: "", label: t(`${prefix}.overview.stat2.label`) },
+        { value: totalRegs, suffix: "", label: t(`${prefix}.overview.stat3.label`) },
+      ]);
+    });
+  }, [isTrainingDept, t, prefix]);
+
+  const defaultStats = isTrainingDept
+    ? [
+        { value: 0, suffix: "", label: t(`${prefix}.overview.stat1.label`) },
+        { value: 0, suffix: "", label: t(`${prefix}.overview.stat2.label`) },
+        { value: 0, suffix: "", label: t(`${prefix}.overview.stat3.label`) },
+      ]
+    : (() => {
+        const items = [
+          {
+            value: parseInt(t(`${prefix}.overview.stat1.value`)) || 50,
+            suffix: t(`${prefix}.overview.stat1.value`).replace(/[0-9]/g, ""),
+            label: t(`${prefix}.overview.stat1.label`),
+          },
+          {
+            value: parseInt(t(`${prefix}.overview.stat2.value`)) || 98,
+            suffix: t(`${prefix}.overview.stat2.value`).replace(/[0-9]/g, ""),
+            label: t(`${prefix}.overview.stat2.label`),
+          },
+          {
+            value: parseInt(t(`${prefix}.overview.stat3.value`)) || 15,
+            suffix: t(`${prefix}.overview.stat3.value`).replace(/[0-9]/g, ""),
+            label: t(`${prefix}.overview.stat3.label`),
+          },
+        ];
+        const stat4Key = `${prefix}.overview.stat4.value`;
+        const stat4Val = t(stat4Key);
+        if (stat4Val !== stat4Key) {
+          items.push({
+            value: parseInt(stat4Val) || 24,
+            suffix: stat4Val.replace(/[0-9]/g, ""),
+            label: t(`${prefix}.overview.stat4.label`),
+          });
+        }
+        return items;
+      })();
+
+  const stats = dynamicStats || defaultStats;
 
   return (
     <section className="bg-[#000000] py-16 sm:py-24">
@@ -111,7 +154,7 @@ export function DeptOverviewSection({ dept }: DeptOverviewSectionProps) {
         </motion.div>
 
         {/* Stat cards */}
-        <div className="mt-14 grid gap-5 sm:grid-cols-3">
+        <div className={`mt-14 grid gap-5 sm:grid-cols-2 ${stats.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}

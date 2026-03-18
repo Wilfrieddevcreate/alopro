@@ -18,7 +18,7 @@ const deptMeta: Record<string, { title: string; description: string }> = {
   research: {
     title: "Recherche & Innovation",
     description:
-      "Pôle recherche et innovation d'Alopro. Intelligence artificielle, blockchain, IoT et solutions technologiques avancées pour transformer votre business.",
+      "De l'idée à la réalisation concrète. Électronique, automatisation, IoT et IA pour transformer vos concepts en produits fonctionnels prêts pour le marché.",
   },
   training: {
     title: "Formation Digitale",

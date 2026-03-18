@@ -145,7 +145,7 @@ export function TrainingsSection() {
               className="mt-4 lg:text-right"
             >
               <Link
-                href="/departments/training"
+                href="/trainings"
                 className="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-5 py-2.5 text-[13px] font-semibold text-gray-600 transition-colors hover:border-gray-300 hover:text-gray-900 dark:border-white/[0.08] dark:text-gray-300 dark:hover:border-white/[0.15] dark:hover:text-white"
               >
                 {locale === "fr" ? "Voir toutes les formations" : "View all trainings"}
