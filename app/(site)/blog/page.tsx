@@ -233,7 +233,7 @@ export default function BlogPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#000000] pt-16">
+    <div className="min-h-screen bg-[#12121C] pt-16">
       <div ref={ref} className="mx-auto max-w-7xl px-5 py-16 sm:px-6 sm:py-24 lg:px-8">
         {/* Header */}
         <motion.div

@@ -131,7 +131,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission */}
-      <section className="bg-[#000000] py-16 sm:py-24">
+      <section className="bg-[#12121C] py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <motion.div
@@ -186,7 +186,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="bg-[#000000] py-16 sm:py-24">
+      <section className="bg-[#12121C] py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

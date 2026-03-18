@@ -60,7 +60,7 @@ export function PortfolioSection() {
     <section
       id="portfolio"
       ref={ref}
-      className="bg-gray-50 py-16 dark:bg-[#000000] sm:py-24"
+      className="bg-gray-50 py-16 dark:bg-[#12121C] sm:py-24"
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         {/* Header */}

@@ -6,18 +6,27 @@ import { useLanguage } from "@/src/contexts/LanguageContext";
 
 function AnimatedNumber({ value, suffix = "", inView }: { value: number; suffix?: string; inView: boolean }) {
   const [count, setCount] = useState(0);
+  const hasAnimated = useRef(false);
+
   useEffect(() => {
-    if (!inView) return;
-    let start = 0;
+    if (!inView || hasAnimated.current) return;
+    hasAnimated.current = true;
+
     const duration = 1200;
-    const step = Math.ceil(duration / value);
-    const timer = setInterval(() => {
-      start += 1;
-      setCount(start);
-      if (start >= value) clearInterval(timer);
-    }, step);
-    return () => clearInterval(timer);
+    const startTime = performance.now();
+
+    function animate(now: number) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      setCount(Math.round(progress * value));
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    }
+
+    requestAnimationFrame(animate);
   }, [inView, value]);
+
   return <>{count}{suffix}</>;
 }
 
@@ -34,7 +43,7 @@ export function StatsSection() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="bg-gray-50 py-16 dark:bg-[#000000] sm:py-24">
+    <section className="bg-gray-50 py-16 dark:bg-[#12121C] sm:py-24">
       <div ref={ref} className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 gap-y-10 lg:grid-cols-4">
           {stats.map((stat, i) => (

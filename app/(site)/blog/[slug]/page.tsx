@@ -27,7 +27,7 @@ function formatDate(dateStr: string, locale: string) {
 
 function SkeletonPage() {
   return (
-    <div className="min-h-screen bg-[#000000] pt-16">
+    <div className="min-h-screen bg-[#12121C] pt-16">
       <div className="mx-auto max-w-3xl px-5 py-16 sm:px-6 sm:py-24">
         <div className="mb-6 h-4 w-24 animate-pulse rounded bg-white/[0.06]" />
         <div className="mb-4 h-10 w-4/5 animate-pulse rounded bg-white/[0.06]" />
@@ -70,7 +70,7 @@ export default function BlogDetailPage() {
 
   if (notFound || !blog) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#000000] pt-16">
+      <div className="flex min-h-screen items-center justify-center bg-[#12121C] pt-16">
         <div className="text-center">
           <h1 className="text-[48px] font-bold text-white">404</h1>
           <p className="mt-2 text-[16px] text-gray-400">
@@ -108,7 +108,7 @@ export default function BlogDetailPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#000000] pt-16">
+    <div className="min-h-screen bg-[#12121C] pt-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

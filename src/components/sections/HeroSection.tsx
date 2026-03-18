@@ -40,18 +40,25 @@ const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 function AnimatedNumber({ value, suffix = "", inView }: { value: number; suffix?: string; inView: boolean }) {
   const [count, setCount] = useState(0);
+  const hasAnimated = useRef(false);
 
   useEffect(() => {
-    if (!inView) return;
-    let start = 0;
+    if (!inView || hasAnimated.current) return;
+    hasAnimated.current = true;
+
     const duration = 1200;
-    const step = Math.ceil(duration / value);
-    const timer = setInterval(() => {
-      start += 1;
-      setCount(start);
-      if (start >= value) clearInterval(timer);
-    }, step);
-    return () => clearInterval(timer);
+    const startTime = performance.now();
+
+    function animate(now: number) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      setCount(Math.round(progress * value));
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    }
+
+    requestAnimationFrame(animate);
   }, [inView, value]);
 
   return <>{count}{suffix}</>;

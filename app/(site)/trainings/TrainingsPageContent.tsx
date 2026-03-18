@@ -109,7 +109,7 @@ export function TrainingsPageContent() {
   ];
 
   return (
-    <section ref={ref} className="bg-gray-50 pt-28 pb-16 dark:bg-[#000000] sm:pt-36 sm:pb-24">
+    <section ref={ref} className="bg-gray-50 pt-28 pb-16 dark:bg-[#12121C] sm:pt-36 sm:pb-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div

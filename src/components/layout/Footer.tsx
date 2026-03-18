@@ -124,7 +124,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-gray-200 bg-gray-50 dark:border-white/[0.04] dark:bg-[#000000]">
+    <footer className="relative border-t border-gray-200 bg-gray-50 dark:border-white/[0.04] dark:bg-[#12121C]">
       {/* Dot grid background */}
       <div className="pointer-events-none absolute inset-0">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">

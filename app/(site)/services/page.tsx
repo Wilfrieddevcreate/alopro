@@ -107,7 +107,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Departments */}
-      <section className="bg-[#000000] py-16 sm:py-24">
+      <section className="bg-[#12121C] py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="space-y-12">
             {departments.map((dept, i) => (
