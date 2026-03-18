@@ -15,10 +15,12 @@ const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 function AnimatedNumber({
   value,
+  prefix = "",
   suffix = "",
   inView,
 }: {
   value: number;
+  prefix?: string;
   suffix?: string;
   inView: boolean;
 }) {
@@ -26,7 +28,11 @@ function AnimatedNumber({
   const hasAnimated = useRef(false);
 
   useEffect(() => {
-    if (!inView || hasAnimated.current) return;
+    const safeValue = isNaN(value) ? 0 : value;
+    if (!inView || hasAnimated.current || safeValue === 0) {
+      if (safeValue === 0) setCount(0);
+      return;
+    }
     hasAnimated.current = true;
 
     const duration = 1200;
@@ -35,7 +41,7 @@ function AnimatedNumber({
     function animate(now: number) {
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      setCount(Math.round(progress * value));
+      setCount(Math.round(progress * safeValue));
       if (progress < 1) {
         requestAnimationFrame(animate);
       }
@@ -46,8 +52,7 @@ function AnimatedNumber({
 
   return (
     <>
-      {count}
-      {suffix}
+      {prefix}{count}{suffix}
     </>
   );
 }
@@ -70,19 +75,40 @@ export function DeptOverviewSection({ dept }: DeptOverviewSectionProps) {
 
   useEffect(() => {
     if (!isTrainingDept) return;
-    Promise.all([
-      fetch("/api/trainings").then((r) => r.json()),
-      fetch("/api/admin/registrations").then((r) => r.json()).catch(() => []),
-    ]).then(([trainings, registrations]: [Training[], Registration[]]) => {
-      const past = trainings.filter((tr) => getTrainingStatus(tr.startDate) === "past").length;
-      const upcoming = trainings.filter((tr) => getTrainingStatus(tr.startDate) === "upcoming").length;
-      const totalRegs = registrations.length;
-      setDynamicStats([
-        { value: past, suffix: "", label: t(`${prefix}.overview.stat1.label`) },
-        { value: upcoming, suffix: "", label: t(`${prefix}.overview.stat2.label`) },
-        { value: totalRegs, suffix: "", label: t(`${prefix}.overview.stat3.label`) },
-      ]);
-    });
+
+    async function fetchStats() {
+      try {
+        const [trainingsRes, registrationsRes] = await Promise.all([
+          fetch("/api/trainings"),
+          fetch("/api/admin/registrations"),
+        ]);
+
+        const trainings: Training[] = trainingsRes.ok ? await trainingsRes.json() : [];
+        let registrations: Registration[] = [];
+        if (registrationsRes.ok) {
+          const data = await registrationsRes.json();
+          registrations = Array.isArray(data) ? data : [];
+        }
+
+        const past = trainings.filter((tr) => getTrainingStatus(tr.startDate) === "past").length;
+        const upcoming = trainings.filter((tr) => getTrainingStatus(tr.startDate) === "upcoming").length;
+        const totalRegs = registrations.length;
+
+        setDynamicStats([
+          { value: past, suffix: "", label: t(`${prefix}.overview.stat1.label`) },
+          { value: upcoming, suffix: "", label: t(`${prefix}.overview.stat2.label`) },
+          { value: totalRegs, suffix: "", label: t(`${prefix}.overview.stat3.label`) },
+        ]);
+      } catch {
+        setDynamicStats([
+          { value: 0, suffix: "", label: t(`${prefix}.overview.stat1.label`) },
+          { value: 0, suffix: "", label: t(`${prefix}.overview.stat2.label`) },
+          { value: 0, suffix: "", label: t(`${prefix}.overview.stat3.label`) },
+        ]);
+      }
+    }
+
+    fetchStats();
   }, [isTrainingDept, t, prefix]);
 
   const defaultStats = isTrainingDept
@@ -92,20 +118,26 @@ export function DeptOverviewSection({ dept }: DeptOverviewSectionProps) {
         { value: 0, suffix: "", label: t(`${prefix}.overview.stat3.label`) },
       ]
     : (() => {
+        function parseStat(raw: string): { value: number; prefix: string; suffix: string } {
+          const match = raw.match(/(\d+)/);
+          const num = match ? parseInt(match[1]) : 0;
+          const idx = match ? match.index! : 0;
+          const prefix = raw.slice(0, idx);
+          const suffix = raw.slice(idx + (match ? match[0].length : 0));
+          return { value: num, prefix, suffix };
+        }
+
         const items = [
           {
-            value: parseInt(t(`${prefix}.overview.stat1.value`)) || 50,
-            suffix: t(`${prefix}.overview.stat1.value`).replace(/[0-9]/g, ""),
+            ...parseStat(t(`${prefix}.overview.stat1.value`)),
             label: t(`${prefix}.overview.stat1.label`),
           },
           {
-            value: parseInt(t(`${prefix}.overview.stat2.value`)) || 98,
-            suffix: t(`${prefix}.overview.stat2.value`).replace(/[0-9]/g, ""),
+            ...parseStat(t(`${prefix}.overview.stat2.value`)),
             label: t(`${prefix}.overview.stat2.label`),
           },
           {
-            value: parseInt(t(`${prefix}.overview.stat3.value`)) || 15,
-            suffix: t(`${prefix}.overview.stat3.value`).replace(/[0-9]/g, ""),
+            ...parseStat(t(`${prefix}.overview.stat3.value`)),
             label: t(`${prefix}.overview.stat3.label`),
           },
         ];
@@ -113,8 +145,7 @@ export function DeptOverviewSection({ dept }: DeptOverviewSectionProps) {
         const stat4Val = t(stat4Key);
         if (stat4Val !== stat4Key) {
           items.push({
-            value: parseInt(stat4Val) || 24,
-            suffix: stat4Val.replace(/[0-9]/g, ""),
+            ...parseStat(stat4Val),
             label: t(`${prefix}.overview.stat4.label`),
           });
         }
@@ -182,6 +213,7 @@ export function DeptOverviewSection({ dept }: DeptOverviewSectionProps) {
               >
                 <AnimatedNumber
                   value={stat.value}
+                  prefix={"prefix" in stat ? (stat as { prefix: string }).prefix : ""}
                   suffix={stat.suffix}
                   inView={isInView}
                 />

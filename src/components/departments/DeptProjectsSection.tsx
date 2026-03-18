@@ -49,12 +49,14 @@ export function DeptProjectsSection({ dept }: Props) {
   }, [isDevDept]);
 
   return (
-    <section ref={ref} className="bg-[#00000] py-16 sm:py-24">
+    <section ref={ref} className="bg-[#12121c] py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <SectionHeader
           badge={t(`${dept.translationPrefix}.projects.badge`)}
           title={t(`${dept.translationPrefix}.projects.title`)}
-          titleHighlight={t(`${dept.translationPrefix}.projects.titleHighlight`)}
+          titleHighlight={t(
+            `${dept.translationPrefix}.projects.titleHighlight`,
+          )}
           accentColor={dept.color}
           isInView={isInView}
         />
@@ -85,21 +87,33 @@ export function DeptProjectsSection({ dept }: Props) {
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="mt-12 text-center text-gray-500 dark:text-gray-400"
               >
-                {locale === "fr" ? "Aucun projet pour le moment." : "No projects yet."}
+                {locale === "fr"
+                  ? "Aucun projet pour le moment."
+                  : "No projects yet."}
               </motion.p>
             ) : (
               <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {apiProjects.map((project, i) => {
                   const color = categoryColors[project.category] ?? dept.color;
-                  const catLabel = categoryLabels[project.category]?.[locale] ?? project.category;
-                  const title = locale === "fr" ? project.titleFr : project.titleEn;
-                  const description = locale === "fr" ? project.descriptionFr : project.descriptionEn;
+                  const catLabel =
+                    categoryLabels[project.category]?.[locale] ??
+                    project.category;
+                  const title =
+                    locale === "fr" ? project.titleFr : project.titleEn;
+                  const description =
+                    locale === "fr"
+                      ? project.descriptionFr
+                      : project.descriptionEn;
 
                   return (
                     <motion.div
                       key={project.id}
                       initial={{ opacity: 0, y: 30, filter: "blur(4px)" }}
-                      animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+                      animate={
+                        isInView
+                          ? { opacity: 1, y: 0, filter: "blur(0px)" }
+                          : {}
+                      }
                       transition={{ duration: 0.6, delay: 0.3 + i * 0.1, ease }}
                       className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white transition-colors duration-200 hover:border-gray-300 dark:border-white/[0.06] dark:bg-white/[0.02] dark:hover:border-white/[0.12]"
                     >
@@ -149,9 +163,21 @@ export function DeptProjectsSection({ dept }: Props) {
                             className="inline-flex items-center gap-1.5 text-[13px] font-semibold transition-colors hover:opacity-80"
                             style={{ color }}
                           >
-                            {locale === "fr" ? "Voir le projet" : "View project"}
-                            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            {locale === "fr"
+                              ? "Voir le projet"
+                              : "View project"}
+                            <svg
+                              className="h-3.5 w-3.5"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              strokeWidth={2}
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                              />
                             </svg>
                           </a>
                         )}
@@ -172,7 +198,9 @@ export function DeptProjectsSection({ dept }: Props) {
               <>
                 <motion.h3
                   initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
-                  animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+                  animate={
+                    isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}
+                  }
                   transition={{ duration: 0.5, delay: 0.3, ease }}
                   className="mt-12 mb-8 text-[22px] font-bold text-gray-900 dark:text-white"
                 >
@@ -184,26 +212,47 @@ export function DeptProjectsSection({ dept }: Props) {
                     <motion.div
                       key={project.key}
                       initial={{ opacity: 0, y: 30, filter: "blur(4px)" }}
-                      animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-                      transition={{ duration: 0.6, delay: 0.4 + i * 0.12, ease }}
+                      animate={
+                        isInView
+                          ? { opacity: 1, y: 0, filter: "blur(0px)" }
+                          : {}
+                      }
+                      transition={{
+                        duration: 0.6,
+                        delay: 0.4 + i * 0.12,
+                        ease,
+                      }}
                       className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white transition-colors duration-200 hover:border-gray-300 dark:border-white/[0.06] dark:bg-white/[0.02] dark:hover:border-white/[0.12]"
                     >
-                      <div className="h-[3px] w-full" style={{ backgroundColor: project.color }} />
+                      <div
+                        className="h-[3px] w-full"
+                        style={{ backgroundColor: project.color }}
+                      />
                       <div className="p-6">
                         <div className="mb-4 flex items-center gap-2">
                           <span
                             className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.1em]"
-                            style={{ backgroundColor: dept.color + "12", color: dept.color }}
+                            style={{
+                              backgroundColor: dept.color + "12",
+                              color: dept.color,
+                            }}
                           >
-                            <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: dept.color }} />
+                            <span
+                              className="h-1.5 w-1.5 rounded-full"
+                              style={{ backgroundColor: dept.color }}
+                            />
                             {t("dept.inProgress")}
                           </span>
                         </div>
                         <h4 className="mb-2 text-[18px] font-bold text-gray-900 dark:text-white">
-                          {t(`${dept.translationPrefix}.projects.current.${project.key}.title`)}
+                          {t(
+                            `${dept.translationPrefix}.projects.current.${project.key}.title`,
+                          )}
                         </h4>
                         <p className="text-[14px] leading-[1.7] text-gray-500 dark:text-gray-400">
-                          {t(`${dept.translationPrefix}.projects.current.${project.key}.desc`)}
+                          {t(
+                            `${dept.translationPrefix}.projects.current.${project.key}.desc`,
+                          )}
                         </p>
                       </div>
                     </motion.div>
@@ -217,8 +266,14 @@ export function DeptProjectsSection({ dept }: Props) {
               <>
                 <motion.h3
                   initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
-                  animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-                  transition={{ duration: 0.5, delay: 0.4 + dept.currentProjects.length * 0.12 + 0.2, ease }}
+                  animate={
+                    isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}
+                  }
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.4 + dept.currentProjects.length * 0.12 + 0.2,
+                    ease,
+                  }}
                   className="mt-16 mb-8 text-[22px] font-bold text-gray-900 dark:text-white"
                 >
                   {t("dept.completedProjects")}
@@ -226,25 +281,46 @@ export function DeptProjectsSection({ dept }: Props) {
 
                 <div className="grid gap-5 md:grid-cols-3">
                   {dept.completedProjects.map((project, i) => {
-                    const baseDelay = 0.5 + dept.currentProjects.length * 0.12 + 0.3;
+                    const baseDelay =
+                      0.5 + dept.currentProjects.length * 0.12 + 0.3;
                     return (
                       <motion.div
                         key={project.key}
                         initial={{ opacity: 0, y: 30, filter: "blur(4px)" }}
-                        animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-                        transition={{ duration: 0.6, delay: baseDelay + i * 0.12, ease }}
+                        animate={
+                          isInView
+                            ? { opacity: 1, y: 0, filter: "blur(0px)" }
+                            : {}
+                        }
+                        transition={{
+                          duration: 0.6,
+                          delay: baseDelay + i * 0.12,
+                          ease,
+                        }}
                         className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white transition-colors duration-200 hover:border-gray-300 dark:border-white/[0.06] dark:bg-white/[0.02] dark:hover:border-white/[0.12]"
                       >
-                        <div className="h-[3px] w-full" style={{ backgroundColor: project.color }} />
+                        <div
+                          className="h-[3px] w-full"
+                          style={{ backgroundColor: project.color }}
+                        />
                         <div className="p-6">
-                          <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.1em]" style={{ color: project.color }}>
-                            {t(`${dept.translationPrefix}.projects.completed.${project.key}.date`)}
+                          <p
+                            className="mb-4 text-[11px] font-semibold uppercase tracking-[0.1em]"
+                            style={{ color: project.color }}
+                          >
+                            {t(
+                              `${dept.translationPrefix}.projects.completed.${project.key}.date`,
+                            )}
                           </p>
                           <h4 className="mb-2 text-[18px] font-bold text-gray-900 dark:text-white">
-                            {t(`${dept.translationPrefix}.projects.completed.${project.key}.title`)}
+                            {t(
+                              `${dept.translationPrefix}.projects.completed.${project.key}.title`,
+                            )}
                           </h4>
                           <p className="text-[14px] leading-[1.7] text-gray-500 dark:text-gray-400">
-                            {t(`${dept.translationPrefix}.projects.completed.${project.key}.desc`)}
+                            {t(
+                              `${dept.translationPrefix}.projects.completed.${project.key}.desc`,
+                            )}
                           </p>
                         </div>
                       </motion.div>
@@ -259,8 +335,14 @@ export function DeptProjectsSection({ dept }: Props) {
               <>
                 <motion.h3
                   initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
-                  animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-                  transition={{ duration: 0.5, delay: 0.4 + dept.currentProjects.length * 0.12 + 0.2, ease }}
+                  animate={
+                    isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}
+                  }
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.4 + dept.currentProjects.length * 0.12 + 0.2,
+                    ease,
+                  }}
                   className="mt-16 mb-8 text-[22px] font-bold text-gray-900 dark:text-white"
                 >
                   {t("dept.upcomingProjects")}
@@ -268,20 +350,37 @@ export function DeptProjectsSection({ dept }: Props) {
 
                 <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4">
                   {dept.upcomingProjects.map((project, i) => {
-                    const baseDelay = 0.5 + dept.currentProjects.length * 0.12 + 0.3;
+                    const baseDelay =
+                      0.5 + dept.currentProjects.length * 0.12 + 0.3;
                     return (
                       <motion.div
                         key={project.key}
                         initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
-                        animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-                        transition={{ duration: 0.5, delay: baseDelay + i * 0.1, ease }}
+                        animate={
+                          isInView
+                            ? { opacity: 1, y: 0, filter: "blur(0px)" }
+                            : {}
+                        }
+                        transition={{
+                          duration: 0.5,
+                          delay: baseDelay + i * 0.1,
+                          ease,
+                        }}
                         className="group relative flex items-center gap-3 rounded-xl border border-gray-200 bg-white px-5 py-4 transition-colors duration-200 hover:border-gray-300 dark:border-white/[0.06] dark:bg-white/[0.02] dark:hover:border-white/[0.12]"
                       >
-                        <span className="h-2.5 w-2.5 rounded-full shrink-0" style={{ backgroundColor: project.color }} />
+                        <span
+                          className="h-2.5 w-2.5 rounded-full shrink-0"
+                          style={{ backgroundColor: project.color }}
+                        />
                         <h4 className="text-[16px] font-semibold text-gray-900 dark:text-white">
-                          {t(`${dept.translationPrefix}.projects.upcoming.${project.key}.title`)}
+                          {t(
+                            `${dept.translationPrefix}.projects.upcoming.${project.key}.title`,
+                          )}
                         </h4>
-                        <span className="ml-auto text-[11px] font-semibold uppercase tracking-[0.08em] shrink-0" style={{ color: project.color }}>
+                        <span
+                          className="ml-auto text-[11px] font-semibold uppercase tracking-[0.08em] shrink-0"
+                          style={{ color: project.color }}
+                        >
                           {t("dept.upcoming")}
                         </span>
                       </motion.div>
