@@ -64,7 +64,7 @@ export const metadata: Metadata = {
       "Agence digitale spécialisée dans le développement web, la recherche innovante et la formation. Nous donnons vie à vos projets digitaux.",
     images: [
       {
-        url: "/images/og-image.jpg",
+        url: "/images/logo-alopro.jpeg",
         width: 1200,
         height: 630,
         alt: "Alopro — Agence Digitale",
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     title: "Alopro — Agence Digitale",
     description:
       "Développement web, recherche innovante et formation. Nous donnons vie à vos projets digitaux.",
-    images: ["/images/og-image.jpg"],
+    images: ["/images/logo-alopro.jpeg"],
   },
   alternates: {
     canonical: SITE_URL,
