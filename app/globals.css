@@ -4,28 +4,39 @@
 
 :root {
   /* Default is dark (like gambling-solutions) */
-  --bg-body: #0a0a0a;
-  --bg-card: #050D19;
-  --bg-card-border: #1E2632;
+  --bg-body: #141414;
+  --bg-card: #050d19;
+  --bg-card-border: #1e2632;
   --bg-header: rgba(255, 255, 255, 0.02);
-  --bg-section-alt: #050D19;
+  --bg-section-alt: #050d19;
 
   --text-white: #ffffff;
-  --text-gray: #BFC1C4;
-  --text-gray-2: #AEB0B3;
-  --text-muted: #64748B;
+  --text-gray: #bfc1c4;
+  --text-gray-2: #aeb0b3;
+  --text-muted: #64748b;
 
-  --accent-1: #0F3D73;
-  --accent-2: #1F6FEB;
-  --accent-3: #3B82F6;
-  --accent-4: #60A5FA;
+  --accent-1: #0f3d73;
+  --accent-2: #1f6feb;
+  --accent-3: #3b82f6;
+  --accent-4: #60a5fa;
 
-  --gradient-primary: linear-gradient(90deg, #0F3D73, #1F6FEB, #7C3AED, #06B6D4, #1F6FEB);
-  --gradient-text: linear-gradient(90deg, #1F6FEB 0%, #60A5FA 50%, #7C3AED 100%);
+  --gradient-primary: linear-gradient(
+    90deg,
+    #0f3d73,
+    #1f6feb,
+    #7c3aed,
+    #06b6d4,
+    #1f6feb
+  );
+  --gradient-text: linear-gradient(
+    90deg,
+    #1f6feb 0%,
+    #60a5fa 50%,
+    #7c3aed 100%
+  );
 
-  --separator: #0F1723;
+  --separator: #0f1723;
 }
-
 
 @theme inline {
   --color-bg-body: var(--bg-body);
@@ -57,62 +68,135 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-outfit), system-ui, sans-serif;
 }
 
 /* Animated gradient glow for cards */
 @keyframes glow {
-  0% { background-position: 30% 50%; }
-  50% { background-position: 100% 0; }
-  100% { background-position: 30% 50%; }
+  0% {
+    background-position: 30% 50%;
+  }
+  50% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 30% 50%;
+  }
 }
 
 /* 3D text rotation */
 @keyframes rotateText {
-  0% { transform: rotateX(0deg); }
-  10% { transform: rotateX(90deg); }
-  25% { transform: rotateX(90deg); }
-  35% { transform: rotateX(180deg); }
-  50% { transform: rotateX(180deg); }
-  60% { transform: rotateX(270deg); }
-  75% { transform: rotateX(270deg); }
-  85% { transform: rotateX(360deg); }
-  100% { transform: rotateX(360deg); }
+  0% {
+    transform: rotateX(0deg);
+  }
+  10% {
+    transform: rotateX(90deg);
+  }
+  25% {
+    transform: rotateX(90deg);
+  }
+  35% {
+    transform: rotateX(180deg);
+  }
+  50% {
+    transform: rotateX(180deg);
+  }
+  60% {
+    transform: rotateX(270deg);
+  }
+  75% {
+    transform: rotateX(270deg);
+  }
+  85% {
+    transform: rotateX(360deg);
+  }
+  100% {
+    transform: rotateX(360deg);
+  }
 }
 
 @keyframes text3dFront {
-  0% { opacity: 1; }
-  10% { opacity: 0; }
-  75% { opacity: 0; }
-  90% { opacity: 1; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes text3dBottom {
-  0% { opacity: 0; }
-  15% { opacity: 1; }
-  25% { opacity: 1; }
-  35% { opacity: 0; }
-  100% { opacity: 0; }
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 1;
+  }
+  35% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes text3dBack {
-  0% { opacity: 0; }
-  25% { opacity: 0; }
-  35% { opacity: 1; }
-  50% { opacity: 1; }
-  60% { opacity: 0; }
-  100% { opacity: 0; }
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes text3dTop {
-  0% { opacity: 0; }
-  50% { opacity: 0; }
-  60% { opacity: 1; }
-  75% { opacity: 1; }
-  85% { opacity: 0; }
-  100% { opacity: 0; }
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 /* Scrollbar */
@@ -160,7 +244,8 @@ h1, h2, h3, h4, h5, h6 {
 .prose-blog p {
   margin-bottom: 1.25em;
 }
-.prose-blog ul, .prose-blog ol {
+.prose-blog ul,
+.prose-blog ol {
   margin-bottom: 1.25em;
   padding-left: 1.5em;
 }
@@ -178,29 +263,29 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
 }
 .prose-blog a {
-  color: #1F6FEB;
+  color: #1f6feb;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 .prose-blog a:hover {
-  color: #60A5FA;
+  color: #60a5fa;
 }
 .prose-blog blockquote {
-  border-left: 3px solid #1F6FEB;
+  border-left: 3px solid #1f6feb;
   padding-left: 1em;
   margin: 1.5em 0;
   color: #9ca3af;
   font-style: italic;
 }
 .prose-blog code {
-  background: rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.06);
   padding: 0.15em 0.4em;
   border-radius: 4px;
   font-size: 0.9em;
 }
 .prose-blog pre {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 8px;
   padding: 1em;
   overflow-x: auto;

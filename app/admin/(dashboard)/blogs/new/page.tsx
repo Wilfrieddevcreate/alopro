@@ -38,14 +38,22 @@ export default function NewBlogPage() {
 
   const handleGenerate = async (lang: "fr" | "en") => {
     const title = lang === "fr" ? form.titleFr : form.titleEn;
-    if (!title) return alert("Remplissez d'abord le titre en " + (lang === "fr" ? "français" : "anglais"));
+    if (!title)
+      return alert(
+        "Remplissez d'abord le titre en " +
+          (lang === "fr" ? "français" : "anglais"),
+      );
 
     setGenerating(lang);
     try {
       const res = await fetch("/api/admin/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title, category: form.category, language: lang }),
+        body: JSON.stringify({
+          title,
+          category: form.category,
+          language: lang,
+        }),
       });
 
       if (!res.ok) {
@@ -100,7 +108,16 @@ export default function NewBlogPage() {
             onClick={() => router.back()}
             className="mb-2 flex items-center gap-1 text-[13px] text-gray-500 transition-colors hover:text-white"
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
               <polyline points="15 18 9 12 15 6" />
             </svg>
             Retour
@@ -138,7 +155,7 @@ export default function NewBlogPage() {
               className="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-[14px] text-white outline-none focus:border-[#1F6FEB]/50"
             >
               {categories.map((c) => (
-                <option key={c.value} value={c.value} className="bg-[#0a0a0a]">
+                <option key={c.value} value={c.value} className="bg-[#141414]">
                   {c.label}
                 </option>
               ))}
@@ -160,7 +177,9 @@ export default function NewBlogPage() {
         <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-6">
           <div className="mb-4 flex items-center justify-between">
             <h2 className="flex items-center gap-2 text-[16px] font-bold text-white">
-              <span className="rounded bg-blue-500/15 px-2 py-0.5 text-[11px] font-bold text-blue-400">FR</span>
+              <span className="rounded bg-blue-500/15 px-2 py-0.5 text-[11px] font-bold text-blue-400">
+                FR
+              </span>
               Contenu français
             </h2>
             <button
@@ -168,7 +187,16 @@ export default function NewBlogPage() {
               disabled={generating !== null}
               className="flex items-center gap-2 rounded-lg bg-purple-500/10 px-3 py-2 text-[12px] font-semibold text-purple-400 transition-colors hover:bg-purple-500/20 disabled:opacity-50"
             >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83" />
               </svg>
               {generating === "fr" ? "Génération..." : "Générer avec IA"}
@@ -177,7 +205,9 @@ export default function NewBlogPage() {
 
           <div className="space-y-4">
             <div>
-              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">Titre</label>
+              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">
+                Titre
+              </label>
               <input
                 value={form.titleFr}
                 onChange={(e) => set("titleFr", e.target.value)}
@@ -186,7 +216,9 @@ export default function NewBlogPage() {
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">Extrait</label>
+              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">
+                Extrait
+              </label>
               <textarea
                 value={form.excerptFr}
                 onChange={(e) => set("excerptFr", e.target.value)}
@@ -196,7 +228,9 @@ export default function NewBlogPage() {
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">Contenu (HTML)</label>
+              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">
+                Contenu (HTML)
+              </label>
               <textarea
                 value={form.contentFr}
                 onChange={(e) => set("contentFr", e.target.value)}
@@ -206,7 +240,9 @@ export default function NewBlogPage() {
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">Meta description SEO</label>
+              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">
+                Meta description SEO
+              </label>
               <input
                 value={form.metaDescriptionFr}
                 onChange={(e) => set("metaDescriptionFr", e.target.value)}
@@ -216,10 +252,20 @@ export default function NewBlogPage() {
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">Mots-clés (séparés par virgule)</label>
+              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">
+                Mots-clés (séparés par virgule)
+              </label>
               <input
                 value={form.keywordsFr.join(", ")}
-                onChange={(e) => set("keywordsFr", e.target.value.split(",").map((k) => k.trim()).filter(Boolean))}
+                onChange={(e) =>
+                  set(
+                    "keywordsFr",
+                    e.target.value
+                      .split(",")
+                      .map((k) => k.trim())
+                      .filter(Boolean),
+                  )
+                }
                 placeholder="seo, développement, web"
                 className="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-[14px] text-white placeholder-gray-600 outline-none focus:border-[#1F6FEB]/50"
               />
@@ -231,7 +277,9 @@ export default function NewBlogPage() {
         <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-6">
           <div className="mb-4 flex items-center justify-between">
             <h2 className="flex items-center gap-2 text-[16px] font-bold text-white">
-              <span className="rounded bg-emerald-500/15 px-2 py-0.5 text-[11px] font-bold text-emerald-400">EN</span>
+              <span className="rounded bg-emerald-500/15 px-2 py-0.5 text-[11px] font-bold text-emerald-400">
+                EN
+              </span>
               English content
             </h2>
             <button
@@ -239,7 +287,16 @@ export default function NewBlogPage() {
               disabled={generating !== null}
               className="flex items-center gap-2 rounded-lg bg-purple-500/10 px-3 py-2 text-[12px] font-semibold text-purple-400 transition-colors hover:bg-purple-500/20 disabled:opacity-50"
             >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83" />
               </svg>
               {generating === "en" ? "Generating..." : "Generate with AI"}
@@ -248,7 +305,9 @@ export default function NewBlogPage() {
 
           <div className="space-y-4">
             <div>
-              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">Title</label>
+              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">
+                Title
+              </label>
               <input
                 value={form.titleEn}
                 onChange={(e) => set("titleEn", e.target.value)}
@@ -257,7 +316,9 @@ export default function NewBlogPage() {
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">Excerpt</label>
+              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">
+                Excerpt
+              </label>
               <textarea
                 value={form.excerptEn}
                 onChange={(e) => set("excerptEn", e.target.value)}
@@ -267,7 +328,9 @@ export default function NewBlogPage() {
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">Content (HTML)</label>
+              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">
+                Content (HTML)
+              </label>
               <textarea
                 value={form.contentEn}
                 onChange={(e) => set("contentEn", e.target.value)}
@@ -277,7 +340,9 @@ export default function NewBlogPage() {
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">Meta description SEO</label>
+              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">
+                Meta description SEO
+              </label>
               <input
                 value={form.metaDescriptionEn}
                 onChange={(e) => set("metaDescriptionEn", e.target.value)}
@@ -287,10 +352,20 @@ export default function NewBlogPage() {
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">Keywords (comma separated)</label>
+              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">
+                Keywords (comma separated)
+              </label>
               <input
                 value={form.keywordsEn.join(", ")}
-                onChange={(e) => set("keywordsEn", e.target.value.split(",").map((k) => k.trim()).filter(Boolean))}
+                onChange={(e) =>
+                  set(
+                    "keywordsEn",
+                    e.target.value
+                      .split(",")
+                      .map((k) => k.trim())
+                      .filter(Boolean),
+                  )
+                }
                 placeholder="seo, development, web"
                 className="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-[14px] text-white placeholder-gray-600 outline-none focus:border-[#1F6FEB]/50"
               />

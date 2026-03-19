@@ -21,17 +21,13 @@ export function DeptServicesSection({ dept }: DeptServicesSectionProps) {
 
   const prefix = dept.translationPrefix;
 
-  const services = [
-    { number: "01", key: "s1" },
-    { number: "02", key: "s2" },
-    { number: "03", key: "s3" },
-    { number: "04", key: "s4" },
-    { number: "05", key: "s5" },
-    { number: "06", key: "s6" },
-  ];
+  const services = dept.services.map((s, i) => ({
+    number: String(i + 1).padStart(2, "0"),
+    key: s.key,
+  }));
 
   return (
-    <section className="bg-gray-50 py-16 dark:bg-[#0a0a0a] sm:py-24">
+    <section className="bg-gray-50 py-16 dark:bg-[#141414] sm:py-24">
       <div ref={ref} className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         {/* Header */}
         <SectionHeader

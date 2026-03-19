@@ -12,7 +12,9 @@ const categories: { value: ProjectCategory; label: string }[] = [
 ];
 
 function Skeleton({ className = "" }: { className?: string }) {
-  return <div className={`animate-pulse rounded bg-white/[0.06] ${className}`} />;
+  return (
+    <div className={`animate-pulse rounded bg-white/[0.06] ${className}`} />
+  );
 }
 
 export default function EditProjectPage() {
@@ -68,7 +70,10 @@ export default function EditProjectPage() {
     fd.append("file", file);
 
     try {
-      const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
+      const res = await fetch("/api/admin/upload", {
+        method: "POST",
+        body: fd,
+      });
       if (res.ok) {
         const { url } = await res.json();
         set("image", url);
@@ -102,7 +107,8 @@ export default function EditProjectPage() {
       <div className="mx-auto max-w-3xl space-y-6">
         <Skeleton className="h-10 w-64" />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <Skeleton className="h-12" /><Skeleton className="h-12" />
+          <Skeleton className="h-12" />
+          <Skeleton className="h-12" />
         </div>
         <Skeleton className="h-48 rounded-xl" />
         <Skeleton className="h-[300px] rounded-xl" />
@@ -119,12 +125,23 @@ export default function EditProjectPage() {
             onClick={() => router.back()}
             className="mb-2 flex items-center gap-1 text-[13px] text-gray-500 transition-colors hover:text-white"
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
               <polyline points="15 18 9 12 15 6" />
             </svg>
             Retour
           </button>
-          <h1 className="text-[28px] font-bold text-white">Modifier le projet</h1>
+          <h1 className="text-[28px] font-bold text-white">
+            Modifier le projet
+          </h1>
         </div>
         <div className="flex gap-2">
           {form.status === "published" ? (
@@ -157,26 +174,39 @@ export default function EditProjectPage() {
       <div className="space-y-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="mb-2 block text-[12px] font-bold uppercase tracking-wider text-gray-500">Catégorie</label>
+            <label className="mb-2 block text-[12px] font-bold uppercase tracking-wider text-gray-500">
+              Catégorie
+            </label>
             <select
               value={form.category}
               onChange={(e) => set("category", e.target.value)}
               className="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-[14px] text-white outline-none focus:border-[#1F6FEB]/50"
             >
               {categories.map((c) => (
-                <option key={c.value} value={c.value} className="bg-[#0a0a0a]">{c.label}</option>
+                <option key={c.value} value={c.value} className="bg-[#141414]">
+                  {c.label}
+                </option>
               ))}
             </select>
           </div>
           <div>
-            <label className="mb-2 block text-[12px] font-bold uppercase tracking-wider text-gray-500">Lien du projet</label>
-            <input value={form.link} onChange={(e) => set("link", e.target.value)} placeholder="https://example.com" className="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-[14px] text-white placeholder-gray-600 outline-none focus:border-[#1F6FEB]/50" />
+            <label className="mb-2 block text-[12px] font-bold uppercase tracking-wider text-gray-500">
+              Lien du projet
+            </label>
+            <input
+              value={form.link}
+              onChange={(e) => set("link", e.target.value)}
+              placeholder="https://example.com"
+              className="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-[14px] text-white placeholder-gray-600 outline-none focus:border-[#1F6FEB]/50"
+            />
           </div>
         </div>
 
         {/* Image upload */}
         <div>
-          <label className="mb-2 block text-[12px] font-bold uppercase tracking-wider text-gray-500">Image du projet</label>
+          <label className="mb-2 block text-[12px] font-bold uppercase tracking-wider text-gray-500">
+            Image du projet
+          </label>
           <input
             ref={fileRef}
             type="file"
@@ -201,7 +231,10 @@ export default function EditProjectPage() {
                   Changer
                 </button>
                 <button
-                  onClick={() => { set("image", ""); setPreview(null); }}
+                  onClick={() => {
+                    set("image", "");
+                    setPreview(null);
+                  }}
                   className="rounded-lg bg-red-500/60 px-3 py-1.5 text-[12px] font-medium text-white backdrop-blur-sm transition-colors hover:bg-red-500/80"
                 >
                   Supprimer
@@ -210,7 +243,15 @@ export default function EditProjectPage() {
               {uploading && (
                 <div className="absolute inset-0 flex items-center justify-center rounded-xl bg-black/50">
                   <div className="flex items-center gap-2 text-[13px] font-medium text-white">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="animate-spin">
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      className="animate-spin"
+                    >
                       <path d="M21 12a9 9 0 1 1-6.219-8.56" />
                     </svg>
                     Upload en cours...
@@ -224,11 +265,27 @@ export default function EditProjectPage() {
               className="flex h-48 w-full items-center justify-center rounded-xl border-2 border-dashed border-white/[0.08] bg-white/[0.01] transition-colors hover:border-white/[0.15] hover:bg-white/[0.03]"
             >
               <div className="text-center">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="mx-auto mb-2 text-gray-600">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="17 8 12 3 7 8" /><line x1="12" y1="3" x2="12" y2="15" />
+                <svg
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="mx-auto mb-2 text-gray-600"
+                >
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="17 8 12 3 7 8" />
+                  <line x1="12" y1="3" x2="12" y2="15" />
                 </svg>
-                <p className="text-[13px] font-medium text-gray-500">Cliquez pour choisir une image</p>
-                <p className="mt-1 text-[11px] text-gray-600">JPG, PNG, WebP, GIF (max 5 Mo)</p>
+                <p className="text-[13px] font-medium text-gray-500">
+                  Cliquez pour choisir une image
+                </p>
+                <p className="mt-1 text-[11px] text-gray-600">
+                  JPG, PNG, WebP, GIF (max 5 Mo)
+                </p>
               </div>
             </button>
           )}
@@ -237,17 +294,32 @@ export default function EditProjectPage() {
         {/* French */}
         <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-6">
           <h2 className="mb-4 flex items-center gap-2 text-[16px] font-bold text-white">
-            <span className="rounded bg-blue-500/15 px-2 py-0.5 text-[11px] font-bold text-blue-400">FR</span>
+            <span className="rounded bg-blue-500/15 px-2 py-0.5 text-[11px] font-bold text-blue-400">
+              FR
+            </span>
             Contenu français
           </h2>
           <div className="space-y-4">
             <div>
-              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">Titre</label>
-              <input value={form.titleFr} onChange={(e) => set("titleFr", e.target.value)} className="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-[14px] text-white outline-none focus:border-[#1F6FEB]/50" />
+              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">
+                Titre
+              </label>
+              <input
+                value={form.titleFr}
+                onChange={(e) => set("titleFr", e.target.value)}
+                className="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-[14px] text-white outline-none focus:border-[#1F6FEB]/50"
+              />
             </div>
             <div>
-              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">Description</label>
-              <textarea value={form.descriptionFr} onChange={(e) => set("descriptionFr", e.target.value)} rows={4} className="w-full resize-y rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-[14px] text-white outline-none focus:border-[#1F6FEB]/50" />
+              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">
+                Description
+              </label>
+              <textarea
+                value={form.descriptionFr}
+                onChange={(e) => set("descriptionFr", e.target.value)}
+                rows={4}
+                className="w-full resize-y rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-[14px] text-white outline-none focus:border-[#1F6FEB]/50"
+              />
             </div>
           </div>
         </div>
@@ -255,17 +327,32 @@ export default function EditProjectPage() {
         {/* English */}
         <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-6">
           <h2 className="mb-4 flex items-center gap-2 text-[16px] font-bold text-white">
-            <span className="rounded bg-emerald-500/15 px-2 py-0.5 text-[11px] font-bold text-emerald-400">EN</span>
+            <span className="rounded bg-emerald-500/15 px-2 py-0.5 text-[11px] font-bold text-emerald-400">
+              EN
+            </span>
             English content
           </h2>
           <div className="space-y-4">
             <div>
-              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">Title</label>
-              <input value={form.titleEn} onChange={(e) => set("titleEn", e.target.value)} className="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-[14px] text-white outline-none focus:border-[#1F6FEB]/50" />
+              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">
+                Title
+              </label>
+              <input
+                value={form.titleEn}
+                onChange={(e) => set("titleEn", e.target.value)}
+                className="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-[14px] text-white outline-none focus:border-[#1F6FEB]/50"
+              />
             </div>
             <div>
-              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">Description</label>
-              <textarea value={form.descriptionEn} onChange={(e) => set("descriptionEn", e.target.value)} rows={4} className="w-full resize-y rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-[14px] text-white outline-none focus:border-[#1F6FEB]/50" />
+              <label className="mb-1.5 block text-[12px] font-medium text-gray-500">
+                Description
+              </label>
+              <textarea
+                value={form.descriptionEn}
+                onChange={(e) => set("descriptionEn", e.target.value)}
+                rows={4}
+                className="w-full resize-y rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-[14px] text-white outline-none focus:border-[#1F6FEB]/50"
+              />
             </div>
           </div>
         </div>

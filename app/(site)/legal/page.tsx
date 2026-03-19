@@ -6,7 +6,11 @@ import { useLanguage } from "@/src/contexts/LanguageContext";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" as const },
+  },
 };
 
 export default function LegalPage() {
@@ -44,18 +48,23 @@ export default function LegalPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#000814]">
+    <div className="min-h-screen bg-white dark:bg-[#141414]">
       <div className="mx-auto max-w-3xl px-5 py-20 sm:px-6 sm:py-28 lg:px-8">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeIn}
-        >
+        <motion.div initial="hidden" animate="visible" variants={fadeIn}>
           <Link
             href="/"
             className="mb-10 inline-flex items-center gap-2 text-sm text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
               <path d="M19 12H5" />
               <path d="m12 19-7-7 7-7" />
             </svg>
@@ -75,7 +84,11 @@ export default function LegalPage() {
                 key={index}
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.1 * (index + 1), ease: "easeOut" as const }}
+                transition={{
+                  duration: 0.4,
+                  delay: 0.1 * (index + 1),
+                  ease: "easeOut" as const,
+                }}
               >
                 <h2 className="mb-3 text-xl font-semibold text-gray-900 dark:text-white">
                   {section.title}

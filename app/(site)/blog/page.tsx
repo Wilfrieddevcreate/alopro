@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useRef, useEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { useLanguage } from "@/src/contexts/LanguageContext";
 import Link from "next/link";
 import type { Blog } from "@/src/types/blog";
@@ -322,35 +323,48 @@ export default function BlogPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] pt-16">
+    <div className="min-h-screen bg-[#141414]">
+      {/* Hero */}
+      <section className="relative overflow-hidden bg-[#141414] pt-32 pb-20 sm:pt-40 sm:pb-28">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/herosection.jpg"
+            alt=""
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease }}
+            className="mx-auto max-w-3xl text-center"
+          >
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#1F6FEB]/20 bg-[#1F6FEB]/[0.06] px-4 py-1.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#1F6FEB]" />
+              <span className="text-[12px] font-semibold uppercase tracking-[0.2em] text-[#1F6FEB]">
+                Blog
+              </span>
+            </div>
+            <h1 className="text-[clamp(32px,5vw,56px)] font-bold leading-[1.1] tracking-tight text-white">
+              {locale === "fr" ? "Nos " : "Our "}
+              <span className="text-[#1F6FEB]">articles</span>
+            </h1>
+            <p className="mx-auto mt-6 max-w-2xl text-[17px] leading-[1.7] text-gray-400">
+              {locale === "fr"
+                ? "Explorez nos dernières publications sur le développement, la recherche et la formation."
+                : "Explore our latest publications on development, research and training."}
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
       <div
         ref={ref}
         className="mx-auto max-w-7xl px-5 py-16 sm:px-6 sm:py-24 lg:px-8"
       >
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30, filter: "blur(4px)" }}
-          animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-          transition={{ duration: 0.6, ease }}
-          className="mb-12"
-        >
-          <div className="mb-4 flex items-center gap-3">
-            <span className="hidden h-px w-8 origin-left bg-[#1F6FEB] sm:block" />
-            <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-[#1F6FEB]">
-              Blog
-            </p>
-          </div>
-          <h1 className="text-[clamp(32px,4.5vw,52px)] font-bold leading-[1.12] tracking-tight text-white">
-            {locale === "fr" ? "Nos " : "Our "}
-            <span className="text-[#1F6FEB]">articles</span>
-          </h1>
-          <p className="mt-4 max-w-lg text-[17px] leading-[1.7] text-gray-400">
-            {locale === "fr"
-              ? "Explorez nos dernières publications sur le développement, la recherche et la formation."
-              : "Explore our latest publications on development, research and training."}
-          </p>
-        </motion.div>
-
         {/* Category filters */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

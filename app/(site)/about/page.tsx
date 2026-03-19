@@ -127,7 +127,7 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-[#000814] pt-32 pb-20 sm:pt-40 sm:pb-28">
+      <section className="relative overflow-hidden bg-[#141414] pt-32 pb-20 sm:pt-40 sm:pb-28">
         <div className="absolute inset-0">
           <Image
             src="/images/herosection.jpg"
@@ -136,7 +136,6 @@ export default function AboutPage() {
             className="object-cover opacity-60"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#000814]/40 via-[#000814]/60 to-[#0a0a0a]" />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
@@ -168,7 +167,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission */}
-      <section className="bg-[#0a0a0a] py-16 sm:py-24">
+      <section className="bg-[#141414] py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <motion.div
@@ -246,7 +245,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="bg-[#0a0a0a] py-16 sm:py-24">
+      <section className="bg-[#141414] py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -303,7 +302,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team */}
-      <section className="py-16 bg-[#000814] sm:py-24">
+      <section className="py-16 bg-[#141414] sm:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

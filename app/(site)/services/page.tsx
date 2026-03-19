@@ -102,16 +102,15 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-[#000814] pt-32 pb-20 sm:pt-40 sm:pb-28">
+      <section className="relative overflow-hidden bg-[#141414] pt-32 pb-20 sm:pt-40 sm:pb-28">
         <div className="absolute inset-0">
           <Image
             src="/images/herosection.jpg"
             alt=""
             fill
-            className="object-cover opacity-60"
+            className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#000814]/40 via-[#000814]/60 to-[#0a0a0a]" />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
@@ -143,7 +142,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Departments */}
-      <section className="bg-[#0a0a0a] py-16 sm:py-24">
+      <section className="bg-[#141414] py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="space-y-12">
             {departments.map((dept, i) => (

@@ -65,7 +65,7 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="bg-gray-50 py-16 dark:bg-[#0a0a0a] sm:py-24"
+      className="bg-gray-50 py-16 dark:bg-[#141414] sm:py-24"
     >
       <div ref={ref} className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-20">

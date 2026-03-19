@@ -49,7 +49,7 @@ export function DeptProjectsSection({ dept }: Props) {
   }, [isDevDept]);
 
   return (
-    <section ref={ref} className="bg-[#0a0a0a] py-16 sm:py-24">
+    <section ref={ref} className="bg-[#141414] py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <SectionHeader
           badge={t(`${dept.translationPrefix}.projects.badge`)}

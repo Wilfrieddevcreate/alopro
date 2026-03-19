@@ -56,7 +56,7 @@ export function StatsSection() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="bg-gray-50 py-16 dark:bg-[#0a0a0a] sm:py-24">
+    <section className="bg-gray-50 py-16 dark:bg-[#141414] sm:py-24">
       <div ref={ref} className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 gap-y-10 lg:grid-cols-4">
           {stats.map((stat, i) => (
