@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, useContext, useSyncExternalStore, useCallback, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useSyncExternalStore,
+  useCallback,
+  type ReactNode,
+} from "react";
 
 export type Locale = "fr" | "en";
 
@@ -10,7 +16,9 @@ interface LanguageContextValue {
   t: (key: string) => string;
 }
 
-const LanguageContext = createContext<LanguageContextValue | undefined>(undefined);
+const LanguageContext = createContext<LanguageContextValue | undefined>(
+  undefined,
+);
 
 const translations: Record<Locale, Record<string, string>> = {
   fr: {
@@ -29,7 +37,8 @@ const translations: Record<Locale, Record<string, string>> = {
     "hero.titleLine1": "Nous donnons vie à vos",
     "hero.titleHighlight": "projets digitaux",
     "hero.titleLine2": "avec exigence.",
-    "hero.subtitle": "Développement, recherche et formation — trois expertises au service de votre ambition digitale.",
+    "hero.subtitle":
+      "Développement, recherche et formation — trois expertises au service de votre ambition digitale.",
     "hero.cta1": "Démarrer un projet",
     "hero.cta2": "Découvrir nos services",
 
@@ -37,10 +46,12 @@ const translations: Record<Locale, Record<string, string>> = {
     "services.badge": "Nos départements",
     "services.title": "Trois pôles d'expertise",
     "services.titleHighlight": "au service de votre vision",
-    "services.subtitle": "Notre entreprise est structurée autour de trois départements complémentaires pour répondre à tous vos besoins digitaux.",
+    "services.subtitle":
+      "Notre entreprise est structurée autour de trois départements complémentaires pour répondre à tous vos besoins digitaux.",
 
     "services.dev.title": "Département Développement",
-    "services.dev.desc": "Sites web haute performance, applications mobiles natives, logiciels sur mesure et solutions d'IA. Conçus pour les entreprises qui visent l'excellence.",
+    "services.dev.desc":
+      "Sites web haute performance, applications mobiles natives, logiciels sur mesure et solutions d'IA. Conçus pour les entreprises qui visent l'excellence.",
     "services.dev.tag": "Développement",
     "services.dev.item1": "Sites web & e-commerce performants",
     "services.dev.item2": "Applications mobiles natives",
@@ -48,7 +59,8 @@ const translations: Record<Locale, Record<string, string>> = {
     "services.dev.item4": "API & intégrations",
 
     "services.research.title": "Département Recherche & Innovation",
-    "services.research.desc": "De l'idée à la réalisation concrète. Nous concevons des solutions technologiques prêtes pour le marché dans les domaines de l'électronique, l'automatisation, l'IoT et l'IA.",
+    "services.research.desc":
+      "De l'idée à la réalisation concrète. Nous concevons des solutions technologiques prêtes pour le marché dans les domaines de l'électronique, l'automatisation, l'IoT et l'IA.",
     "services.research.tag": "R&D",
     "services.research.item1": "Électronique & systèmes embarqués",
     "services.research.item2": "Automatisation & Internet des objets",
@@ -56,7 +68,8 @@ const translations: Record<Locale, Record<string, string>> = {
     "services.research.item4": "Commerce, agriculture, santé & industrie",
 
     "services.training.title": "Département Formation",
-    "services.training.desc": "Des programmes conçus par des professionnels en activité, combinant théorie solide et mise en pratique immédiate à travers des projets concrets.",
+    "services.training.desc":
+      "Des programmes conçus par des professionnels en activité, combinant théorie solide et mise en pratique immédiate à travers des projets concrets.",
     "services.training.tag": "Formation",
     "services.training.item1": "Formations gratuites & certifiantes",
     "services.training.item2": "Bootcamps intensifs",
@@ -64,7 +77,8 @@ const translations: Record<Locale, Record<string, string>> = {
     "services.training.item4": "Marketing digital, bureautique & graphisme",
 
     "services.cta.text": "Vous avez un projet en tête ?",
-    "services.cta.sub": "Parlons-en et construisons ensemble la solution adaptée à vos ambitions.",
+    "services.cta.sub":
+      "Parlons-en et construisons ensemble la solution adaptée à vos ambitions.",
     "services.cta.button": "Discutons de votre projet",
 
     // Department Pages - Shared
@@ -83,12 +97,15 @@ const translations: Record<Locale, Record<string, string>> = {
     "dept.dev.hero.badge": "Département Développement",
     "dept.dev.hero.title": "Nous créons des expériences digitales",
     "dept.dev.hero.titleHighlight": "exceptionnelles",
-    "dept.dev.hero.subtitle": "Sites web haute performance, applications mobiles natives, logiciels sur mesure et solutions d'IA. Conçus pour les entreprises qui visent l'excellence.",
+    "dept.dev.hero.subtitle":
+      "Sites web haute performance, applications mobiles natives, logiciels sur mesure et solutions d'IA. Conçus pour les entreprises qui visent l'excellence.",
     "dept.dev.overview.badge": "Notre approche",
     "dept.dev.overview.title": "L'excellence technique",
     "dept.dev.overview.titleHighlight": "au cœur de chaque projet",
-    "dept.dev.overview.text1": "Notre département développement réunit des experts passionnés par la création de solutions digitales performantes. Du site vitrine à l'application métier complexe, nous maîtrisons l'ensemble de la chaîne de production.",
-    "dept.dev.overview.text2": "Nous adoptons les méthodologies agiles et les technologies les plus récentes pour garantir des livrables de qualité, maintenables et évolutifs.",
+    "dept.dev.overview.text1":
+      "Notre département développement réunit des experts passionnés par la création de solutions digitales performantes. Du site vitrine à l'application métier complexe, nous maîtrisons l'ensemble de la chaîne de production.",
+    "dept.dev.overview.text2":
+      "Nous adoptons les méthodologies agiles et les technologies les plus récentes pour garantir des livrables de qualité, maintenables et évolutifs.",
     "dept.dev.overview.stat1.value": "150+",
     "dept.dev.overview.stat1.label": "Projets livrés",
     "dept.dev.overview.stat2.value": "98%",
@@ -101,69 +118,90 @@ const translations: Record<Locale, Record<string, string>> = {
     "dept.dev.services.title": "Solutions de développement",
     "dept.dev.services.titleHighlight": "complètes",
     "dept.dev.services.s1.title": "Sites Web Vitrine",
-    "dept.dev.services.s1.desc": "Sites modernes, responsifs et optimisés SEO pour renforcer votre présence en ligne et attirer de nouveaux clients.",
+    "dept.dev.services.s1.desc":
+      "Sites modernes, responsifs et optimisés SEO pour renforcer votre présence en ligne et attirer de nouveaux clients.",
     "dept.dev.services.s2.title": "E-Commerce",
-    "dept.dev.services.s2.desc": "Boutiques en ligne performantes avec gestion des stocks, paiements sécurisés et expérience d'achat optimisée.",
+    "dept.dev.services.s2.desc":
+      "Boutiques en ligne performantes avec gestion des stocks, paiements sécurisés et expérience d'achat optimisée.",
     "dept.dev.services.s3.title": "Applications Web",
-    "dept.dev.services.s3.desc": "Applications web sur mesure avec interfaces intuitives, tableaux de bord et fonctionnalités métier avancées.",
+    "dept.dev.services.s3.desc":
+      "Applications web sur mesure avec interfaces intuitives, tableaux de bord et fonctionnalités métier avancées.",
     "dept.dev.services.s4.title": "Applications Mobiles",
-    "dept.dev.services.s4.desc": "Applications iOS et Android natives ou cross-platform pour toucher vos utilisateurs où qu'ils soient.",
+    "dept.dev.services.s4.desc":
+      "Applications iOS et Android natives ou cross-platform pour toucher vos utilisateurs où qu'ils soient.",
     "dept.dev.services.s5.title": "Logiciels Sur Mesure",
-    "dept.dev.services.s5.desc": "Développement de logiciels métier personnalisés pour automatiser et optimiser vos processus internes.",
+    "dept.dev.services.s5.desc":
+      "Développement de logiciels métier personnalisés pour automatiser et optimiser vos processus internes.",
     "dept.dev.services.s6.title": "API & Intégrations",
-    "dept.dev.services.s6.desc": "Conception d'API robustes et intégration de services tiers pour connecter vos systèmes entre eux.",
+    "dept.dev.services.s6.desc":
+      "Conception d'API robustes et intégration de services tiers pour connecter vos systèmes entre eux.",
     "dept.dev.projects.badge": "Nos réalisations",
     "dept.dev.projects.title": "Projets de",
     "dept.dev.projects.titleHighlight": "développement",
     "dept.dev.projects.current.p1.title": "Portail Client NeoBank",
-    "dept.dev.projects.current.p1.desc": "Plateforme bancaire en ligne avec tableau de bord interactif, gestion multi-comptes et notifications en temps réel.",
+    "dept.dev.projects.current.p1.desc":
+      "Plateforme bancaire en ligne avec tableau de bord interactif, gestion multi-comptes et notifications en temps réel.",
     "dept.dev.projects.current.p1.tag": "Application Web",
     "dept.dev.projects.current.p2.title": "App Mobile FitTrack",
-    "dept.dev.projects.current.p2.desc": "Application de suivi sportif avec plans d'entraînement personnalisés, statistiques et intégration d'objets connectés.",
+    "dept.dev.projects.current.p2.desc":
+      "Application de suivi sportif avec plans d'entraînement personnalisés, statistiques et intégration d'objets connectés.",
     "dept.dev.projects.current.p2.tag": "Mobile",
     "dept.dev.projects.completed.p1.title": "Marketplace ArtisanConnect",
-    "dept.dev.projects.completed.p1.desc": "Place de marché mettant en relation artisans locaux et clients, avec système de réservation et paiement intégré.",
+    "dept.dev.projects.completed.p1.desc":
+      "Place de marché mettant en relation artisans locaux et clients, avec système de réservation et paiement intégré.",
     "dept.dev.projects.completed.p1.date": "Janvier 2026",
     "dept.dev.projects.completed.p2.title": "ERP LogiFlow",
-    "dept.dev.projects.completed.p2.desc": "Logiciel de gestion intégré pour PME couvrant la facturation, les stocks et la relation client.",
+    "dept.dev.projects.completed.p2.desc":
+      "Logiciel de gestion intégré pour PME couvrant la facturation, les stocks et la relation client.",
     "dept.dev.projects.completed.p2.date": "Novembre 2025",
     "dept.dev.projects.completed.p3.title": "Site E-Commerce GreenLeaf",
-    "dept.dev.projects.completed.p3.desc": "Boutique en ligne de produits bio avec configurateur de paniers, abonnements et livraison programmée.",
+    "dept.dev.projects.completed.p3.desc":
+      "Boutique en ligne de produits bio avec configurateur de paniers, abonnements et livraison programmée.",
     "dept.dev.projects.completed.p3.date": "Septembre 2025",
     "dept.dev.team.badge": "Notre équipe",
     "dept.dev.team.title": "Les experts",
     "dept.dev.team.titleHighlight": "développement",
     "dept.dev.team.m1.role": "Chef de Département Développement",
-    "dept.dev.team.m1.desc": "Dirige le département développement, supervise l'ensemble des projets et garantit la qualité technique des livrables.",
+    "dept.dev.team.m1.desc":
+      "Dirige le département développement, supervise l'ensemble des projets et garantit la qualité technique des livrables.",
     "dept.dev.team.m2.role": "Développeuse Full-Stack & Coordinatrice",
-    "dept.dev.team.m2.desc": "Assure le développement et la coordination des projets, veille à la cohérence technique et au respect des délais.",
+    "dept.dev.team.m2.desc":
+      "Assure le développement et la coordination des projets, veille à la cohérence technique et au respect des délais.",
     "dept.dev.team.m3.role": "Développeur Full-Stack",
-    "dept.dev.team.m3.desc": "Conçoit et développe des applications web et mobile performantes, du front-end au back-end.",
+    "dept.dev.team.m3.desc":
+      "Conçoit et développe des applications web et mobile performantes, du front-end au back-end.",
     "dept.dev.team.m4.role": "Développeur Full-Stack",
-    "dept.dev.team.m4.desc": "Participe à la conception et au développement des solutions digitales, avec un focus sur la qualité du code et l'expérience utilisateur.",
+    "dept.dev.team.m4.desc":
+      "Participe à la conception et au développement des solutions digitales, avec un focus sur la qualité du code et l'expérience utilisateur.",
     "dept.dev.cta.badge": "Passons à l'action",
     "dept.dev.cta.title": "Un projet de développement",
     "dept.dev.cta.titleHighlight": "en tête ?",
-    "dept.dev.cta.subtitle": "Partagez-nous votre vision et notre équipe vous accompagnera de la conception à la mise en production.",
+    "dept.dev.cta.subtitle":
+      "Partagez-nous votre vision et notre équipe vous accompagnera de la conception à la mise en production.",
     "dept.dev.cta.button": "Lancer mon projet",
     "dept.dev.cta.secondary": "Voir nos réalisations",
-    "dept.dev.overview.subtitle": "Découvrez notre approche unique du développement logiciel.",
-    "dept.dev.services.subtitle": "De la conception à la mise en production, nous couvrons tous vos besoins.",
-    "dept.dev.team.m1.name": "Valentin Nougboloni",
+    "dept.dev.overview.subtitle":
+      "Découvrez notre approche unique du développement logiciel.",
+    "dept.dev.services.subtitle":
+      "De la conception à la mise en production, nous couvrons tous vos besoins.",
+    "dept.dev.team.m1.name": "Valentin Nougbologni",
     "dept.dev.team.m2.name": "Josiane Dadakpete",
-    "dept.dev.team.m3.name": "Epaphrodite Nougboloni",
+    "dept.dev.team.m3.name": "Epaphrodite Nougbologni",
     "dept.dev.team.m4.name": "Wilfried Heloussato",
 
     // Department Pages - Research
     "dept.research.hero.badge": "Département Recherche & Innovation",
     "dept.research.hero.title": "De l'idée à la",
     "dept.research.hero.titleHighlight": "réalisation concrète",
-    "dept.research.hero.subtitle": "Nous transformons les idées innovantes en produits fonctionnels prêts pour le marché, en combinant électronique, informatique, automatisation, IoT et intelligence artificielle.",
+    "dept.research.hero.subtitle":
+      "Nous transformons les idées innovantes en produits fonctionnels prêts pour le marché, en combinant électronique, informatique, automatisation, IoT et intelligence artificielle.",
     "dept.research.overview.badge": "Notre mission",
     "dept.research.overview.title": "Innover pour",
     "dept.research.overview.titleHighlight": "transformer le quotidien",
-    "dept.research.overview.text1": "Notre département Recherche & Innovation a pour vocation de concevoir des solutions technologiques concrètes à partir d'idées novatrices. Nous couvrons l'ensemble du cycle : de la recherche exploratoire au prototype fonctionnel, jusqu'à la mise sur le marché.",
-    "dept.research.overview.text2": "Nos domaines d'intervention — électronique, informatique, automatisation, Internet des objets et intelligence artificielle — nous permettent de répondre aux défis technologiques de secteurs variés : commerce, agriculture de précision, santé et industrie.",
+    "dept.research.overview.text1":
+      "Notre département Recherche & Innovation a pour vocation de concevoir des solutions technologiques concrètes à partir d'idées novatrices. Nous couvrons l'ensemble du cycle : de la recherche exploratoire au prototype fonctionnel, jusqu'à la mise sur le marché.",
+    "dept.research.overview.text2":
+      "Nos domaines d'intervention — électronique, informatique, automatisation, Internet des objets et intelligence artificielle — nous permettent de répondre aux défis technologiques de secteurs variés : commerce, agriculture de précision, santé et industrie.",
     "dept.research.overview.stat1.value": "1",
     "dept.research.overview.stat1.label": "Projet en cours",
     "dept.research.overview.stat2.value": "4",
@@ -174,22 +212,29 @@ const translations: Record<Locale, Record<string, string>> = {
     "dept.research.services.title": "Axes de recherche",
     "dept.research.services.titleHighlight": "& innovation",
     "dept.research.services.s1.title": "Électronique & Systèmes Embarqués",
-    "dept.research.services.s1.desc": "Conception de circuits, cartes électroniques et systèmes embarqués sur mesure pour des dispositifs intelligents et autonomes.",
+    "dept.research.services.s1.desc":
+      "Conception de circuits, cartes électroniques et systèmes embarqués sur mesure pour des dispositifs intelligents et autonomes.",
     "dept.research.services.s2.title": "Internet des Objets (IoT)",
-    "dept.research.services.s2.desc": "Développement de réseaux de capteurs connectés et de plateformes de supervision pour la collecte et l'analyse de données en temps réel.",
+    "dept.research.services.s2.desc":
+      "Développement de réseaux de capteurs connectés et de plateformes de supervision pour la collecte et l'analyse de données en temps réel.",
     "dept.research.services.s3.title": "Intelligence Artificielle",
-    "dept.research.services.s3.desc": "Intégration d'algorithmes d'IA et de machine learning dans nos dispositifs pour rendre les systèmes plus intelligents et prédictifs.",
+    "dept.research.services.s3.desc":
+      "Intégration d'algorithmes d'IA et de machine learning dans nos dispositifs pour rendre les systèmes plus intelligents et prédictifs.",
     "dept.research.services.s4.title": "Automatisation",
-    "dept.research.services.s4.desc": "Conception de systèmes automatisés pour optimiser les processus industriels, commerciaux et agricoles avec un minimum d'intervention humaine.",
+    "dept.research.services.s4.desc":
+      "Conception de systèmes automatisés pour optimiser les processus industriels, commerciaux et agricoles avec un minimum d'intervention humaine.",
     "dept.research.services.s5.title": "Prototypage & Mise sur le Marché",
-    "dept.research.services.s5.desc": "Du concept au produit fini : prototypage rapide, tests, validation et accompagnement jusqu'à la commercialisation.",
+    "dept.research.services.s5.desc":
+      "Du concept au produit fini : prototypage rapide, tests, validation et accompagnement jusqu'à la commercialisation.",
     "dept.research.services.s6.title": "Solutions Sectorielles",
-    "dept.research.services.s6.desc": "Développement de solutions adaptées aux besoins spécifiques du commerce, de l'agriculture de précision, de la santé et de l'industrie.",
+    "dept.research.services.s6.desc":
+      "Développement de solutions adaptées aux besoins spécifiques du commerce, de l'agriculture de précision, de la santé et de l'industrie.",
     "dept.research.projects.badge": "Nos travaux",
     "dept.research.projects.title": "Projets en cours",
     "dept.research.projects.titleHighlight": "& à venir",
     "dept.research.projects.current.p1.title": "Dispositif de Badging Interne",
-    "dept.research.projects.current.p1.desc": "Système électronique de contrôle d'accès par badge intelligent, intégrant identification RFID, gestion des présences et tableau de bord de supervision en temps réel.",
+    "dept.research.projects.current.p1.desc":
+      "Système électronique de contrôle d'accès par badge intelligent, intégrant identification RFID, gestion des présences et tableau de bord de supervision en temps réel.",
     "dept.research.projects.current.p1.tag": "Électronique / IoT",
     "dept.research.projects.upcoming.u1.title": "Commerce",
     "dept.research.projects.upcoming.u2.title": "Agriculture de précision",
@@ -199,19 +244,25 @@ const translations: Record<Locale, Record<string, string>> = {
     "dept.research.team.title": "L'équipe",
     "dept.research.team.titleHighlight": "recherche & innovation",
     "dept.research.team.m1.role": "Directeur du Département R&I",
-    "dept.research.team.m1.desc": "Pilote la stratégie de recherche et d'innovation, supervise les projets du concept au prototype et coordonne la mise sur le marché des solutions développées.",
+    "dept.research.team.m1.desc":
+      "Pilote la stratégie de recherche et d'innovation, supervise les projets du concept au prototype et coordonne la mise sur le marché des solutions développées.",
     "dept.research.team.m2.role": "Stagiaire Recherche & Développement",
-    "dept.research.team.m2.desc": "Contribue à la conception et au développement des prototypes, participe aux phases de test et d'intégration des systèmes embarqués et IoT.",
+    "dept.research.team.m2.desc":
+      "Contribue à la conception et au développement des prototypes, participe aux phases de test et d'intégration des systèmes embarqués et IoT.",
     "dept.research.team.m3.role": "Stagiaire Recherche & Développement",
-    "dept.research.team.m3.desc": "Participe aux travaux de recherche, à l'implémentation des algorithmes et au développement des solutions électroniques et logicielles du département.",
+    "dept.research.team.m3.desc":
+      "Participe aux travaux de recherche, à l'implémentation des algorithmes et au développement des solutions électroniques et logicielles du département.",
     "dept.research.cta.title": "Une idée innovante",
     "dept.research.cta.titleHighlight": "à concrétiser ?",
-    "dept.research.cta.subtitle": "Notre équipe R&I est prête à transformer votre concept en un produit fonctionnel, de la recherche exploratoire jusqu'à la mise sur le marché.",
+    "dept.research.cta.subtitle":
+      "Notre équipe R&I est prête à transformer votre concept en un produit fonctionnel, de la recherche exploratoire jusqu'à la mise sur le marché.",
     "dept.research.cta.button": "Discutons de votre projet",
     "dept.research.cta.badge": "Passons à l'action",
     "dept.research.cta.secondary": "Voir nos travaux",
-    "dept.research.overview.subtitle": "Transformer les idées en solutions concrètes prêtes pour le marché.",
-    "dept.research.services.subtitle": "Électronique, informatique, automatisation, IoT et IA au service de l'innovation.",
+    "dept.research.overview.subtitle":
+      "Transformer les idées en solutions concrètes prêtes pour le marché.",
+    "dept.research.services.subtitle":
+      "Électronique, informatique, automatisation, IoT et IA au service de l'innovation.",
     "dept.research.team.m1.name": "Géoffroy Zannou",
     "dept.research.team.m2.name": "",
     "dept.research.team.m3.name": "",
@@ -219,13 +270,17 @@ const translations: Record<Locale, Record<string, string>> = {
     // Department Pages - Training
     "dept.training.hero.badge": "Département Formation & Communication",
     "dept.training.hero.title": "Boostez votre carrière",
-    "dept.training.hero.titleHighlight": "avec nos formations certifiantes et pratiques",
-    "dept.training.hero.subtitle": "Une offre de formations structurée et certifiantes en développement web et mobile, data, intelligence artificielle, marketing digital, informatique bureautique, graphisme et montage vidéo, adaptée aux évolutions technologiques.",
+    "dept.training.hero.titleHighlight":
+      "avec nos formations certifiantes et pratiques",
+    "dept.training.hero.subtitle":
+      "Une offre de formations structurée et certifiantes en développement web et mobile, data, intelligence artificielle, marketing digital, informatique bureautique, graphisme et montage vidéo, adaptée aux évolutions technologiques.",
     "dept.training.overview.badge": "Notre double mission",
     "dept.training.overview.title": "Former et communiquer",
     "dept.training.overview.titleHighlight": "pour impacter",
-    "dept.training.overview.text1": "Notre département formation propose des programmes conçus et animés par des professionnels en activité. Chaque parcours combine des bases théoriques solides à une mise en pratique immédiate à travers des projets concrets.",
-    "dept.training.overview.text2": "Que vous souhaitiez former vos équipes au développement (web et mobile), à l'intelligence artificielle, à la data, au marketing digital, à l'informatique bureautique, au graphisme ou au montage vidéo, nos programmes s'adaptent à votre contexte et à vos objectifs spécifiques.",
+    "dept.training.overview.text1":
+      "Notre département formation propose des programmes conçus et animés par des professionnels en activité. Chaque parcours combine des bases théoriques solides à une mise en pratique immédiate à travers des projets concrets.",
+    "dept.training.overview.text2":
+      "Que vous souhaitiez former vos équipes au développement (web et mobile), à l'intelligence artificielle, à la data, au marketing digital, à l'informatique bureautique, au graphisme ou au montage vidéo, nos programmes s'adaptent à votre contexte et à vos objectifs spécifiques.",
     "dept.training.overview.stat1.label": "Formations réalisées",
     "dept.training.overview.stat2.label": "Formations à venir",
     "dept.training.overview.stat3.label": "Inscriptions",
@@ -233,67 +288,86 @@ const translations: Record<Locale, Record<string, string>> = {
     "dept.training.services.title": "Ce que nous",
     "dept.training.services.titleHighlight": "proposons",
     "dept.training.services.s1.title": "Formations payantes",
-    "dept.training.services.s1.desc": "Nos programmes certifiants vous permettent de monter en compétences de manière concrète et pratique. Ils couvrent la programmation pour le développement web et mobile, les métiers de la data et de l'intelligence artificielle, le marketing digital, l'informatique bureautique, ainsi que le graphisme et le montage vidéo, en combinant théorie solide et projets pratiques adaptés à vos objectifs professionnels.",
+    "dept.training.services.s1.desc":
+      "Nos programmes certifiants vous permettent de monter en compétences de manière concrète et pratique. Ils couvrent la programmation pour le développement web et mobile, les métiers de la data et de l'intelligence artificielle, le marketing digital, l'informatique bureautique, ainsi que le graphisme et le montage vidéo, en combinant théorie solide et projets pratiques adaptés à vos objectifs professionnels.",
     "dept.training.services.s2.title": "Formations gratuites",
-    "dept.training.services.s2.desc": "Des sessions d'initiation et de sensibilisation ouvertes à tous pour démocratiser l'accès aux compétences numériques.",
+    "dept.training.services.s2.desc":
+      "Des sessions d'initiation et de sensibilisation ouvertes à tous pour démocratiser l'accès aux compétences numériques.",
     "dept.training.services.s3.title": "Bootcamps",
-    "dept.training.services.s3.desc": "Nos bootcamps intensifs offrent une immersion rapide et pratique dans les principaux domaines du numérique. Chaque session allie théorie essentielle et projets concrets, afin de vous permettre d'acquérir des compétences directement applicables.",
+    "dept.training.services.s3.desc":
+      "Nos bootcamps intensifs offrent une immersion rapide et pratique dans les principaux domaines du numérique. Chaque session allie théorie essentielle et projets concrets, afin de vous permettre d'acquérir des compétences directement applicables.",
     "dept.training.projects.badge": "Nos réalisations",
     "dept.training.projects.title": "Formations",
     "dept.training.projects.titleHighlight": "réalisées",
     "dept.training.projects.current.p1.title": "Graphisme avec IA",
-    "dept.training.projects.current.p1.desc": "Formation pratique sur l'utilisation des outils d'intelligence artificielle pour la création graphique et le design visuel.",
+    "dept.training.projects.current.p1.desc":
+      "Formation pratique sur l'utilisation des outils d'intelligence artificielle pour la création graphique et le design visuel.",
     "dept.training.projects.current.p1.tag": "Graphisme",
     "dept.training.projects.current.p2.title": "Développement Web",
-    "dept.training.projects.current.p2.desc": "Formation complète aux fondamentaux du développement web : HTML, CSS, JavaScript et mise en ligne de sites.",
+    "dept.training.projects.current.p2.desc":
+      "Formation complète aux fondamentaux du développement web : HTML, CSS, JavaScript et mise en ligne de sites.",
     "dept.training.projects.current.p2.tag": "Développement",
-    "dept.training.projects.completed.p1.title": "Introduction à l'informatique bureautique",
-    "dept.training.projects.completed.p1.desc": "Formation d'initiation aux outils bureautiques essentiels : traitement de texte, tableurs, présentations et gestion de fichiers.",
+    "dept.training.projects.completed.p1.title":
+      "Introduction à l'informatique bureautique",
+    "dept.training.projects.completed.p1.desc":
+      "Formation d'initiation aux outils bureautiques essentiels : traitement de texte, tableurs, présentations et gestion de fichiers.",
     "dept.training.projects.completed.p1.date": "2025",
     "dept.training.projects.completed.p2.title": "Graphisme avec IA",
-    "dept.training.projects.completed.p2.desc": "Maîtrise des outils de génération d'images et de design assisté par intelligence artificielle pour la création visuelle.",
+    "dept.training.projects.completed.p2.desc":
+      "Maîtrise des outils de génération d'images et de design assisté par intelligence artificielle pour la création visuelle.",
     "dept.training.projects.completed.p2.date": "2025",
-    "dept.training.projects.completed.p3.title": "Formation en développement web",
-    "dept.training.projects.completed.p3.desc": "Parcours complet de formation au développement web moderne, des bases HTML/CSS jusqu'aux frameworks JavaScript.",
+    "dept.training.projects.completed.p3.title":
+      "Formation en développement web",
+    "dept.training.projects.completed.p3.desc":
+      "Parcours complet de formation au développement web moderne, des bases HTML/CSS jusqu'aux frameworks JavaScript.",
     "dept.training.projects.completed.p3.date": "2025",
     "dept.training.team.badge": "Notre équipe",
     "dept.training.team.title": "L'équipe",
     "dept.training.team.titleHighlight": "formation & communication",
     "dept.training.team.m1.role": "Directeur du Département Formation",
-    "dept.training.team.m1.desc": "Dirige le département Formation, pilote la stratégie pédagogique et supervise l'ensemble des programmes de formation d'AloPro.",
+    "dept.training.team.m1.desc":
+      "Dirige le département Formation, pilote la stratégie pédagogique et supervise l'ensemble des programmes de formation d'AloPro.",
     "dept.training.team.m2.role": "Chargée de Communication",
-    "dept.training.team.m2.desc": "Gère la communication digitale, anime les réseaux sociaux LinkedIn et Facebook, et assure la production de contenus pour les trois départements.",
+    "dept.training.team.m2.desc":
+      "Gère la communication digitale, anime les réseaux sociaux LinkedIn et Facebook, et assure la production de contenus pour les trois départements.",
     "dept.training.cta.title": "Envie de vous",
     "dept.training.cta.titleHighlight": "former ?",
-    "dept.training.cta.subtitle": "Découvrez nos prochaines formations gratuites et payantes, ou contactez-nous pour un programme sur mesure.",
+    "dept.training.cta.subtitle":
+      "Découvrez nos prochaines formations gratuites et payantes, ou contactez-nous pour un programme sur mesure.",
     "dept.training.cta.button": "Voir nos formations",
     "dept.training.cta.badge": "Passons à l'action",
     "dept.training.cta.secondary": "Nous contacter",
-    "dept.training.overview.subtitle": "Former, communiquer et fédérer autour du numérique.",
+    "dept.training.overview.subtitle":
+      "Former, communiquer et fédérer autour du numérique.",
     "dept.training.services.subtitle": "",
-    "dept.training.team.m1.name": "Serge Nougboloni",
+    "dept.training.team.m1.name": "Serge Nougbologni",
     "dept.training.team.m2.name": "Merveille Hounsou",
 
     // Services Page
     "servicesPage.badge": "Nos services",
     "servicesPage.hero.title": "Des solutions complètes",
     "servicesPage.hero.titleHighlight": "pour votre transformation digitale",
-    "servicesPage.hero.subtitle": "Trois départements complémentaires — développement, recherche & innovation, et formation — pour accompagner votre entreprise à chaque étape de sa croissance numérique.",
+    "servicesPage.hero.subtitle":
+      "Trois départements complémentaires — développement, recherche & innovation, et formation — pour accompagner votre entreprise à chaque étape de sa croissance numérique.",
 
     // About Page
     "about.badge": "À propos",
     "about.hero.title": "Nous sommes",
     "about.hero.titleHighlight": "AloPro",
-    "about.hero.subtitle": "Une entreprise technologique structurée autour de trois pôles d'expertise pour transformer vos idées en solutions concrètes et performantes.",
+    "about.hero.subtitle":
+      "Une entreprise technologique structurée autour de trois pôles d'expertise pour transformer vos idées en solutions concrètes et performantes.",
     "about.mission.badge": "Notre mission",
     "about.mission.title": "Innover pour",
     "about.mission.titleHighlight": "créer de la valeur",
-    "about.mission.desc1": "AloPro est née de la conviction que la technologie doit être accessible et transformatrice. Nous combinons développement logiciel, recherche appliquée et formation pour offrir des solutions complètes à nos clients et partenaires.",
-    "about.mission.desc2": "Notre approche repose sur trois piliers : l'excellence technique, l'innovation continue et l'accompagnement personnalisé. Chaque projet est une opportunité de repousser les limites et de créer un impact durable.",
+    "about.mission.desc1":
+      "AloPro est née de la conviction que la technologie doit être accessible et transformatrice. Nous combinons développement logiciel, recherche appliquée et formation pour offrir des solutions complètes à nos clients et partenaires.",
+    "about.mission.desc2":
+      "Notre approche repose sur trois piliers : l'excellence technique, l'innovation continue et l'accompagnement personnalisé. Chaque projet est une opportunité de repousser les limites et de créer un impact durable.",
     "about.team.badge": "Notre équipe",
     "about.team.title": "Les talents derrière",
     "about.team.titleHighlight": "AloPro",
-    "about.team.subtitle": "Une équipe pluridisciplinaire de passionnés qui mettent leur expertise au service de vos projets.",
+    "about.team.subtitle":
+      "Une équipe pluridisciplinaire de passionnés qui mettent leur expertise au service de vos projets.",
     "about.team.valentin.role": "Chef du département Développement",
     "about.team.josiane.role": "Développeuse FullStack & Coordinatrice",
     "about.team.epaphrodite.role": "Développeur FullStack",
@@ -306,42 +380,56 @@ const translations: Record<Locale, Record<string, string>> = {
     "why.badge": "Pourquoi nous choisir",
     "why.title": "L'expertise qui fait",
     "why.titleHighlight": "la différence",
-    "why.subtitle": "Notre approche combine innovation technologique, expertise technique et solutions personnalisées pour chaque client.",
+    "why.subtitle":
+      "Notre approche combine innovation technologique, expertise technique et solutions personnalisées pour chaque client.",
     "why.innovation.title": "Innovation",
-    "why.innovation.desc": "Technologies de pointe et approches modernes pour des solutions toujours en avance sur leur temps.",
+    "why.innovation.desc":
+      "Technologies de pointe et approches modernes pour des solutions toujours en avance sur leur temps.",
     "why.expertise.title": "Expertise Technique",
-    "why.expertise.desc": "Une équipe de développeurs seniors maîtrisant les stacks les plus performantes du marché.",
+    "why.expertise.desc":
+      "Une équipe de développeurs seniors maîtrisant les stacks les plus performantes du marché.",
     "why.tailored.title": "Solutions Sur Mesure",
-    "why.tailored.desc": "Chaque projet est unique. Nous adaptons nos solutions à vos besoins spécifiques et à vos objectifs.",
+    "why.tailored.desc":
+      "Chaque projet est unique. Nous adaptons nos solutions à vos besoins spécifiques et à vos objectifs.",
 
     // Portfolio
     "portfolio.badge": "Nos réalisations",
     "portfolio.title": "Des projets qui",
     "portfolio.titleHighlight": "inspirent",
-    "portfolio.subtitle": "Découvrez une sélection de nos projets récents qui illustrent notre savoir-faire et notre créativité.",
+    "portfolio.subtitle":
+      "Découvrez une sélection de nos projets récents qui illustrent notre savoir-faire et notre créativité.",
     "portfolio.project1.title": "E-Commerce Premium",
-    "portfolio.project1.desc": "Plateforme e-commerce haute performance avec paiement intégré et gestion avancée des stocks.",
+    "portfolio.project1.desc":
+      "Plateforme e-commerce haute performance avec paiement intégré et gestion avancée des stocks.",
     "portfolio.project2.title": "Dashboard Analytics",
-    "portfolio.project2.desc": "Application de visualisation de données en temps réel avec graphiques interactifs et rapports automatisés.",
+    "portfolio.project2.desc":
+      "Application de visualisation de données en temps réel avec graphiques interactifs et rapports automatisés.",
     "portfolio.project3.title": "App Mobile Santé",
-    "portfolio.project3.desc": "Application cross-platform de suivi de santé avec IA intégrée et synchronisation cloud.",
+    "portfolio.project3.desc":
+      "Application cross-platform de suivi de santé avec IA intégrée et synchronisation cloud.",
     "portfolio.project4.title": "Plateforme SaaS",
-    "portfolio.project4.desc": "Solution SaaS B2B de gestion de projet avec collaboration en temps réel et automatisation des workflows.",
+    "portfolio.project4.desc":
+      "Solution SaaS B2B de gestion de projet avec collaboration en temps réel et automatisation des workflows.",
     "portfolio.viewProject": "Voir le projet",
 
     // Process
     "process.badge": "Notre processus",
     "process.title": "Une méthode",
     "process.titleHighlight": "éprouvée",
-    "process.subtitle": "Un processus structuré en 4 étapes pour garantir le succès de chaque projet.",
+    "process.subtitle":
+      "Un processus structuré en 4 étapes pour garantir le succès de chaque projet.",
     "process.step1.title": "Analyse",
-    "process.step1.desc": "Compréhension approfondie de vos besoins, objectifs et contraintes. Audit technique et cahier des charges détaillé.",
+    "process.step1.desc":
+      "Compréhension approfondie de vos besoins, objectifs et contraintes. Audit technique et cahier des charges détaillé.",
     "process.step2.title": "Design",
-    "process.step2.desc": "Création de maquettes et prototypes interactifs. Validation du design et de l'expérience utilisateur.",
+    "process.step2.desc":
+      "Création de maquettes et prototypes interactifs. Validation du design et de l'expérience utilisateur.",
     "process.step3.title": "Développement",
-    "process.step3.desc": "Développement agile avec des sprints réguliers. Code propre, testé et documenté.",
+    "process.step3.desc":
+      "Développement agile avec des sprints réguliers. Code propre, testé et documenté.",
     "process.step4.title": "Livraison",
-    "process.step4.desc": "Déploiement, formation et support continu. Suivi des performances et optimisations.",
+    "process.step4.desc":
+      "Déploiement, formation et support continu. Suivi des performances et optimisations.",
 
     // Stats
     "stats.projects": "Projets réalisés",
@@ -352,7 +440,8 @@ const translations: Record<Locale, Record<string, string>> = {
     // CTA
     "cta.title": "Prêt à transformer votre",
     "cta.titleHighlight": "projet digital ?",
-    "cta.subtitle": "Discutons de votre projet et trouvons ensemble la meilleure solution pour atteindre vos objectifs.",
+    "cta.subtitle":
+      "Discutons de votre projet et trouvons ensemble la meilleure solution pour atteindre vos objectifs.",
     "cta.button": "Démarrer votre projet",
     "cta.secondary": "Nous contacter",
 
@@ -360,7 +449,8 @@ const translations: Record<Locale, Record<string, string>> = {
     "contact.badge": "Contact",
     "contact.title": "Parlons de votre",
     "contact.titleHighlight": "projet",
-    "contact.subtitle": "Vous avez un projet en tête ? Remplissez le formulaire ci-dessous et notre équipe vous recontactera dans les 24 heures.",
+    "contact.subtitle":
+      "Vous avez un projet en tête ? Remplissez le formulaire ci-dessous et notre équipe vous recontactera dans les 24 heures.",
     "contact.form.name": "Nom complet",
     "contact.form.namePlaceholder": "Jean Dupont",
     "contact.form.emailPlaceholder": "jean@entreprise.com",
@@ -370,14 +460,17 @@ const translations: Record<Locale, Record<string, string>> = {
     "contact.form.departmentPlaceholder": "Sélectionnez un département",
     "contact.form.subject": "Sujet",
     "contact.form.subjectPlaceholder": "En quoi pouvons-nous vous aider ?",
-    "contact.form.messagePlaceholder": "Décrivez votre projet, vos besoins, vos délais...",
+    "contact.form.messagePlaceholder":
+      "Décrivez votre projet, vos besoins, vos délais...",
     "contact.form.submit": "Envoyer le message",
     "contact.success.title": "Message envoyé !",
-    "contact.success.desc": "Merci pour votre message. Notre équipe vous recontactera dans les plus brefs délais.",
+    "contact.success.desc":
+      "Merci pour votre message. Notre équipe vous recontactera dans les plus brefs délais.",
     "contact.success.another": "Envoyer un autre message",
 
     // Footer
-    "footer.desc": "Agence digitale spécialisée dans la conception et le développement de solutions web innovantes et performantes.",
+    "footer.desc":
+      "Agence digitale spécialisée dans la conception et le développement de solutions web innovantes et performantes.",
     "footer.navigation": "Navigation",
     "footer.services": "Services",
     "footer.contact": "Contact",
@@ -387,57 +480,83 @@ const translations: Record<Locale, Record<string, string>> = {
     "footer.dev": "Développement",
     "footer.research": "Recherches Innovantes",
     "footer.training": "Formations",
-    "footer.newsletterDesc": "Recevez nos dernières actualités et articles directement dans votre boîte mail.",
+    "footer.newsletterDesc":
+      "Recevez nos dernières actualités et articles directement dans votre boîte mail.",
 
     // Legal - Mentions légales
     "legal.back": "Retour à l'accueil",
     "legal.title": "Mentions légales",
     "legal.lastUpdated": "Dernière mise à jour : 1er janvier 2026",
     "legal.editor.title": "Éditeur du site",
-    "legal.editor.content": "Le site alopro.com est édité par ALOPRO SAS, société par actions simplifiée au capital de 10 000 euros.\n\nSiège social : 123 Avenue de l'Innovation, 75008 Paris, France\nSIRET : 123 456 789 00012\nDirecteur de la publication : Jean Dupont\nEmail : contact@alopro.com\nTéléphone : +33 1 23 45 67 89",
+    "legal.editor.content":
+      "Le site alopro.com est édité par ALOPRO SAS, société par actions simplifiée au capital de 10 000 euros.\n\nSiège social : 123 Avenue de l'Innovation, 75008 Paris, France\nSIRET : 123 456 789 00012\nDirecteur de la publication : Jean Dupont\nEmail : contact@alopro.com\nTéléphone : +33 1 23 45 67 89",
     "legal.hosting.title": "Hébergement",
-    "legal.hosting.content": "Le site est hébergé par Vercel Inc.\nAdresse : 340 S Lemon Ave #4133, Walnut, CA 91789, États-Unis\nSite web : https://vercel.com",
+    "legal.hosting.content":
+      "Le site est hébergé par Vercel Inc.\nAdresse : 340 S Lemon Ave #4133, Walnut, CA 91789, États-Unis\nSite web : https://vercel.com",
     "legal.ip.title": "Propriété intellectuelle",
-    "legal.ip.content": "L'ensemble du contenu du site (textes, images, vidéos, logos, icônes, sons, logiciels, etc.) est protégé par le droit de la propriété intellectuelle. Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable d'ALOPRO SAS.",
+    "legal.ip.content":
+      "L'ensemble du contenu du site (textes, images, vidéos, logos, icônes, sons, logiciels, etc.) est protégé par le droit de la propriété intellectuelle. Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable d'ALOPRO SAS.",
     "legal.liability.title": "Limitation de responsabilité",
-    "legal.liability.content": "ALOPRO SAS ne saurait être tenue responsable des dommages directs ou indirects causés au matériel de l'utilisateur lors de l'accès au site. ALOPRO SAS décline toute responsabilité quant à l'utilisation qui pourrait être faite des informations et contenus présents sur le site.",
+    "legal.liability.content":
+      "ALOPRO SAS ne saurait être tenue responsable des dommages directs ou indirects causés au matériel de l'utilisateur lors de l'accès au site. ALOPRO SAS décline toute responsabilité quant à l'utilisation qui pourrait être faite des informations et contenus présents sur le site.",
     "legal.data.title": "Données personnelles",
-    "legal.data.content": "Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification, de suppression et d'opposition aux données personnelles vous concernant. Pour exercer ces droits, vous pouvez nous contacter à l'adresse : contact@alopro.com",
+    "legal.data.content":
+      "Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification, de suppression et d'opposition aux données personnelles vous concernant. Pour exercer ces droits, vous pouvez nous contacter à l'adresse : contact@alopro.com",
     "legal.cookies.title": "Cookies",
-    "legal.cookies.content": "Le site peut être amené à utiliser des cookies pour améliorer l'expérience utilisateur et réaliser des statistiques de visite. L'utilisateur peut configurer son navigateur pour refuser les cookies. Cependant, certaines fonctionnalités du site pourraient ne plus être accessibles.",
+    "legal.cookies.content":
+      "Le site peut être amené à utiliser des cookies pour améliorer l'expérience utilisateur et réaliser des statistiques de visite. L'utilisateur peut configurer son navigateur pour refuser les cookies. Cependant, certaines fonctionnalités du site pourraient ne plus être accessibles.",
     "legal.law.title": "Droit applicable",
-    "legal.law.content": "Les présentes mentions légales sont régies par le droit français. En cas de litige, les tribunaux de Paris seront seuls compétents.",
+    "legal.law.content":
+      "Les présentes mentions légales sont régies par le droit français. En cas de litige, les tribunaux de Paris seront seuls compétents.",
 
     // Privacy - Politique de confidentialité
     "privacy.back": "Retour à l'accueil",
     "privacy.title": "Politique de confidentialité",
     "privacy.lastUpdated": "Dernière mise à jour : 1er janvier 2026",
     "privacy.intro.title": "Introduction",
-    "privacy.intro.content": "ALOPRO SAS, soucieuse des droits des individus, notamment au regard des traitements automatisés, et dans une volonté de transparence, a mis en place une politique reprenant l'ensemble de ces traitements, des finalités poursuivies ainsi que des moyens d'actions à la disposition des individus afin qu'ils puissent au mieux exercer leurs droits. Pour toute information complémentaire, vous pouvez nous contacter à : contact@alopro.com",
+    "privacy.intro.content":
+      "ALOPRO SAS, soucieuse des droits des individus, notamment au regard des traitements automatisés, et dans une volonté de transparence, a mis en place une politique reprenant l'ensemble de ces traitements, des finalités poursuivies ainsi que des moyens d'actions à la disposition des individus afin qu'ils puissent au mieux exercer leurs droits. Pour toute information complémentaire, vous pouvez nous contacter à : contact@alopro.com",
     "privacy.collected.title": "Données collectées",
-    "privacy.collected.content": "Dans le cadre de l'utilisation de notre site, nous sommes susceptibles de collecter les catégories de données suivantes :",
-    "privacy.collected.item1": "Données d'identification : nom, prénom, adresse email, numéro de téléphone",
-    "privacy.collected.item2": "Données de connexion : adresse IP, logs de connexion, type de navigateur",
-    "privacy.collected.item3": "Données de navigation : pages consultées, durée de visite, parcours sur le site",
-    "privacy.collected.item4": "Données relatives aux demandes de contact : objet et contenu des messages",
+    "privacy.collected.content":
+      "Dans le cadre de l'utilisation de notre site, nous sommes susceptibles de collecter les catégories de données suivantes :",
+    "privacy.collected.item1":
+      "Données d'identification : nom, prénom, adresse email, numéro de téléphone",
+    "privacy.collected.item2":
+      "Données de connexion : adresse IP, logs de connexion, type de navigateur",
+    "privacy.collected.item3":
+      "Données de navigation : pages consultées, durée de visite, parcours sur le site",
+    "privacy.collected.item4":
+      "Données relatives aux demandes de contact : objet et contenu des messages",
     "privacy.purpose.title": "Finalité du traitement",
-    "privacy.purpose.content": "Les données collectées sont utilisées pour les finalités suivantes :",
+    "privacy.purpose.content":
+      "Les données collectées sont utilisées pour les finalités suivantes :",
     "privacy.purpose.item1": "Répondre à vos demandes de contact et de devis",
-    "privacy.purpose.item2": "Améliorer nos services et l'expérience utilisateur sur le site",
-    "privacy.purpose.item3": "Réaliser des statistiques de fréquentation anonymisées",
+    "privacy.purpose.item2":
+      "Améliorer nos services et l'expérience utilisateur sur le site",
+    "privacy.purpose.item3":
+      "Réaliser des statistiques de fréquentation anonymisées",
     "privacy.retention.title": "Durée de conservation",
-    "privacy.retention.content": "Les données personnelles sont conservées pour une durée n'excédant pas celle nécessaire au regard des finalités pour lesquelles elles sont traitées. Les données de contact sont conservées pendant 3 ans à compter du dernier échange. Les données de navigation sont conservées pendant 13 mois conformément aux recommandations de la CNIL.",
+    "privacy.retention.content":
+      "Les données personnelles sont conservées pour une durée n'excédant pas celle nécessaire au regard des finalités pour lesquelles elles sont traitées. Les données de contact sont conservées pendant 3 ans à compter du dernier échange. Les données de navigation sont conservées pendant 13 mois conformément aux recommandations de la CNIL.",
     "privacy.rights.title": "Droits des utilisateurs",
-    "privacy.rights.content": "Conformément au RGPD, vous disposez des droits suivants concernant vos données personnelles :",
-    "privacy.rights.item1": "Droit d'accès : obtenir la confirmation du traitement de vos données et en recevoir une copie",
-    "privacy.rights.item2": "Droit de rectification : demander la correction de données inexactes",
-    "privacy.rights.item3": "Droit à l'effacement : demander la suppression de vos données",
-    "privacy.rights.item4": "Droit à la portabilité : recevoir vos données dans un format structuré",
-    "privacy.rights.item5": "Droit d'opposition : vous opposer au traitement de vos données",
+    "privacy.rights.content":
+      "Conformément au RGPD, vous disposez des droits suivants concernant vos données personnelles :",
+    "privacy.rights.item1":
+      "Droit d'accès : obtenir la confirmation du traitement de vos données et en recevoir une copie",
+    "privacy.rights.item2":
+      "Droit de rectification : demander la correction de données inexactes",
+    "privacy.rights.item3":
+      "Droit à l'effacement : demander la suppression de vos données",
+    "privacy.rights.item4":
+      "Droit à la portabilité : recevoir vos données dans un format structuré",
+    "privacy.rights.item5":
+      "Droit d'opposition : vous opposer au traitement de vos données",
     "privacy.security.title": "Sécurité des données",
-    "privacy.security.content": "ALOPRO SAS met en œuvre des mesures techniques et organisationnelles appropriées afin de garantir un niveau de sécurité adapté au risque. Nous utilisons des protocoles de chiffrement pour la transmission de données et des systèmes de protection contre les accès non autorisés.",
+    "privacy.security.content":
+      "ALOPRO SAS met en œuvre des mesures techniques et organisationnelles appropriées afin de garantir un niveau de sécurité adapté au risque. Nous utilisons des protocoles de chiffrement pour la transmission de données et des systèmes de protection contre les accès non autorisés.",
     "privacy.dpo.title": "Contact DPO",
-    "privacy.dpo.content": "Pour toute question relative à la protection de vos données personnelles ou pour exercer vos droits, vous pouvez contacter notre Délégué à la Protection des Données :\n\nJean Dupont — DPO\nALOPRO SAS\n123 Avenue de l'Innovation, 75008 Paris, France\nEmail : contact@alopro.com",
+    "privacy.dpo.content":
+      "Pour toute question relative à la protection de vos données personnelles ou pour exercer vos droits, vous pouvez contacter notre Délégué à la Protection des Données :\n\nJean Dupont — DPO\nALOPRO SAS\n123 Avenue de l'Innovation, 75008 Paris, France\nEmail : contact@alopro.com",
   },
   en: {
     // Nav
@@ -455,7 +574,8 @@ const translations: Record<Locale, Record<string, string>> = {
     "hero.titleLine1": "We bring your",
     "hero.titleHighlight": "digital projects",
     "hero.titleLine2": "to life with precision.",
-    "hero.subtitle": "Development, research and training — three areas of expertise serving your digital ambition.",
+    "hero.subtitle":
+      "Development, research and training — three areas of expertise serving your digital ambition.",
     "hero.cta1": "Start a project",
     "hero.cta2": "Discover our services",
 
@@ -463,10 +583,12 @@ const translations: Record<Locale, Record<string, string>> = {
     "services.badge": "Our departments",
     "services.title": "Three centers of expertise",
     "services.titleHighlight": "serving your vision",
-    "services.subtitle": "Our company is structured around three complementary departments to meet all your digital needs.",
+    "services.subtitle":
+      "Our company is structured around three complementary departments to meet all your digital needs.",
 
     "services.dev.title": "Development Department",
-    "services.dev.desc": "High-performance websites, native mobile apps, custom software and AI solutions. Built for businesses that aim for excellence.",
+    "services.dev.desc":
+      "High-performance websites, native mobile apps, custom software and AI solutions. Built for businesses that aim for excellence.",
     "services.dev.tag": "Development",
     "services.dev.item1": "High-performance websites & e-commerce",
     "services.dev.item2": "Native mobile applications",
@@ -474,7 +596,8 @@ const translations: Record<Locale, Record<string, string>> = {
     "services.dev.item4": "APIs & integrations",
 
     "services.research.title": "Research & Innovation Department",
-    "services.research.desc": "From idea to concrete reality. We design market-ready technological solutions in electronics, automation, IoT and AI.",
+    "services.research.desc":
+      "From idea to concrete reality. We design market-ready technological solutions in electronics, automation, IoT and AI.",
     "services.research.tag": "R&D",
     "services.research.item1": "Electronics & embedded systems",
     "services.research.item2": "Automation & Internet of Things",
@@ -482,15 +605,18 @@ const translations: Record<Locale, Record<string, string>> = {
     "services.research.item4": "Commerce, agriculture, healthcare & industry",
 
     "services.training.title": "Training Department",
-    "services.training.desc": "Programs designed by active professionals, combining solid theory with immediate hands-on practice through real-world projects.",
+    "services.training.desc":
+      "Programs designed by active professionals, combining solid theory with immediate hands-on practice through real-world projects.",
     "services.training.tag": "Training",
     "services.training.item1": "Free & certified training programs",
     "services.training.item2": "Intensive bootcamps",
     "services.training.item3": "Web, mobile, data & AI development",
-    "services.training.item4": "Digital marketing, office skills & graphic design",
+    "services.training.item4":
+      "Digital marketing, office skills & graphic design",
 
     "services.cta.text": "Have a project in mind?",
-    "services.cta.sub": "Let's talk and build together the solution tailored to your ambitions.",
+    "services.cta.sub":
+      "Let's talk and build together the solution tailored to your ambitions.",
     "services.cta.button": "Let's discuss your project",
 
     // Department Pages - Shared
@@ -509,12 +635,15 @@ const translations: Record<Locale, Record<string, string>> = {
     "dept.dev.hero.badge": "Development Department",
     "dept.dev.hero.title": "We create exceptional",
     "dept.dev.hero.titleHighlight": "digital experiences",
-    "dept.dev.hero.subtitle": "High-performance websites, native mobile apps, custom software and AI solutions. Built for businesses that aim for excellence.",
+    "dept.dev.hero.subtitle":
+      "High-performance websites, native mobile apps, custom software and AI solutions. Built for businesses that aim for excellence.",
     "dept.dev.overview.badge": "Our approach",
     "dept.dev.overview.title": "Technical excellence",
     "dept.dev.overview.titleHighlight": "at the heart of every project",
-    "dept.dev.overview.text1": "Our development department brings together experts passionate about creating high-performance digital solutions. From showcase websites to complex business applications, we master the entire production chain.",
-    "dept.dev.overview.text2": "We adopt agile methodologies and the latest technologies to ensure quality, maintainable and scalable deliverables.",
+    "dept.dev.overview.text1":
+      "Our development department brings together experts passionate about creating high-performance digital solutions. From showcase websites to complex business applications, we master the entire production chain.",
+    "dept.dev.overview.text2":
+      "We adopt agile methodologies and the latest technologies to ensure quality, maintainable and scalable deliverables.",
     "dept.dev.overview.stat1.value": "150+",
     "dept.dev.overview.stat1.label": "Projects delivered",
     "dept.dev.overview.stat2.value": "98%",
@@ -527,69 +656,90 @@ const translations: Record<Locale, Record<string, string>> = {
     "dept.dev.services.title": "Comprehensive development",
     "dept.dev.services.titleHighlight": "solutions",
     "dept.dev.services.s1.title": "Showcase Websites",
-    "dept.dev.services.s1.desc": "Modern, responsive and SEO-optimized websites to strengthen your online presence and attract new clients.",
+    "dept.dev.services.s1.desc":
+      "Modern, responsive and SEO-optimized websites to strengthen your online presence and attract new clients.",
     "dept.dev.services.s2.title": "E-Commerce",
-    "dept.dev.services.s2.desc": "High-performance online stores with inventory management, secure payments and optimized shopping experience.",
+    "dept.dev.services.s2.desc":
+      "High-performance online stores with inventory management, secure payments and optimized shopping experience.",
     "dept.dev.services.s3.title": "Web Applications",
-    "dept.dev.services.s3.desc": "Custom web applications with intuitive interfaces, dashboards and advanced business features.",
+    "dept.dev.services.s3.desc":
+      "Custom web applications with intuitive interfaces, dashboards and advanced business features.",
     "dept.dev.services.s4.title": "Mobile Applications",
-    "dept.dev.services.s4.desc": "Native or cross-platform iOS and Android applications to reach your users wherever they are.",
+    "dept.dev.services.s4.desc":
+      "Native or cross-platform iOS and Android applications to reach your users wherever they are.",
     "dept.dev.services.s5.title": "Custom Software",
-    "dept.dev.services.s5.desc": "Custom business software development to automate and optimize your internal processes.",
+    "dept.dev.services.s5.desc":
+      "Custom business software development to automate and optimize your internal processes.",
     "dept.dev.services.s6.title": "APIs & Integrations",
-    "dept.dev.services.s6.desc": "Design of robust APIs and third-party service integration to connect your systems together.",
+    "dept.dev.services.s6.desc":
+      "Design of robust APIs and third-party service integration to connect your systems together.",
     "dept.dev.projects.badge": "Our work",
     "dept.dev.projects.title": "Development",
     "dept.dev.projects.titleHighlight": "projects",
     "dept.dev.projects.current.p1.title": "NeoBank Client Portal",
-    "dept.dev.projects.current.p1.desc": "Online banking platform with interactive dashboard, multi-account management and real-time notifications.",
+    "dept.dev.projects.current.p1.desc":
+      "Online banking platform with interactive dashboard, multi-account management and real-time notifications.",
     "dept.dev.projects.current.p1.tag": "Web Application",
     "dept.dev.projects.current.p2.title": "FitTrack Mobile App",
-    "dept.dev.projects.current.p2.desc": "Sports tracking application with personalized training plans, statistics and connected device integration.",
+    "dept.dev.projects.current.p2.desc":
+      "Sports tracking application with personalized training plans, statistics and connected device integration.",
     "dept.dev.projects.current.p2.tag": "Mobile",
     "dept.dev.projects.completed.p1.title": "ArtisanConnect Marketplace",
-    "dept.dev.projects.completed.p1.desc": "Marketplace connecting local artisans with customers, featuring integrated booking and payment systems.",
+    "dept.dev.projects.completed.p1.desc":
+      "Marketplace connecting local artisans with customers, featuring integrated booking and payment systems.",
     "dept.dev.projects.completed.p1.date": "January 2026",
     "dept.dev.projects.completed.p2.title": "LogiFlow ERP",
-    "dept.dev.projects.completed.p2.desc": "Integrated management software for SMEs covering invoicing, inventory and customer relationship management.",
+    "dept.dev.projects.completed.p2.desc":
+      "Integrated management software for SMEs covering invoicing, inventory and customer relationship management.",
     "dept.dev.projects.completed.p2.date": "November 2025",
     "dept.dev.projects.completed.p3.title": "GreenLeaf E-Commerce",
-    "dept.dev.projects.completed.p3.desc": "Organic products online store with basket configurator, subscriptions and scheduled delivery.",
+    "dept.dev.projects.completed.p3.desc":
+      "Organic products online store with basket configurator, subscriptions and scheduled delivery.",
     "dept.dev.projects.completed.p3.date": "September 2025",
     "dept.dev.team.badge": "Our team",
     "dept.dev.team.title": "The development",
     "dept.dev.team.titleHighlight": "experts",
     "dept.dev.team.m1.role": "Development Department Head",
-    "dept.dev.team.m1.desc": "Leads the development department, oversees all projects and ensures the technical quality of deliverables.",
+    "dept.dev.team.m1.desc":
+      "Leads the development department, oversees all projects and ensures the technical quality of deliverables.",
     "dept.dev.team.m2.role": "Full-Stack Developer & Coordinator",
-    "dept.dev.team.m2.desc": "Handles development and project coordination, ensures technical consistency and deadline compliance.",
+    "dept.dev.team.m2.desc":
+      "Handles development and project coordination, ensures technical consistency and deadline compliance.",
     "dept.dev.team.m3.role": "Full-Stack Developer",
-    "dept.dev.team.m3.desc": "Designs and develops high-performance web and mobile applications, from front-end to back-end.",
+    "dept.dev.team.m3.desc":
+      "Designs and develops high-performance web and mobile applications, from front-end to back-end.",
     "dept.dev.team.m4.role": "Full-Stack Developer",
-    "dept.dev.team.m4.desc": "Contributes to the design and development of digital solutions, with a focus on code quality and user experience.",
+    "dept.dev.team.m4.desc":
+      "Contributes to the design and development of digital solutions, with a focus on code quality and user experience.",
     "dept.dev.cta.title": "Have a development project",
     "dept.dev.cta.titleHighlight": "in mind?",
-    "dept.dev.cta.subtitle": "Share your vision with us and our team will guide you from design to production deployment.",
+    "dept.dev.cta.subtitle":
+      "Share your vision with us and our team will guide you from design to production deployment.",
     "dept.dev.cta.button": "Launch my project",
     "dept.dev.cta.badge": "Let's take action",
     "dept.dev.cta.secondary": "See our work",
-    "dept.dev.overview.subtitle": "Discover our unique approach to software development.",
-    "dept.dev.services.subtitle": "From design to production, we cover all your needs.",
-    "dept.dev.team.m1.name": "Valentin Nougboloni",
+    "dept.dev.overview.subtitle":
+      "Discover our unique approach to software development.",
+    "dept.dev.services.subtitle":
+      "From design to production, we cover all your needs.",
+    "dept.dev.team.m1.name": "Valentin Nougbologni",
     "dept.dev.team.m2.name": "Josiane Dadakpete",
-    "dept.dev.team.m3.name": "Epaphrodite Nougboloni",
+    "dept.dev.team.m3.name": "Epaphrodite Nougbologni",
     "dept.dev.team.m4.name": "Wilfried Heloussato",
 
     // Department Pages - Research
     "dept.research.hero.badge": "Research & Innovation Department",
     "dept.research.hero.title": "From idea to",
     "dept.research.hero.titleHighlight": "concrete reality",
-    "dept.research.hero.subtitle": "We transform innovative ideas into functional, market-ready products by combining electronics, IT, automation, IoT and artificial intelligence.",
+    "dept.research.hero.subtitle":
+      "We transform innovative ideas into functional, market-ready products by combining electronics, IT, automation, IoT and artificial intelligence.",
     "dept.research.overview.badge": "Our mission",
     "dept.research.overview.title": "Innovating to",
     "dept.research.overview.titleHighlight": "transform everyday life",
-    "dept.research.overview.text1": "Our Research & Innovation department is dedicated to designing concrete technological solutions from innovative ideas. We cover the entire cycle: from exploratory research to a functional prototype, all the way to market launch.",
-    "dept.research.overview.text2": "Our fields of expertise — electronics, IT, automation, Internet of Things and artificial intelligence — enable us to address the technological challenges of various sectors: commerce, precision agriculture, healthcare and industry.",
+    "dept.research.overview.text1":
+      "Our Research & Innovation department is dedicated to designing concrete technological solutions from innovative ideas. We cover the entire cycle: from exploratory research to a functional prototype, all the way to market launch.",
+    "dept.research.overview.text2":
+      "Our fields of expertise — electronics, IT, automation, Internet of Things and artificial intelligence — enable us to address the technological challenges of various sectors: commerce, precision agriculture, healthcare and industry.",
     "dept.research.overview.stat1.value": "1",
     "dept.research.overview.stat1.label": "Ongoing project",
     "dept.research.overview.stat2.value": "4",
@@ -600,22 +750,29 @@ const translations: Record<Locale, Record<string, string>> = {
     "dept.research.services.title": "Research areas",
     "dept.research.services.titleHighlight": "& innovation",
     "dept.research.services.s1.title": "Electronics & Embedded Systems",
-    "dept.research.services.s1.desc": "Design of custom circuits, electronic boards and embedded systems for intelligent and autonomous devices.",
+    "dept.research.services.s1.desc":
+      "Design of custom circuits, electronic boards and embedded systems for intelligent and autonomous devices.",
     "dept.research.services.s2.title": "Internet of Things (IoT)",
-    "dept.research.services.s2.desc": "Development of connected sensor networks and monitoring platforms for real-time data collection and analysis.",
+    "dept.research.services.s2.desc":
+      "Development of connected sensor networks and monitoring platforms for real-time data collection and analysis.",
     "dept.research.services.s3.title": "Artificial Intelligence",
-    "dept.research.services.s3.desc": "Integration of AI and machine learning algorithms into our devices to make systems smarter and more predictive.",
+    "dept.research.services.s3.desc":
+      "Integration of AI and machine learning algorithms into our devices to make systems smarter and more predictive.",
     "dept.research.services.s4.title": "Automation",
-    "dept.research.services.s4.desc": "Design of automated systems to optimize industrial, commercial and agricultural processes with minimal human intervention.",
+    "dept.research.services.s4.desc":
+      "Design of automated systems to optimize industrial, commercial and agricultural processes with minimal human intervention.",
     "dept.research.services.s5.title": "Prototyping & Market Launch",
-    "dept.research.services.s5.desc": "From concept to finished product: rapid prototyping, testing, validation and support through to commercialization.",
+    "dept.research.services.s5.desc":
+      "From concept to finished product: rapid prototyping, testing, validation and support through to commercialization.",
     "dept.research.services.s6.title": "Sector-Specific Solutions",
-    "dept.research.services.s6.desc": "Development of solutions tailored to the specific needs of commerce, precision agriculture, healthcare and industry.",
+    "dept.research.services.s6.desc":
+      "Development of solutions tailored to the specific needs of commerce, precision agriculture, healthcare and industry.",
     "dept.research.projects.badge": "Our work",
     "dept.research.projects.title": "Current &",
     "dept.research.projects.titleHighlight": "upcoming projects",
     "dept.research.projects.current.p1.title": "Internal Badging Device",
-    "dept.research.projects.current.p1.desc": "Electronic access control system using smart badges, integrating RFID identification, attendance management and a real-time monitoring dashboard.",
+    "dept.research.projects.current.p1.desc":
+      "Electronic access control system using smart badges, integrating RFID identification, attendance management and a real-time monitoring dashboard.",
     "dept.research.projects.current.p1.tag": "Electronics / IoT",
     "dept.research.projects.upcoming.u1.title": "Commerce",
     "dept.research.projects.upcoming.u2.title": "Precision Agriculture",
@@ -625,19 +782,25 @@ const translations: Record<Locale, Record<string, string>> = {
     "dept.research.team.title": "The research",
     "dept.research.team.titleHighlight": "& innovation team",
     "dept.research.team.m1.role": "R&I Department Director",
-    "dept.research.team.m1.desc": "Leads the research and innovation strategy, oversees projects from concept to prototype and coordinates the market launch of developed solutions.",
+    "dept.research.team.m1.desc":
+      "Leads the research and innovation strategy, oversees projects from concept to prototype and coordinates the market launch of developed solutions.",
     "dept.research.team.m2.role": "R&D Intern",
-    "dept.research.team.m2.desc": "Contributes to the design and development of prototypes, participates in testing and integration phases of embedded and IoT systems.",
+    "dept.research.team.m2.desc":
+      "Contributes to the design and development of prototypes, participates in testing and integration phases of embedded and IoT systems.",
     "dept.research.team.m3.role": "R&D Intern",
-    "dept.research.team.m3.desc": "Participates in research work, algorithm implementation and development of the department's electronic and software solutions.",
+    "dept.research.team.m3.desc":
+      "Participates in research work, algorithm implementation and development of the department's electronic and software solutions.",
     "dept.research.cta.title": "An innovative idea",
     "dept.research.cta.titleHighlight": "to bring to life?",
-    "dept.research.cta.subtitle": "Our R&I team is ready to turn your concept into a functional product, from exploratory research to market launch.",
+    "dept.research.cta.subtitle":
+      "Our R&I team is ready to turn your concept into a functional product, from exploratory research to market launch.",
     "dept.research.cta.button": "Let's discuss your project",
     "dept.research.cta.badge": "Let's take action",
     "dept.research.cta.secondary": "See our work",
-    "dept.research.overview.subtitle": "Turning ideas into market-ready concrete solutions.",
-    "dept.research.services.subtitle": "Electronics, IT, automation, IoT and AI powering innovation.",
+    "dept.research.overview.subtitle":
+      "Turning ideas into market-ready concrete solutions.",
+    "dept.research.services.subtitle":
+      "Electronics, IT, automation, IoT and AI powering innovation.",
     "dept.research.team.m1.name": "Géoffroy Zannou",
     "dept.research.team.m2.name": "",
     "dept.research.team.m3.name": "",
@@ -645,13 +808,17 @@ const translations: Record<Locale, Record<string, string>> = {
     // Department Pages - Training
     "dept.training.hero.badge": "Training & Communication Department",
     "dept.training.hero.title": "Boost your career",
-    "dept.training.hero.titleHighlight": "with our certified and practical training programs",
-    "dept.training.hero.subtitle": "A structured and certifying training offer in web and mobile development, data, artificial intelligence, digital marketing, office computing, graphic design, and video editing, aligned with technological advancements.",
+    "dept.training.hero.titleHighlight":
+      "with our certified and practical training programs",
+    "dept.training.hero.subtitle":
+      "A structured and certifying training offer in web and mobile development, data, artificial intelligence, digital marketing, office computing, graphic design, and video editing, aligned with technological advancements.",
     "dept.training.overview.badge": "Our dual mission",
     "dept.training.overview.title": "Train and communicate",
     "dept.training.overview.titleHighlight": "to make an impact",
-    "dept.training.overview.text1": "Our training department offers programs designed and delivered by active professionals. Each course combines solid theoretical foundations with immediate hands-on practice through real-world projects.",
-    "dept.training.overview.text2": "Whether you want to train your teams in web and mobile development, artificial intelligence, data, digital marketing, office computing, graphic design, or video editing, our programs are tailored to your context and specific objectives.",
+    "dept.training.overview.text1":
+      "Our training department offers programs designed and delivered by active professionals. Each course combines solid theoretical foundations with immediate hands-on practice through real-world projects.",
+    "dept.training.overview.text2":
+      "Whether you want to train your teams in web and mobile development, artificial intelligence, data, digital marketing, office computing, graphic design, or video editing, our programs are tailored to your context and specific objectives.",
     "dept.training.overview.stat1.label": "Trainings completed",
     "dept.training.overview.stat2.label": "Upcoming trainings",
     "dept.training.overview.stat3.label": "Registrations",
@@ -659,67 +826,85 @@ const translations: Record<Locale, Record<string, string>> = {
     "dept.training.services.title": "What we",
     "dept.training.services.titleHighlight": "offer",
     "dept.training.services.s1.title": "Paid Training Programs",
-    "dept.training.services.s1.desc": "Our certifying programs help you build skills in a concrete and practical way. They cover programming for web and mobile development, data and artificial intelligence careers, digital marketing, office computing, as well as graphic design and video editing, combining solid theory with practical projects tailored to your professional goals.",
+    "dept.training.services.s1.desc":
+      "Our certifying programs help you build skills in a concrete and practical way. They cover programming for web and mobile development, data and artificial intelligence careers, digital marketing, office computing, as well as graphic design and video editing, combining solid theory with practical projects tailored to your professional goals.",
     "dept.training.services.s2.title": "Free Training Programs",
-    "dept.training.services.s2.desc": "Introductory and awareness sessions open to everyone to democratize access to digital skills.",
+    "dept.training.services.s2.desc":
+      "Introductory and awareness sessions open to everyone to democratize access to digital skills.",
     "dept.training.services.s3.title": "Bootcamps",
-    "dept.training.services.s3.desc": "Our intensive bootcamps offer a fast and practical immersion into the main areas of digital technology. Each session combines essential theory with real-world projects, enabling you to acquire directly applicable skills.",
+    "dept.training.services.s3.desc":
+      "Our intensive bootcamps offer a fast and practical immersion into the main areas of digital technology. Each session combines essential theory with real-world projects, enabling you to acquire directly applicable skills.",
     "dept.training.projects.badge": "Our achievements",
     "dept.training.projects.title": "Completed",
     "dept.training.projects.titleHighlight": "training courses",
     "dept.training.projects.current.p1.title": "Graphic Design with AI",
-    "dept.training.projects.current.p1.desc": "Hands-on training on using artificial intelligence tools for graphic creation and visual design.",
+    "dept.training.projects.current.p1.desc":
+      "Hands-on training on using artificial intelligence tools for graphic creation and visual design.",
     "dept.training.projects.current.p1.tag": "Design",
     "dept.training.projects.current.p2.title": "Web Development",
-    "dept.training.projects.current.p2.desc": "Comprehensive training in web development fundamentals: HTML, CSS, JavaScript, and website deployment.",
+    "dept.training.projects.current.p2.desc":
+      "Comprehensive training in web development fundamentals: HTML, CSS, JavaScript, and website deployment.",
     "dept.training.projects.current.p2.tag": "Development",
-    "dept.training.projects.completed.p1.title": "Introduction to Office Computing",
-    "dept.training.projects.completed.p1.desc": "Introductory training in essential office tools: word processing, spreadsheets, presentations, and file management.",
+    "dept.training.projects.completed.p1.title":
+      "Introduction to Office Computing",
+    "dept.training.projects.completed.p1.desc":
+      "Introductory training in essential office tools: word processing, spreadsheets, presentations, and file management.",
     "dept.training.projects.completed.p1.date": "2025",
     "dept.training.projects.completed.p2.title": "Graphic Design with AI",
-    "dept.training.projects.completed.p2.desc": "Mastering image generation and AI-assisted design tools for visual creation.",
+    "dept.training.projects.completed.p2.desc":
+      "Mastering image generation and AI-assisted design tools for visual creation.",
     "dept.training.projects.completed.p2.date": "2025",
     "dept.training.projects.completed.p3.title": "Web Development Training",
-    "dept.training.projects.completed.p3.desc": "Complete web development training path, from HTML/CSS basics to modern JavaScript frameworks.",
+    "dept.training.projects.completed.p3.desc":
+      "Complete web development training path, from HTML/CSS basics to modern JavaScript frameworks.",
     "dept.training.projects.completed.p3.date": "2025",
     "dept.training.team.badge": "Our team",
     "dept.training.team.title": "The training &",
     "dept.training.team.titleHighlight": "communication team",
     "dept.training.team.m1.role": "Training Department Director",
-    "dept.training.team.m1.desc": "Leads the Training department, drives the educational strategy and oversees all AloPro training programs.",
+    "dept.training.team.m1.desc":
+      "Leads the Training department, drives the educational strategy and oversees all AloPro training programs.",
     "dept.training.team.m2.role": "Communications Officer",
-    "dept.training.team.m2.desc": "Manages digital communication, runs LinkedIn and Facebook social media, and produces content for all three departments.",
+    "dept.training.team.m2.desc":
+      "Manages digital communication, runs LinkedIn and Facebook social media, and produces content for all three departments.",
     "dept.training.cta.title": "Ready to",
     "dept.training.cta.titleHighlight": "learn?",
-    "dept.training.cta.subtitle": "Discover our upcoming free and paid training programs, or contact us for a custom program.",
+    "dept.training.cta.subtitle":
+      "Discover our upcoming free and paid training programs, or contact us for a custom program.",
     "dept.training.cta.button": "View our trainings",
     "dept.training.cta.badge": "Let's take action",
     "dept.training.cta.secondary": "Contact us",
-    "dept.training.overview.subtitle": "Train, communicate, and unite around digital.",
+    "dept.training.overview.subtitle":
+      "Train, communicate, and unite around digital.",
     "dept.training.services.subtitle": "",
-    "dept.training.team.m1.name": "Serge Nougboloni",
+    "dept.training.team.m1.name": "Serge Nougbologni",
     "dept.training.team.m2.name": "Merveille Hounsou",
 
     // Services Page
     "servicesPage.badge": "Our services",
     "servicesPage.hero.title": "Complete solutions",
     "servicesPage.hero.titleHighlight": "for your digital transformation",
-    "servicesPage.hero.subtitle": "Three complementary departments — development, research & innovation, and training — to support your business at every stage of its digital growth.",
+    "servicesPage.hero.subtitle":
+      "Three complementary departments — development, research & innovation, and training — to support your business at every stage of its digital growth.",
 
     // About Page
     "about.badge": "About us",
     "about.hero.title": "We are",
     "about.hero.titleHighlight": "AloPro",
-    "about.hero.subtitle": "A technology company structured around three centers of expertise to transform your ideas into concrete, high-performing solutions.",
+    "about.hero.subtitle":
+      "A technology company structured around three centers of expertise to transform your ideas into concrete, high-performing solutions.",
     "about.mission.badge": "Our mission",
     "about.mission.title": "Innovate to",
     "about.mission.titleHighlight": "create value",
-    "about.mission.desc1": "AloPro was born from the belief that technology should be accessible and transformative. We combine software development, applied research, and training to deliver comprehensive solutions to our clients and partners.",
-    "about.mission.desc2": "Our approach rests on three pillars: technical excellence, continuous innovation, and personalized support. Every project is an opportunity to push boundaries and create lasting impact.",
+    "about.mission.desc1":
+      "AloPro was born from the belief that technology should be accessible and transformative. We combine software development, applied research, and training to deliver comprehensive solutions to our clients and partners.",
+    "about.mission.desc2":
+      "Our approach rests on three pillars: technical excellence, continuous innovation, and personalized support. Every project is an opportunity to push boundaries and create lasting impact.",
     "about.team.badge": "Our team",
     "about.team.title": "The talents behind",
     "about.team.titleHighlight": "AloPro",
-    "about.team.subtitle": "A multidisciplinary team of passionate professionals putting their expertise at the service of your projects.",
+    "about.team.subtitle":
+      "A multidisciplinary team of passionate professionals putting their expertise at the service of your projects.",
     "about.team.valentin.role": "Head of Development Department",
     "about.team.josiane.role": "FullStack Developer & Coordinator",
     "about.team.epaphrodite.role": "FullStack Developer",
@@ -732,42 +917,56 @@ const translations: Record<Locale, Record<string, string>> = {
     "why.badge": "Why choose us",
     "why.title": "The expertise that makes",
     "why.titleHighlight": "the difference",
-    "why.subtitle": "Our approach combines technological innovation, technical expertise and personalized solutions for each client.",
+    "why.subtitle":
+      "Our approach combines technological innovation, technical expertise and personalized solutions for each client.",
     "why.innovation.title": "Innovation",
-    "why.innovation.desc": "Cutting-edge technologies and modern approaches for solutions always ahead of their time.",
+    "why.innovation.desc":
+      "Cutting-edge technologies and modern approaches for solutions always ahead of their time.",
     "why.expertise.title": "Technical Expertise",
-    "why.expertise.desc": "A team of senior developers mastering the most powerful stacks on the market.",
+    "why.expertise.desc":
+      "A team of senior developers mastering the most powerful stacks on the market.",
     "why.tailored.title": "Tailored Solutions",
-    "why.tailored.desc": "Every project is unique. We adapt our solutions to your specific needs and objectives.",
+    "why.tailored.desc":
+      "Every project is unique. We adapt our solutions to your specific needs and objectives.",
 
     // Portfolio
     "portfolio.badge": "Our work",
     "portfolio.title": "Projects that",
     "portfolio.titleHighlight": "inspire",
-    "portfolio.subtitle": "Discover a selection of our recent projects that showcase our expertise and creativity.",
+    "portfolio.subtitle":
+      "Discover a selection of our recent projects that showcase our expertise and creativity.",
     "portfolio.project1.title": "Premium E-Commerce",
-    "portfolio.project1.desc": "High-performance e-commerce platform with integrated payments and advanced inventory management.",
+    "portfolio.project1.desc":
+      "High-performance e-commerce platform with integrated payments and advanced inventory management.",
     "portfolio.project2.title": "Analytics Dashboard",
-    "portfolio.project2.desc": "Real-time data visualization application with interactive charts and automated reporting.",
+    "portfolio.project2.desc":
+      "Real-time data visualization application with interactive charts and automated reporting.",
     "portfolio.project3.title": "Health Mobile App",
-    "portfolio.project3.desc": "Cross-platform health tracking application with integrated AI and cloud synchronization.",
+    "portfolio.project3.desc":
+      "Cross-platform health tracking application with integrated AI and cloud synchronization.",
     "portfolio.project4.title": "SaaS Platform",
-    "portfolio.project4.desc": "B2B SaaS project management solution with real-time collaboration and workflow automation.",
+    "portfolio.project4.desc":
+      "B2B SaaS project management solution with real-time collaboration and workflow automation.",
     "portfolio.viewProject": "View project",
 
     // Process
     "process.badge": "Our process",
     "process.title": "A proven",
     "process.titleHighlight": "methodology",
-    "process.subtitle": "A structured 4-step process to ensure the success of every project.",
+    "process.subtitle":
+      "A structured 4-step process to ensure the success of every project.",
     "process.step1.title": "Analysis",
-    "process.step1.desc": "Deep understanding of your needs, goals and constraints. Technical audit and detailed specifications.",
+    "process.step1.desc":
+      "Deep understanding of your needs, goals and constraints. Technical audit and detailed specifications.",
     "process.step2.title": "Design",
-    "process.step2.desc": "Creation of interactive mockups and prototypes. Design and user experience validation.",
+    "process.step2.desc":
+      "Creation of interactive mockups and prototypes. Design and user experience validation.",
     "process.step3.title": "Development",
-    "process.step3.desc": "Agile development with regular sprints. Clean, tested and documented code.",
+    "process.step3.desc":
+      "Agile development with regular sprints. Clean, tested and documented code.",
     "process.step4.title": "Delivery",
-    "process.step4.desc": "Deployment, training and ongoing support. Performance monitoring and optimizations.",
+    "process.step4.desc":
+      "Deployment, training and ongoing support. Performance monitoring and optimizations.",
 
     // Stats
     "stats.projects": "Projects completed",
@@ -778,7 +977,8 @@ const translations: Record<Locale, Record<string, string>> = {
     // CTA
     "cta.title": "Ready to transform your",
     "cta.titleHighlight": "digital project?",
-    "cta.subtitle": "Let's discuss your project and find the best solution together to achieve your goals.",
+    "cta.subtitle":
+      "Let's discuss your project and find the best solution together to achieve your goals.",
     "cta.button": "Start your project",
     "cta.secondary": "Contact us",
 
@@ -786,7 +986,8 @@ const translations: Record<Locale, Record<string, string>> = {
     "contact.badge": "Contact",
     "contact.title": "Let's talk about your",
     "contact.titleHighlight": "project",
-    "contact.subtitle": "Have a project in mind? Fill out the form below and our team will get back to you within 24 hours.",
+    "contact.subtitle":
+      "Have a project in mind? Fill out the form below and our team will get back to you within 24 hours.",
     "contact.form.name": "Full name",
     "contact.form.namePlaceholder": "John Doe",
     "contact.form.emailPlaceholder": "john@company.com",
@@ -796,14 +997,17 @@ const translations: Record<Locale, Record<string, string>> = {
     "contact.form.departmentPlaceholder": "Select a department",
     "contact.form.subject": "Subject",
     "contact.form.subjectPlaceholder": "How can we help you?",
-    "contact.form.messagePlaceholder": "Describe your project, needs, timeline...",
+    "contact.form.messagePlaceholder":
+      "Describe your project, needs, timeline...",
     "contact.form.submit": "Send message",
     "contact.success.title": "Message sent!",
-    "contact.success.desc": "Thank you for your message. Our team will get back to you as soon as possible.",
+    "contact.success.desc":
+      "Thank you for your message. Our team will get back to you as soon as possible.",
     "contact.success.another": "Send another message",
 
     // Footer
-    "footer.desc": "Digital agency specializing in the design and development of innovative and high-performance web solutions.",
+    "footer.desc":
+      "Digital agency specializing in the design and development of innovative and high-performance web solutions.",
     "footer.navigation": "Navigation",
     "footer.services": "Services",
     "footer.contact": "Contact",
@@ -813,57 +1017,82 @@ const translations: Record<Locale, Record<string, string>> = {
     "footer.dev": "Development",
     "footer.research": "Innovative Research",
     "footer.training": "Training",
-    "footer.newsletterDesc": "Get our latest news and articles delivered straight to your inbox.",
+    "footer.newsletterDesc":
+      "Get our latest news and articles delivered straight to your inbox.",
 
     // Legal - Legal Notice
     "legal.back": "Back to home",
     "legal.title": "Legal Notice",
     "legal.lastUpdated": "Last updated: January 1, 2026",
     "legal.editor.title": "Site Publisher",
-    "legal.editor.content": "The website alopro.com is published by ALOPRO SAS, a simplified joint-stock company with a share capital of 10,000 euros.\n\nRegistered office: 123 Avenue de l'Innovation, 75008 Paris, France\nSIRET: 123 456 789 00012\nPublication director: Jean Dupont\nEmail: contact@alopro.com\nPhone: +33 1 23 45 67 89",
+    "legal.editor.content":
+      "The website alopro.com is published by ALOPRO SAS, a simplified joint-stock company with a share capital of 10,000 euros.\n\nRegistered office: 123 Avenue de l'Innovation, 75008 Paris, France\nSIRET: 123 456 789 00012\nPublication director: Jean Dupont\nEmail: contact@alopro.com\nPhone: +33 1 23 45 67 89",
     "legal.hosting.title": "Hosting",
-    "legal.hosting.content": "The site is hosted by Vercel Inc.\nAddress: 340 S Lemon Ave #4133, Walnut, CA 91789, United States\nWebsite: https://vercel.com",
+    "legal.hosting.content":
+      "The site is hosted by Vercel Inc.\nAddress: 340 S Lemon Ave #4133, Walnut, CA 91789, United States\nWebsite: https://vercel.com",
     "legal.ip.title": "Intellectual Property",
-    "legal.ip.content": "All content on this site (texts, images, videos, logos, icons, sounds, software, etc.) is protected by intellectual property law. Any reproduction, representation, modification, publication, or adaptation of all or part of the elements of the site, by any means or process, is prohibited without prior written authorization from ALOPRO SAS.",
+    "legal.ip.content":
+      "All content on this site (texts, images, videos, logos, icons, sounds, software, etc.) is protected by intellectual property law. Any reproduction, representation, modification, publication, or adaptation of all or part of the elements of the site, by any means or process, is prohibited without prior written authorization from ALOPRO SAS.",
     "legal.liability.title": "Limitation of Liability",
-    "legal.liability.content": "ALOPRO SAS cannot be held responsible for direct or indirect damage caused to the user's equipment when accessing the site. ALOPRO SAS disclaims all liability for the use that may be made of the information and content on the site.",
+    "legal.liability.content":
+      "ALOPRO SAS cannot be held responsible for direct or indirect damage caused to the user's equipment when accessing the site. ALOPRO SAS disclaims all liability for the use that may be made of the information and content on the site.",
     "legal.data.title": "Personal Data",
-    "legal.data.content": "In accordance with the General Data Protection Regulation (GDPR) and the French Data Protection Act, you have the right to access, rectify, delete, and object to personal data concerning you. To exercise these rights, you may contact us at: contact@alopro.com",
+    "legal.data.content":
+      "In accordance with the General Data Protection Regulation (GDPR) and the French Data Protection Act, you have the right to access, rectify, delete, and object to personal data concerning you. To exercise these rights, you may contact us at: contact@alopro.com",
     "legal.cookies.title": "Cookies",
-    "legal.cookies.content": "The site may use cookies to improve the user experience and compile visitor statistics. Users can configure their browser to refuse cookies. However, some features of the site may no longer be accessible.",
+    "legal.cookies.content":
+      "The site may use cookies to improve the user experience and compile visitor statistics. Users can configure their browser to refuse cookies. However, some features of the site may no longer be accessible.",
     "legal.law.title": "Applicable Law",
-    "legal.law.content": "These legal notices are governed by French law. In the event of a dispute, the courts of Paris shall have exclusive jurisdiction.",
+    "legal.law.content":
+      "These legal notices are governed by French law. In the event of a dispute, the courts of Paris shall have exclusive jurisdiction.",
 
     // Privacy - Privacy Policy
     "privacy.back": "Back to home",
     "privacy.title": "Privacy Policy",
     "privacy.lastUpdated": "Last updated: January 1, 2026",
     "privacy.intro.title": "Introduction",
-    "privacy.intro.content": "ALOPRO SAS, concerned about the rights of individuals, particularly with regard to automated processing, and in a spirit of transparency, has established a policy covering all such processing, the purposes pursued, and the means of action available to individuals so that they may best exercise their rights. For any additional information, you may contact us at: contact@alopro.com",
+    "privacy.intro.content":
+      "ALOPRO SAS, concerned about the rights of individuals, particularly with regard to automated processing, and in a spirit of transparency, has established a policy covering all such processing, the purposes pursued, and the means of action available to individuals so that they may best exercise their rights. For any additional information, you may contact us at: contact@alopro.com",
     "privacy.collected.title": "Data Collected",
-    "privacy.collected.content": "In the course of using our site, we may collect the following categories of data:",
-    "privacy.collected.item1": "Identification data: last name, first name, email address, phone number",
-    "privacy.collected.item2": "Connection data: IP address, connection logs, browser type",
-    "privacy.collected.item3": "Browsing data: pages viewed, visit duration, site navigation path",
-    "privacy.collected.item4": "Contact request data: subject and content of messages",
+    "privacy.collected.content":
+      "In the course of using our site, we may collect the following categories of data:",
+    "privacy.collected.item1":
+      "Identification data: last name, first name, email address, phone number",
+    "privacy.collected.item2":
+      "Connection data: IP address, connection logs, browser type",
+    "privacy.collected.item3":
+      "Browsing data: pages viewed, visit duration, site navigation path",
+    "privacy.collected.item4":
+      "Contact request data: subject and content of messages",
     "privacy.purpose.title": "Purpose of Processing",
-    "privacy.purpose.content": "The data collected is used for the following purposes:",
+    "privacy.purpose.content":
+      "The data collected is used for the following purposes:",
     "privacy.purpose.item1": "Responding to your contact and quote requests",
-    "privacy.purpose.item2": "Improving our services and user experience on the site",
+    "privacy.purpose.item2":
+      "Improving our services and user experience on the site",
     "privacy.purpose.item3": "Compiling anonymized traffic statistics",
     "privacy.retention.title": "Data Retention Period",
-    "privacy.retention.content": "Personal data is retained for a period not exceeding that necessary for the purposes for which it is processed. Contact data is retained for 3 years from the last exchange. Browsing data is retained for 13 months in accordance with CNIL recommendations.",
+    "privacy.retention.content":
+      "Personal data is retained for a period not exceeding that necessary for the purposes for which it is processed. Contact data is retained for 3 years from the last exchange. Browsing data is retained for 13 months in accordance with CNIL recommendations.",
     "privacy.rights.title": "User Rights",
-    "privacy.rights.content": "In accordance with the GDPR, you have the following rights regarding your personal data:",
-    "privacy.rights.item1": "Right of access: obtain confirmation of the processing of your data and receive a copy",
-    "privacy.rights.item2": "Right of rectification: request the correction of inaccurate data",
-    "privacy.rights.item3": "Right to erasure: request the deletion of your data",
-    "privacy.rights.item4": "Right to data portability: receive your data in a structured format",
-    "privacy.rights.item5": "Right to object: object to the processing of your data",
+    "privacy.rights.content":
+      "In accordance with the GDPR, you have the following rights regarding your personal data:",
+    "privacy.rights.item1":
+      "Right of access: obtain confirmation of the processing of your data and receive a copy",
+    "privacy.rights.item2":
+      "Right of rectification: request the correction of inaccurate data",
+    "privacy.rights.item3":
+      "Right to erasure: request the deletion of your data",
+    "privacy.rights.item4":
+      "Right to data portability: receive your data in a structured format",
+    "privacy.rights.item5":
+      "Right to object: object to the processing of your data",
     "privacy.security.title": "Data Security",
-    "privacy.security.content": "ALOPRO SAS implements appropriate technical and organizational measures to ensure a level of security appropriate to the risk. We use encryption protocols for data transmission and systems to protect against unauthorized access.",
+    "privacy.security.content":
+      "ALOPRO SAS implements appropriate technical and organizational measures to ensure a level of security appropriate to the risk. We use encryption protocols for data transmission and systems to protect against unauthorized access.",
     "privacy.dpo.title": "DPO Contact",
-    "privacy.dpo.content": "For any questions regarding the protection of your personal data or to exercise your rights, you may contact our Data Protection Officer:\n\nJean Dupont — DPO\nALOPRO SAS\n123 Avenue de l'Innovation, 75008 Paris, France\nEmail: contact@alopro.com",
+    "privacy.dpo.content":
+      "For any questions regarding the protection of your personal data or to exercise your rights, you may contact our Data Protection Officer:\n\nJean Dupont — DPO\nALOPRO SAS\n123 Avenue de l'Innovation, 75008 Paris, France\nEmail: contact@alopro.com",
   },
 };
 
@@ -905,15 +1134,22 @@ if (typeof window !== "undefined") {
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const locale = useSyncExternalStore(subscribeLocale, getLocaleSnapshot, getLocaleServerSnapshot);
+  const locale = useSyncExternalStore(
+    subscribeLocale,
+    getLocaleSnapshot,
+    getLocaleServerSnapshot,
+  );
 
   const setLocale = useCallback((newLocale: Locale) => {
     setLocaleStore(newLocale);
   }, []);
 
-  const t = useCallback((key: string): string => {
-    return translations[locale][key] ?? key;
-  }, [locale]);
+  const t = useCallback(
+    (key: string): string => {
+      return translations[locale][key] ?? key;
+    },
+    [locale],
+  );
 
   return (
     <LanguageContext.Provider value={{ locale, setLocale, t }}>

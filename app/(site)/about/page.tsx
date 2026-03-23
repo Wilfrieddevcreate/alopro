@@ -78,7 +78,7 @@ const values = [
 
 const team = [
   {
-    name: "Valentin NOUGBOLONI",
+    name: "Valentin NOUGBOLOGNI",
     roleKey: "about.team.valentin.role",
     dept: "dev",
     color: "#1F6FEB",
@@ -90,7 +90,7 @@ const team = [
     color: "#1F6FEB",
   },
   {
-    name: "Epaphrodite NOUGBOLONI",
+    name: "Epaphrodite NOUGBOLOGNI",
     roleKey: "about.team.epaphrodite.role",
     dept: "dev",
     color: "#1F6FEB",
@@ -108,7 +108,7 @@ const team = [
     color: "#1F6FEB",
   },
   {
-    name: "Serge NOUGBOLONI",
+    name: "Serge NOUGBOLOGNI",
     roleKey: "about.team.serge.role",
     dept: "training",
     color: "#059669",
